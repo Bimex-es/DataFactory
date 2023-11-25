@@ -1,0 +1,73 @@
+{
+	"name": "0ACCOUNT",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "0ACCOUNT.csv",
+				"container": "bimexcontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "  Plan de cu",
+				"type": "String"
+			},
+			{
+				"name": "N�mero de ",
+				"type": "String"
+			},
+			{
+				"name": "CI",
+				"type": "String"
+			},
+			{
+				"name": "Ind.: Cuen3",
+				"type": "String"
+			},
+			{
+				"name": "Ind.: Clas",
+				"type": "String"
+			},
+			{
+				"name": "Plan de po",
+				"type": "String"
+			},
+			{
+				"name": "Posici�n",
+				"type": "String"
+			},
+			{
+				"name": "Ind.: Cuen7",
+				"type": "String"
+			},
+			{
+				"name": "Sist.fte.",
+				"type": "String"
+			},
+			{
+				"name": "Posici�n p",
+				"type": "String"
+			},
+			{
+				"name": "Descripci�n breve   ",
+				"type": "String"
+			},
+			{
+				"name": "Descripci�n media                       ",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

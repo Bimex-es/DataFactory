@@ -1,0 +1,17 @@
+{
+	"name": "AzureSqlDISTRCHAN",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "stg_distr_chan"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,17 @@
+{
+	"name": "AzureSqlPXQ",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "stg_pxq"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,41 @@
+{
+	"name": "0PROFIT_CTR",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "0PROFIT_CTR.csv",
+				"container": "bimexcontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Sociedad",
+				"type": "String"
+			},
+			{
+				"name": "Cebe",
+				"type": "String"
+			},
+			{
+				"name": "Validez a ",
+				"type": "String"
+			},
+			{
+				"name": "Validez de",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

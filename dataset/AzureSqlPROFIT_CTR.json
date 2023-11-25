@@ -1,0 +1,17 @@
+{
+	"name": "AzureSqlPROFIT_CTR",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "stg_profit_ctr"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

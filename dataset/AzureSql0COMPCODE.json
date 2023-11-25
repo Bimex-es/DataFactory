@@ -1,0 +1,17 @@
+{
+	"name": "AzureSql0COMPCODE",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "stg_comp_code"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

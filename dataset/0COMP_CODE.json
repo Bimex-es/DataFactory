@@ -1,0 +1,69 @@
+{
+	"name": "0COMP_CODE",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "0COMP_CODE.csv",
+				"container": "bimexcontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "SOCIEDAD",
+				"type": "String"
+			},
+			{
+				"name": "PLAN DE CTAS",
+				"type": "String"
+			},
+			{
+				"name": "SOC GL",
+				"type": "String"
+			},
+			{
+				"name": "PAIS",
+				"type": "String"
+			},
+			{
+				"name": "MONEDA",
+				"type": "String"
+			},
+			{
+				"name": "AREA CONT",
+				"type": "String"
+			},
+			{
+				"name": "VARIANTE",
+				"type": "String"
+			},
+			{
+				"name": "SIS FTE",
+				"type": "String"
+			},
+			{
+				"name": "DIVISION",
+				"type": "String"
+			},
+			{
+				"name": "ID SIS FTE",
+				"type": "String"
+			},
+			{
+				"name": "DESSC",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

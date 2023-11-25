@@ -1,0 +1,9 @@
+{
+	"name": "BIMEXDF",
+	"location": "westeurope",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "36a109df-2fc4-42c6-ba90-51e848aa0bb0",
+		"tenantId": "4b83e6a6-b557-4f98-8471-05f99007f225"
+	}
+}
