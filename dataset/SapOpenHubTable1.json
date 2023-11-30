@@ -1,0 +1,12 @@
+{
+	"name": "SapOpenHubTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SapOpenHub1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SapOpenHubTable",
+		"schema": []
+	}
+}
