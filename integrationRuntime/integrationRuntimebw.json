@@ -1,0 +1,6 @@
+{
+	"name": "integrationRuntimebw",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
