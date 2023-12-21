@@ -1,0 +1,305 @@
+{
+	"name": "Fact Finance",
+	"properties": {
+		"description": "copy Fact Finance 2022",
+		"activities": [
+			{
+				"name": "Copy_g5a",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "bimexcontainer/Finanzas/"
+					},
+					{
+						"name": "Destination",
+						"value": "dbo.fact_Finance"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"wildcardFileName": "*",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings",
+							"skipLineCount": 0
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"tableOption": "autoCreate"
+					},
+					"enableStaging": false,
+					"validateDataConsistency": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "0CO_AREA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "0CO_AREA",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "0PROFIT_CTR",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "0PROFIT_CTR",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ZDIRCOMP",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ZDIRCOMP",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ZDIV1",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ZDIV1",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ZFUNCION1",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ZFUNCION1",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ZUBIC1",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ZUBIC1",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ZUBIC1__ZORDEN",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ZUBIC1__ZORDEN",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "0CHRT_ACCTS",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "0CHRT_ACCTS",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ZACCOUNT7",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ZACCOUNT7",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "0COMP_CODE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "0COMP_CODE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "0VERSION",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "0VERSION",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "0CALMONTH",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "0CALMONTH",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "0CALMONTH2",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "0CALMONTH2",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "0CALYEAR",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "0CALYEAR",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "0FISCPER",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "0FISCPER",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "0FISCPER3",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "0FISCPER3",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "0FISCVARNT",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "0FISCVARNT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "0FISCYEAR",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "0FISCYEAR",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "0CURRENCY",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "0CURRENCY",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "0AMOUNT",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "0AMOUNT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "0BALANCE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "0BALANCE",
+									"type": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_g5a",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_g5a",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}
