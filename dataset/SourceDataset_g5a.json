@@ -1,0 +1,108 @@
+{
+	"name": "SourceDataset_g5a",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "Finanzas",
+				"container": "bimexcontainer"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "0CO_AREA",
+				"type": "String"
+			},
+			{
+				"name": "0PROFIT_CTR",
+				"type": "String"
+			},
+			{
+				"name": "ZDIRCOMP",
+				"type": "String"
+			},
+			{
+				"name": "ZDIV1",
+				"type": "String"
+			},
+			{
+				"name": "ZFUNCION1",
+				"type": "String"
+			},
+			{
+				"name": "ZUBIC1",
+				"type": "String"
+			},
+			{
+				"name": "ZUBIC1__ZORDEN",
+				"type": "String"
+			},
+			{
+				"name": "0CHRT_ACCTS",
+				"type": "String"
+			},
+			{
+				"name": "ZACCOUNT7",
+				"type": "String"
+			},
+			{
+				"name": "0COMP_CODE",
+				"type": "String"
+			},
+			{
+				"name": "0VERSION",
+				"type": "String"
+			},
+			{
+				"name": "0CALMONTH",
+				"type": "String"
+			},
+			{
+				"name": "0CALMONTH2",
+				"type": "String"
+			},
+			{
+				"name": "0CALYEAR",
+				"type": "String"
+			},
+			{
+				"name": "0FISCPER",
+				"type": "String"
+			},
+			{
+				"name": "0FISCPER3",
+				"type": "String"
+			},
+			{
+				"name": "0FISCVARNT",
+				"type": "String"
+			},
+			{
+				"name": "0FISCYEAR",
+				"type": "String"
+			},
+			{
+				"name": "0CURRENCY",
+				"type": "String"
+			},
+			{
+				"name": "0AMOUNT",
+				"type": "String"
+			},
+			{
+				"name": "0BALANCE",
+				"type": "String"
+			}
+		]
+	}
+}
