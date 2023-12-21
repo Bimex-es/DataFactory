@@ -1,0 +1,51 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "BIMEXDF"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"value": ""
+		},
+		"SapOpenHub1_password": {
+			"value": ""
+		},
+		"SapTable1_password": {
+			"value": ""
+		},
+		"SapOpenHub1_properties_typeProperties_clientId": {
+			"value": "200"
+		},
+		"SapOpenHub1_properties_typeProperties_userName": {
+			"value": "bimex"
+		},
+		"SapOpenHub1_properties_typeProperties_server": {
+			"value": "192.168.1.198"
+		},
+		"SapOpenHub1_properties_typeProperties_systemNumber": {
+			"value": "00"
+		},
+		"SapTable1_properties_typeProperties_clientId": {
+			"value": "200"
+		},
+		"SapTable1_properties_typeProperties_userName": {
+			"value": "bimex"
+		},
+		"SapTable1_properties_typeProperties_server": {
+			"value": "172.16.1.177"
+		},
+		"SapTable1_properties_typeProperties_systemNumber": {
+			"value": "00"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
