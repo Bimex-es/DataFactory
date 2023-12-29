@@ -300,6 +300,9 @@
 				]
 			}
 		],
+		"folder": {
+			"name": "Finance"
+		},
 		"annotations": []
 	}
 }
