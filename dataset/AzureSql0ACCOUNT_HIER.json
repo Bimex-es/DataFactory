@@ -1,0 +1,20 @@
+{
+	"name": "AzureSql0ACCOUNT_HIER",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Finance"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "stg_account_hier"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

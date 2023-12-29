@@ -1,0 +1,77 @@
+{
+	"name": "Account_Hier",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Finance"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Hoja1",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Account_Hier.xlsx",
+				"container": "bimexcontainer"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "  HIEID                    ",
+				"type": "String"
+			},
+			{
+				"name": "OBJVERS",
+				"type": "String"
+			},
+			{
+				"name": "NODEID",
+				"type": "String"
+			},
+			{
+				"name": "IOBJNM    ",
+				"type": "String"
+			},
+			{
+				"name": "NODENAME      ",
+				"type": "String"
+			},
+			{
+				"name": "Description",
+				"type": "String"
+			},
+			{
+				"name": "XXX",
+				"type": "String"
+			},
+			{
+				"name": "TLEVEL",
+				"type": "String"
+			},
+			{
+				"name": "LINK",
+				"type": "String"
+			},
+			{
+				"name": "PARENTID",
+				"type": "String"
+			},
+			{
+				"name": "CHILDID",
+				"type": "String"
+			},
+			{
+				"name": "NEXTID",
+				"type": "String"
+			},
+			{
+				"name": "INTERVL",
+				"type": "String"
+			}
+		]
+	}
+}

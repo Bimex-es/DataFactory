@@ -1,0 +1,90 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Account_Hier",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				},
+				{
+					"dataset": {
+						"referenceName": "Account_Hier",
+						"type": "DatasetReference"
+					},
+					"name": "source2"
+				}
+			],
+			"sinks": [
+				{
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "join1"
+				},
+				{
+					"name": "select1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          {  HIEID                    } as string,",
+				"          OBJVERS as string,",
+				"          NODEID as string,",
+				"          {IOBJNM    } as string,",
+				"          {NODENAME      } as string,",
+				"          Description as string,",
+				"          XXX as string,",
+				"          TLEVEL as string,",
+				"          LINK as string,",
+				"          PARENTID as string,",
+				"          CHILDID as string,",
+				"          NEXTID as string,",
+				"          INTERVL as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source(output(",
+				"          {  HIEID                    } as string,",
+				"          OBJVERS as string,",
+				"          NODEID as string,",
+				"          {IOBJNM    } as string,",
+				"          {NODENAME      } as string,",
+				"          Description as string,",
+				"          XXX as string,",
+				"          TLEVEL as string,",
+				"          LINK as string,",
+				"          PARENTID as string,",
+				"          CHILDID as string,",
+				"          NEXTID as string,",
+				"          INTERVL as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source2",
+				"source1, source2 join(source1@PARENTID == source2@NODEID,",
+				"     joinType:'left',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"join1 select(mapColumn(",
+				"          Child = source1@{NODENAME      },",
+				"          {Parent   } = source2@{NODENAME      }",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
+			]
+		}
+	}
+}
