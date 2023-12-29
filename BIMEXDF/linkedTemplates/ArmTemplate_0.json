@@ -386,6 +386,88 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/Account_Hier')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Finance"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "Hoja1",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Account_Hier.xlsx",
+						"container": "bimexcontainer"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "  HIEID                    ",
+						"type": "String"
+					},
+					{
+						"name": "OBJVERS",
+						"type": "String"
+					},
+					{
+						"name": "NODEID",
+						"type": "String"
+					},
+					{
+						"name": "IOBJNM    ",
+						"type": "String"
+					},
+					{
+						"name": "NODENAME      ",
+						"type": "String"
+					},
+					{
+						"name": "Description",
+						"type": "String"
+					},
+					{
+						"name": "XXX",
+						"type": "String"
+					},
+					{
+						"name": "TLEVEL",
+						"type": "String"
+					},
+					{
+						"name": "LINK",
+						"type": "String"
+					},
+					{
+						"name": "PARENTID",
+						"type": "String"
+					},
+					{
+						"name": "CHILDID",
+						"type": "String"
+					},
+					{
+						"name": "NEXTID",
+						"type": "String"
+					},
+					{
+						"name": "INTERVL",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureSql0ACCOUNT')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -403,6 +485,30 @@
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "stg_account"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSql0ACCOUNT_HIER')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Finance"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "stg_account_hier"
 				}
 			},
 			"dependsOn": [
@@ -738,1003 +844,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/integrationRuntimes/integrationRuntime1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Fact Finance')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "copy Fact Finance 2022",
-				"activities": [
-					{
-						"name": "Copy_g5a",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [
-							{
-								"name": "Source",
-								"value": "bimexcontainer/Finanzas/"
-							},
-							{
-								"name": "Destination",
-								"value": "dbo.fact_Finance"
-							}
-						],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
-									"wildcardFileName": "*",
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings",
-									"skipLineCount": 0
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"tableOption": "autoCreate"
-							},
-							"enableStaging": false,
-							"validateDataConsistency": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "0CO_AREA",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "0CO_AREA",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "0PROFIT_CTR",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "0PROFIT_CTR",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "ZDIRCOMP",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "ZDIRCOMP",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "ZDIV1",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "ZDIV1",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "ZFUNCION1",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "ZFUNCION1",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "ZUBIC1",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "ZUBIC1",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "ZUBIC1__ZORDEN",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "ZUBIC1__ZORDEN",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "0CHRT_ACCTS",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "0CHRT_ACCTS",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "ZACCOUNT7",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "ZACCOUNT7",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "0COMP_CODE",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "0COMP_CODE",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "0VERSION",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "0VERSION",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "0CALMONTH",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "0CALMONTH",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "0CALMONTH2",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "0CALMONTH2",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "0CALYEAR",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "0CALYEAR",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "0FISCPER",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "0FISCPER",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "0FISCPER3",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "0FISCPER3",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "0FISCVARNT",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "0FISCVARNT",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "0FISCYEAR",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "0FISCYEAR",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "0CURRENCY",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "0CURRENCY",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "0AMOUNT",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "0AMOUNT",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "0BALANCE",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "0BALANCE",
-											"type": "String"
-										}
-									}
-								],
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "SourceDataset_g5a",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DestinationDataset_g5a",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"folder": {
-					"name": "Finance"
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/SourceDataset_g5a')]",
-				"[concat(variables('factoryId'), '/datasets/DestinationDataset_g5a')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Import_Demo_PL')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "az_c_account",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"preCopyScript": "truncate table stg_account",
-								"writeBehavior": "insert",
-								"sqlWriterUseTableLock": false,
-								"tableOption": "autoCreate",
-								"disableMetricsCollection": false
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "  Plan de cu",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Plan de cu",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "N�mero de ",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Numero de ",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "CI",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "CI",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "Ind.: Clas",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Ind.: Clas",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "Plan de po",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Plan de po",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "Posici�n",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Posicion",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "Sist.fte.",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Sist.fte.",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "Posici�n p",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Posicion p",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "Descripci�n breve   ",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Descripcion breve   ",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "Descripci�n media                       ",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Descripcion media                       ",
-											"physicalType": "String"
-										}
-									}
-								],
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "0ACCOUNT",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "AzureSql0ACCOUNT",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "az_c_comp_code",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"preCopyScript": "truncate table stg_comp_code",
-								"writeBehavior": "insert",
-								"sqlWriterUseTableLock": false,
-								"tableOption": "autoCreate",
-								"disableMetricsCollection": false
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "SOCIEDAD",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "SOCIEDAD",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "PLAN DE CTAS",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "PLAN DE CTAS",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "SOC GL",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "SOC GL",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "PAIS",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "PAIS",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "MONEDA",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "MONEDA",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "AREA CONT",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "AREA CONT",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "VARIANTE",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "VARIANTE",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "SIS FTE",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "SIS FTE",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "DIVISION",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "DIVISION",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "ID SIS FTE",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "ID SIS FTE",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "DESSC",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "DESSC",
-											"type": "String",
-											"physicalType": "String"
-										}
-									}
-								],
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "0COMP_CODE",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "AzureSql0COMPCODE",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "az_c_distr_chan",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"preCopyScript": "truncate table stg_distr_chan",
-								"writeBehavior": "insert",
-								"sqlWriterUseTableLock": false,
-								"tableOption": "autoCreate",
-								"disableMetricsCollection": false
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "Canal",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Canal",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "Descripcion",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Descripcion",
-											"type": "String",
-											"physicalType": "String"
-										}
-									}
-								],
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "0DISTR_CHAN",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "AzureSqlDISTRCHAN",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "az_c_profit_ctr",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"preCopyScript": "truncate table stg_profit_ctr",
-								"writeBehavior": "insert",
-								"sqlWriterUseTableLock": false,
-								"tableOption": "autoCreate",
-								"disableMetricsCollection": false
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "Sociedad",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Sociedad",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "Cebe",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Cebe",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "Validez a ",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Validez a ",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "Validez de",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Validez de",
-											"type": "String",
-											"physicalType": "String"
-										}
-									}
-								],
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "0PROFIT_CTR",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "AzureSqlPROFIT_CTR",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "az_c_pxq",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"preCopyScript": "truncate table stg_pxq",
-								"writeBehavior": "insert",
-								"sqlWriterUseTableLock": false,
-								"tableOption": "autoCreate",
-								"disableMetricsCollection": false
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "Account",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Account",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "CalendarMonth",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "CalendarMonth",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "Values",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Values",
-											"type": "String",
-											"physicalType": "String"
-										}
-									}
-								],
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "PxQ",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "AzureSqlPXQ",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"folder": {
-					"name": "Finance"
-				},
-				"annotations": [],
-				"lastPublishTime": "2023-11-16T16:26:44Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/0ACCOUNT')]",
-				"[concat(variables('factoryId'), '/datasets/AzureSql0ACCOUNT')]",
-				"[concat(variables('factoryId'), '/datasets/0COMP_CODE')]",
-				"[concat(variables('factoryId'), '/datasets/AzureSql0COMPCODE')]",
-				"[concat(variables('factoryId'), '/datasets/0DISTR_CHAN')]",
-				"[concat(variables('factoryId'), '/datasets/AzureSqlDISTRCHAN')]",
-				"[concat(variables('factoryId'), '/datasets/0PROFIT_CTR')]",
-				"[concat(variables('factoryId'), '/datasets/AzureSqlPROFIT_CTR')]",
-				"[concat(variables('factoryId'), '/datasets/PxQ')]",
-				"[concat(variables('factoryId'), '/datasets/AzureSqlPXQ')]"
 			]
 		}
 	]
