@@ -369,6 +369,9 @@
 				"policy": {
 					"elapsedTimeMetric": {}
 				},
+				"folder": {
+					"name": "Finance"
+				},
 				"annotations": []
 			},
 			"dependsOn": [
@@ -1035,6 +1038,9 @@
 				"policy": {
 					"elapsedTimeMetric": {}
 				},
+				"folder": {
+					"name": "Finance"
+				},
 				"annotations": [],
 				"lastPublishTime": "2023-11-16T16:26:44Z"
 			},
@@ -1059,6 +1065,9 @@
 				"linkedServiceName": {
 					"referenceName": "AzureBlobStorage1",
 					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Finance"
 				},
 				"annotations": [],
 				"type": "DelimitedText",
@@ -1137,6 +1146,9 @@
 					"referenceName": "AzureBlobStorage1",
 					"type": "LinkedServiceReference"
 				},
+				"folder": {
+					"name": "Finance"
+				},
 				"annotations": [],
 				"type": "DelimitedText",
 				"typeProperties": {
@@ -1210,6 +1222,9 @@
 					"referenceName": "AzureBlobStorage1",
 					"type": "LinkedServiceReference"
 				},
+				"folder": {
+					"name": "Finance"
+				},
 				"annotations": [],
 				"type": "DelimitedText",
 				"typeProperties": {
@@ -1246,6 +1261,9 @@
 				"linkedServiceName": {
 					"referenceName": "AzureBlobStorage1",
 					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Finance"
 				},
 				"annotations": [],
 				"type": "DelimitedText",
@@ -1292,6 +1310,9 @@
 					"referenceName": "AzureSqlDatabase1",
 					"type": "LinkedServiceReference"
 				},
+				"folder": {
+					"name": "Finance"
+				},
 				"annotations": [],
 				"type": "AzureSqlTable",
 				"schema": [],
@@ -1312,6 +1333,9 @@
 				"linkedServiceName": {
 					"referenceName": "AzureSqlDatabase1",
 					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Finance"
 				},
 				"annotations": [],
 				"type": "AzureSqlTable",
@@ -1334,6 +1358,9 @@
 					"referenceName": "AzureSqlDatabase1",
 					"type": "LinkedServiceReference"
 				},
+				"folder": {
+					"name": "Finance"
+				},
 				"annotations": [],
 				"type": "AzureSqlTable",
 				"schema": [],
@@ -1354,6 +1381,9 @@
 				"linkedServiceName": {
 					"referenceName": "AzureSqlDatabase1",
 					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Finance"
 				},
 				"annotations": [],
 				"type": "AzureSqlTable",
@@ -1376,6 +1406,9 @@
 					"referenceName": "AzureSqlDatabase1",
 					"type": "LinkedServiceReference"
 				},
+				"folder": {
+					"name": "Finance"
+				},
 				"annotations": [],
 				"type": "AzureSqlTable",
 				"schema": [],
@@ -1397,6 +1430,9 @@
 					"referenceName": "AzureSqlDatabase1",
 					"type": "LinkedServiceReference"
 				},
+				"folder": {
+					"name": "Finance"
+				},
 				"annotations": [],
 				"type": "AzureSqlTable",
 				"schema": [],
@@ -1417,6 +1453,9 @@
 				"linkedServiceName": {
 					"referenceName": "AzureBlobStorage1",
 					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Finance"
 				},
 				"annotations": [],
 				"type": "DelimitedText",
@@ -1454,6 +1493,9 @@
 				"linkedServiceName": {
 					"referenceName": "AzureBlobStorage1",
 					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Finance"
 				},
 				"annotations": [],
 				"type": "DelimitedText",
