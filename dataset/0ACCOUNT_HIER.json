@@ -1,0 +1,41 @@
+{
+	"name": "0ACCOUNT_HIER",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Finance"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "CLIVLIVERPOOL_HIER.csv",
+				"folderPath": "Finanzas",
+				"container": "bimexcontainer"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Account_ID",
+				"type": "String"
+			},
+			{
+				"name": "Account Description",
+				"type": "String"
+			},
+			{
+				"name": "PARENTID",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
