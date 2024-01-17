@@ -13,7 +13,8 @@
 				"type": "AzureBlobStorageLocation",
 				"fileName": "ZDIVISION_MAST.xlsx",
 				"container": "bimexcontainer"
-			}
+			},
+			"firstRowAsHeader": true
 		},
 		"schema": []
 	}
