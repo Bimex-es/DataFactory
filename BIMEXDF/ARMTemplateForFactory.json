@@ -1123,12 +1123,144 @@
 								"mappings": [
 									{
 										"source": {
-											"name": "  HIEID                    ;OBJVERS;NODEID;IOBJNM    ;NODENAME;TLEVEL;LINK;PARENTID;CHILDID;NEXTID;INTERVL;DESCRIPCION",
+											"name": "  HIEID                    ",
 											"type": "String",
 											"physicalType": "String"
 										},
 										"sink": {
-											"name": "  HIEID                    ;OBJVERS;NODEID;IOBJNM    ;NODENAME;TLEVEL;LINK;PARENTID;CHILDID;NEXTID;INTERVL;DESCRIPCION",
+											"name": "  HIEID                    ",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "OBJVERS",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "OBJVERS",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "NODEID",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "NODEID",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "IOBJNM    ",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "IOBJNM    ",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "NODENAME",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "NODENAME",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "TLEVEL",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "TLEVEL",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "LINK",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "LINK",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "PARENTID",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "PARENTID",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "CHILDID",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "CHILDID",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "NEXTID",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "NEXTID",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "INTERVL",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "INTERVL",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "DESCRIPCION",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "DESCRIPCION",
 											"type": "String",
 											"physicalType": "String"
 										}
@@ -1190,36 +1322,24 @@
 								"mappings": [
 									{
 										"source": {
-											"name": "Account",
+											"name": "NODEID",
 											"type": "String",
 											"physicalType": "String"
 										},
 										"sink": {
-											"name": "Account",
+											"name": "NODEID",
 											"type": "String",
 											"physicalType": "String"
 										}
 									},
 									{
 										"source": {
-											"name": "CalendarMonth",
+											"name": "DESCRIPCION",
 											"type": "String",
 											"physicalType": "String"
 										},
 										"sink": {
-											"name": "CalendarMonth",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "Values",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Values",
+											"name": "DESCRIPCION",
 											"type": "String",
 											"physicalType": "String"
 										}
@@ -1281,36 +1401,24 @@
 								"mappings": [
 									{
 										"source": {
-											"name": "Account",
+											"name": "NODEID",
 											"type": "String",
 											"physicalType": "String"
 										},
 										"sink": {
-											"name": "Account",
+											"name": "NODEID",
 											"type": "String",
 											"physicalType": "String"
 										}
 									},
 									{
 										"source": {
-											"name": "CalendarMonth",
+											"name": "DESCRIP",
 											"type": "String",
 											"physicalType": "String"
 										},
 										"sink": {
-											"name": "CalendarMonth",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "Values",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Values",
+											"name": "DESCRIP",
 											"type": "String",
 											"physicalType": "String"
 										}
@@ -1375,36 +1483,144 @@
 								"mappings": [
 									{
 										"source": {
-											"name": "Account",
+											"name": "  HIEID                    ",
 											"type": "String",
 											"physicalType": "String"
 										},
 										"sink": {
-											"name": "Account",
+											"name": "  HIEID                    ",
 											"type": "String",
 											"physicalType": "String"
 										}
 									},
 									{
 										"source": {
-											"name": "CalendarMonth",
+											"name": "OBJVERS",
 											"type": "String",
 											"physicalType": "String"
 										},
 										"sink": {
-											"name": "CalendarMonth",
+											"name": "OBJVERS",
 											"type": "String",
 											"physicalType": "String"
 										}
 									},
 									{
 										"source": {
-											"name": "Values",
+											"name": "NODEID",
 											"type": "String",
 											"physicalType": "String"
 										},
 										"sink": {
-											"name": "Values",
+											"name": "NODEID",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "IOBJNM    ",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "IOBJNM    ",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "NODENAME                    ",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "NODENAME                    ",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "TLEVEL",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "TLEVEL",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "LINK",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "LINK",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "PARENTID",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "PARENTID",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "CHILDID",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "CHILDID",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "NEXTID",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "NEXTID",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "INTERVL",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "INTERVL",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "DESCRIP",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "DESCRIP",
 											"type": "String",
 											"physicalType": "String"
 										}
