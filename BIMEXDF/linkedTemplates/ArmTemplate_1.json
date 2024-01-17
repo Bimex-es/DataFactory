@@ -221,7 +221,7 @@
 						"fileName": "ZDIVISION_HIER.csv",
 						"container": "bimexcontainer"
 					},
-					"columnDelimiter": ",",
+					"columnDelimiter": ";",
 					"escapeChar": "\\",
 					"firstRowAsHeader": true,
 					"quoteChar": "\""
@@ -1374,36 +1374,12 @@
 								"mappings": [
 									{
 										"source": {
-											"name": "Account",
+											"name": "  HIEID                    ;OBJVERS;NODEID;IOBJNM    ;NODENAME;TLEVEL;LINK;PARENTID;CHILDID;NEXTID;INTERVL;DESCRIPCION",
 											"type": "String",
 											"physicalType": "String"
 										},
 										"sink": {
-											"name": "Account",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "CalendarMonth",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "CalendarMonth",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "Values",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Values",
+											"name": "  HIEID                    ;OBJVERS;NODEID;IOBJNM    ;NODENAME;TLEVEL;LINK;PARENTID;CHILDID;NEXTID;INTERVL;DESCRIPCION",
 											"type": "String",
 											"physicalType": "String"
 										}
