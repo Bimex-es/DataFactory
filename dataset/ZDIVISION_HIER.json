@@ -13,7 +13,7 @@
 				"fileName": "ZDIVISION_HIER.csv",
 				"container": "bimexcontainer"
 			},
-			"columnDelimiter": ",",
+			"columnDelimiter": ";",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
