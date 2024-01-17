@@ -8,6 +8,7 @@
 		"annotations": [],
 		"type": "Excel",
 		"typeProperties": {
+			"sheetName": "Hoja1",
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": "ZDIVISION_MAST.xlsx",
