@@ -2292,7 +2292,8 @@
 						"type": "AzureBlobStorageLocation",
 						"fileName": "ZDIVISION_MAST.xlsx",
 						"container": "bimexcontainer"
-					}
+					},
+					"firstRowAsHeader": true
 				},
 				"schema": []
 			},
@@ -2317,7 +2318,7 @@
 						"fileName": "ZFUNCION_HIER.csv",
 						"container": "bimexcontainer"
 					},
-					"columnDelimiter": ",",
+					"columnDelimiter": ";",
 					"escapeChar": "\\",
 					"firstRowAsHeader": true,
 					"quoteChar": "\""
@@ -2350,7 +2351,8 @@
 						"type": "AzureBlobStorageLocation",
 						"fileName": "ZFUNCION_MAST.xlsx",
 						"container": "bimexcontainer"
-					}
+					},
+					"firstRowAsHeader": true
 				},
 				"schema": []
 			},
