@@ -30,6 +30,8 @@
 		"folder": {
 			"name": "Finance"
 		},
-		"annotations": []
-	}
+		"annotations": [],
+		"lastPublishTime": "2023-12-29T23:29:26Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
 }
