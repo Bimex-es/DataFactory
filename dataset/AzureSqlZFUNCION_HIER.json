@@ -1,0 +1,16 @@
+{
+	"name": "AzureSqlZFUNCION_HIER",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "stg_zfuncion_hier"
+		}
+	}
+}

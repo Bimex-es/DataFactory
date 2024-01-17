@@ -1,0 +1,28 @@
+{
+	"name": "ZFUNCION_HIER",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "ZFUNCION_HIER.csv",
+				"container": "bimexcontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "  HIEID                    ;OBJVERS;NODEID;IOBJNM    ;NODENAME                    ;TLEVEL;LINK;PARENTID;CHILDID;NEXTID;INTERVL;DESCRIP",
+				"type": "String"
+			}
+		]
+	}
+}

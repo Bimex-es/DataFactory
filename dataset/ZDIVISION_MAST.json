@@ -1,0 +1,19 @@
+{
+	"name": "ZDIVISION_MAST",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "ZDIVISION_MAST.xlsx",
+				"container": "bimexcontainer"
+			}
+		},
+		"schema": []
+	}
+}
