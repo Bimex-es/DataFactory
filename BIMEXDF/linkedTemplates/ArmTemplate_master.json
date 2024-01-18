@@ -23,6 +23,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'SapTable1'"
 		},
+		"HttpServerSPO_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://bimexanalyticsbcn.sharepoint.com/sites/Bimex/_api/web/GetFileByServerRelativeUrl('/sites/Bimex/Shared%20Documents/Docs%20Test/Account_Hier.xlsx')/$value"
+		},
 		"SapOpenHub1_properties_typeProperties_clientId": {
 			"type": "string",
 			"defaultValue": "200"
@@ -87,6 +91,9 @@
 					},
 					"AzureSqlDatabase1_connectionString": {
 						"value": "[parameters('AzureSqlDatabase1_connectionString')]"
+					},
+					"HttpServerSPO_properties_typeProperties_url": {
+						"value": "[parameters('HttpServerSPO_properties_typeProperties_url')]"
 					}
 				}
 			},

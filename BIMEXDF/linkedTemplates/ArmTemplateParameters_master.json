@@ -17,6 +17,9 @@
 		"SapTable1_password": {
 			"value": ""
 		},
+		"HttpServerSPO_properties_typeProperties_url": {
+			"value": "https://bimexanalyticsbcn.sharepoint.com/sites/Bimex/_api/web/GetFileByServerRelativeUrl('/sites/Bimex/Shared%20Documents/Docs%20Test/Account_Hier.xlsx')/$value"
+		},
 		"SapOpenHub1_properties_typeProperties_clientId": {
 			"value": "200"
 		},
