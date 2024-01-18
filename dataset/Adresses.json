@@ -1,0 +1,73 @@
+{
+	"name": "Adresses",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Addresses.csv",
+				"folderPath": "Sales",
+				"container": "bimexcontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "ADDRESSID",
+				"type": "String"
+			},
+			{
+				"name": "STREET",
+				"type": "String"
+			},
+			{
+				"name": "CITY",
+				"type": "String"
+			},
+			{
+				"name": "POSTALCODE",
+				"type": "String"
+			},
+			{
+				"name": "BUILDING",
+				"type": "String"
+			},
+			{
+				"name": "COUNTRY",
+				"type": "String"
+			},
+			{
+				"name": "REGION",
+				"type": "String"
+			},
+			{
+				"name": "ADDRESSTYPE",
+				"type": "String"
+			},
+			{
+				"name": "VALIDITY_STARTDATE",
+				"type": "String"
+			},
+			{
+				"name": "VALIDITY_ENDDATE",
+				"type": "String"
+			},
+			{
+				"name": "LATITUDE",
+				"type": "String"
+			},
+			{
+				"name": "LONGITUDE",
+				"type": "String"
+			}
+		]
+	}
+}
