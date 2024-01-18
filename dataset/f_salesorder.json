@@ -1,0 +1,29 @@
+{
+	"name": "f_salesorder",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "SalesOrders.csv",
+				"folderPath": "Sales",
+				"container": "bimexcontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "SALESORDERID;CREATEDBY;CREATEDAT;CHANGEDBY;CHANGEDAT;FISCALYEARVARIANT;FISCALYEARPERIOD;NOTEID;PARTNERID;SALESORG;CURRENCY;GROSSAMOUNT;NETAMOUNT;TAXAMOUNT;LIFECYCLESTATUS;BILLINGSTATUS;DELIVERYSTATUS",
+				"type": "String"
+			}
+		]
+	}
+}
