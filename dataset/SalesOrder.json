@@ -1,0 +1,91 @@
+{
+	"name": "SalesOrder",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "SalesOrders",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "SalesOrders.xlsx",
+				"folderPath": "Sales",
+				"container": "bimexcontainer"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "SALESORDERID",
+				"type": "String"
+			},
+			{
+				"name": "CREATEDBY",
+				"type": "String"
+			},
+			{
+				"name": "CREATEDAT",
+				"type": "String"
+			},
+			{
+				"name": "CHANGEDBY",
+				"type": "String"
+			},
+			{
+				"name": "CHANGEDAT",
+				"type": "String"
+			},
+			{
+				"name": "FISCALYEARVARIANT",
+				"type": "String"
+			},
+			{
+				"name": "FISCALYEARPERIOD",
+				"type": "String"
+			},
+			{
+				"name": "NOTEID",
+				"type": "String"
+			},
+			{
+				"name": "PARTNERID",
+				"type": "String"
+			},
+			{
+				"name": "SALESORG",
+				"type": "String"
+			},
+			{
+				"name": "CURRENCY",
+				"type": "String"
+			},
+			{
+				"name": "GROSSAMOUNT",
+				"type": "String"
+			},
+			{
+				"name": "NETAMOUNT",
+				"type": "String"
+			},
+			{
+				"name": "TAXAMOUNT",
+				"type": "String"
+			},
+			{
+				"name": "LIFECYCLESTATUS",
+				"type": "String"
+			},
+			{
+				"name": "BILLINGSTATUS",
+				"type": "String"
+			},
+			{
+				"name": "DELIVERYSTATUS",
+				"type": "String"
+			}
+		]
+	}
+}
