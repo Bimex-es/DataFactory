@@ -17,6 +17,59 @@
 			},
 			"firstRowAsHeader": true
 		},
-		"schema": []
+		"schema": [
+			{
+				"name": "SALESORDERID",
+				"type": "String"
+			},
+			{
+				"name": "SALESORDERITEM",
+				"type": "String"
+			},
+			{
+				"name": "PRODUCTID",
+				"type": "String"
+			},
+			{
+				"name": "NOTEID",
+				"type": "String"
+			},
+			{
+				"name": "CURRENCY",
+				"type": "String"
+			},
+			{
+				"name": "GROSSAMOUNT",
+				"type": "String"
+			},
+			{
+				"name": "NETAMOUNT",
+				"type": "String"
+			},
+			{
+				"name": "TAXAMOUNT",
+				"type": "String"
+			},
+			{
+				"name": "ITEMATPSTATUS",
+				"type": "String"
+			},
+			{
+				"name": "OPITEMPOS",
+				"type": "String"
+			},
+			{
+				"name": "QUANTITY",
+				"type": "String"
+			},
+			{
+				"name": "QUANTITYUNIT",
+				"type": "String"
+			},
+			{
+				"name": "DELIVERYDATE",
+				"type": "String"
+			}
+		]
 	}
 }
