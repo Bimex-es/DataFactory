@@ -2427,11 +2427,159 @@
 							"sink": {
 								"type": "AzureSqlSink",
 								"writeBehavior": "insert",
-								"sqlWriterUseTableLock": false
+								"sqlWriterUseTableLock": false,
+								"tableOption": "autoCreate",
+								"disableMetricsCollection": false
 							},
 							"enableStaging": false,
 							"translator": {
 								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "ADDRESSID",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ADDRESSID",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "STREET",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "STREET",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "CITY",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "CITY",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "POSTALCODE",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "POSTALCODE",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "BUILDING",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "BUILDING",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "COUNTRY",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "COUNTRY",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "REGION",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "REGION",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "ADDRESSTYPE",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ADDRESSTYPE",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "VALIDITY_STARTDATE",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "VALIDITY_STARTDATE",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "VALIDITY_ENDDATE",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "VALIDITY_ENDDATE",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "LATITUDE",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "LATITUDE",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "LONGITUDE",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "LONGITUDE",
+											"type": "String",
+											"physicalType": "String"
+										}
+									}
+								],
 								"typeConversion": true,
 								"typeConversionSettings": {
 									"allowDataTruncation": true,
