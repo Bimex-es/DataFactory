@@ -726,31 +726,6 @@
 						"type": "DatasetReference"
 					}
 				]
-			},
-			{
-				"name": "Custom1",
-				"type": "Custom",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"command": "python python_hierarchy.py",
-					"resourceLinkedService": {
-						"referenceName": "AzureBlobStorage1",
-						"type": "LinkedServiceReference"
-					},
-					"folderPath": "bimexcontainer",
-					"referenceObjects": {
-						"linkedServices": [],
-						"datasets": []
-					}
-				}
 			}
 		],
 		"folder": {
