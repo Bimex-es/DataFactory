@@ -1684,7 +1684,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/SalesOrder')]",
+			"name": "[concat(parameters('factoryName'), '/Sales')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -2151,6 +2151,59 @@
 								"parameters": {}
 							}
 						]
+					},
+					{
+						"name": "Copy Sales Order Item",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "ExcelSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false,
+								"tableOption": "autoCreate",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "SalesOrderItem",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "AzureSqllSalesOrderItem",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
 					}
 				],
 				"policy": {
@@ -2165,7 +2218,9 @@
 				"[concat(variables('factoryId'), '/datasets/SalesOrder')]",
 				"[concat(variables('factoryId'), '/datasets/AzureSqlSalesOrder')]",
 				"[concat(variables('factoryId'), '/datasets/Adresses')]",
-				"[concat(variables('factoryId'), '/datasets/AzureSqlAdresses')]"
+				"[concat(variables('factoryId'), '/datasets/AzureSqlAdresses')]",
+				"[concat(variables('factoryId'), '/datasets/SalesOrderItem')]",
+				"[concat(variables('factoryId'), '/datasets/AzureSqllSalesOrderItem')]"
 			]
 		},
 		{
@@ -3652,6 +3707,27 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqllSalesOrderItem')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "stg_Sales_Order_Item"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/DestinationDataset_g5a')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -3803,6 +3879,86 @@
 					},
 					{
 						"name": "DELIVERYSTATUS",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SalesOrderItem')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "SalesOrderItems",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "SalesOrderItems.xlsx",
+						"folderPath": "Sales",
+						"container": "bimexcontainer"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "SALESORDERID",
+						"type": "String"
+					},
+					{
+						"name": "SALESORDERITEM",
+						"type": "String"
+					},
+					{
+						"name": "PRODUCTID",
+						"type": "String"
+					},
+					{
+						"name": "NOTEID",
+						"type": "String"
+					},
+					{
+						"name": "CURRENCY",
+						"type": "String"
+					},
+					{
+						"name": "GROSSAMOUNT",
+						"type": "String"
+					},
+					{
+						"name": "NETAMOUNT",
+						"type": "String"
+					},
+					{
+						"name": "TAXAMOUNT",
+						"type": "String"
+					},
+					{
+						"name": "ITEMATPSTATUS",
+						"type": "String"
+					},
+					{
+						"name": "OPITEMPOS",
+						"type": "String"
+					},
+					{
+						"name": "QUANTITY",
+						"type": "String"
+					},
+					{
+						"name": "QUANTITYUNIT",
+						"type": "String"
+					},
+					{
+						"name": "DELIVERYDATE",
 						"type": "String"
 					}
 				]
