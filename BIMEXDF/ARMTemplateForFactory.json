@@ -1720,6 +1720,212 @@
 							"enableStaging": false,
 							"translator": {
 								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "SALESORDERID",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "SALESORDERID",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "CREATEDBY",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "CREATEDBY",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "CREATEDAT",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "CREATEDAT",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "CHANGEDBY",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "CHANGEDBY",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "CHANGEDAT",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "CHANGEDAT",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "FISCALYEARVARIANT",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "FISCALYEARVARIANT",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "FISCALYEARPERIOD",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "FISCALYEARPERIOD",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "NOTEID",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "NOTEID",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "PARTNERID",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "PARTNERID",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "SALESORG",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "SALESORG",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "CURRENCY",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "CURRENCY",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "GROSSAMOUNT",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "GROSSAMOUNT",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "NETAMOUNT",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "NETAMOUNT",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "TAXAMOUNT",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "TAXAMOUNT",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "LIFECYCLESTATUS",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "LIFECYCLESTATUS",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "BILLINGSTATUS",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "BILLINGSTATUS",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "DELIVERYSTATUS",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "DELIVERYSTATUS",
+											"type": "String",
+											"physicalType": "String"
+										}
+									}
+								],
 								"typeConversion": true,
 								"typeConversionSettings": {
 									"allowDataTruncation": true,
