@@ -2362,6 +2362,57 @@
 								"parameters": {}
 							}
 						]
+					},
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "ExcelSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "BusinessPartner",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "AzureSqlBusinessPartner",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
 					}
 				],
 				"policy": {
@@ -2378,7 +2429,9 @@
 				"[concat(variables('factoryId'), '/datasets/Adresses')]",
 				"[concat(variables('factoryId'), '/datasets/AzureSqlAdresses')]",
 				"[concat(variables('factoryId'), '/datasets/SalesOrderItem')]",
-				"[concat(variables('factoryId'), '/datasets/AzureSqllSalesOrderItem')]"
+				"[concat(variables('factoryId'), '/datasets/AzureSqllSalesOrderItem')]",
+				"[concat(variables('factoryId'), '/datasets/BusinessPartner')]",
+				"[concat(variables('factoryId'), '/datasets/AzureSqlBusinessPartner')]"
 			]
 		},
 		{
@@ -3688,6 +3741,27 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlBusinessPartner')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "stg_Business_Partner"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlDISTRCHAN')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -3883,6 +3957,90 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/BusinessPartner')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "BusinessPartners",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "BusinessPartners.xlsx",
+						"folderPath": "Sales",
+						"container": "bimexcontainer"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "PARTNERID",
+						"type": "String"
+					},
+					{
+						"name": "PARTNERROLE",
+						"type": "String"
+					},
+					{
+						"name": "EMAILADDRESS",
+						"type": "String"
+					},
+					{
+						"name": "PHONENUMBER",
+						"type": "String"
+					},
+					{
+						"name": "FAXNUMBER",
+						"type": "String"
+					},
+					{
+						"name": "WEBADDRESS",
+						"type": "String"
+					},
+					{
+						"name": "ADDRESSID",
+						"type": "String"
+					},
+					{
+						"name": "COMPANYNAME",
+						"type": "String"
+					},
+					{
+						"name": "LEGALFORM",
+						"type": "String"
+					},
+					{
+						"name": "CREATEDBY",
+						"type": "String"
+					},
+					{
+						"name": "CREATEDAT",
+						"type": "String"
+					},
+					{
+						"name": "CHANGEDBY",
+						"type": "String"
+					},
+					{
+						"name": "CHANGEDAT",
+						"type": "String"
+					},
+					{
+						"name": "CURRENCY",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
 			]
 		},
 		{
