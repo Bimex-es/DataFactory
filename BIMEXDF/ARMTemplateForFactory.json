@@ -1703,14 +1703,11 @@
 						"userProperties": [],
 						"typeProperties": {
 							"source": {
-								"type": "DelimitedTextSource",
+								"type": "ExcelSource",
 								"storeSettings": {
 									"type": "AzureBlobStorageReadSettings",
 									"recursive": true,
 									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
 								}
 							},
 							"sink": {
@@ -1732,7 +1729,7 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "f_salesorder",
+								"referenceName": "SalesOrder",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -1755,7 +1752,7 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/f_salesorder')]",
+				"[concat(variables('factoryId'), '/datasets/SalesOrder')]",
 				"[concat(variables('factoryId'), '/datasets/AzureSqlSalesOrder')]"
 			]
 		},
@@ -3208,6 +3205,102 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/SalesOrder')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "SalesOrders",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "SalesOrders.xlsx",
+						"folderPath": "Sales",
+						"container": "bimexcontainer"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "SALESORDERID",
+						"type": "String"
+					},
+					{
+						"name": "CREATEDBY",
+						"type": "String"
+					},
+					{
+						"name": "CREATEDAT",
+						"type": "String"
+					},
+					{
+						"name": "CHANGEDBY",
+						"type": "String"
+					},
+					{
+						"name": "CHANGEDAT",
+						"type": "String"
+					},
+					{
+						"name": "FISCALYEARVARIANT",
+						"type": "String"
+					},
+					{
+						"name": "FISCALYEARPERIOD",
+						"type": "String"
+					},
+					{
+						"name": "NOTEID",
+						"type": "String"
+					},
+					{
+						"name": "PARTNERID",
+						"type": "String"
+					},
+					{
+						"name": "SALESORG",
+						"type": "String"
+					},
+					{
+						"name": "CURRENCY",
+						"type": "String"
+					},
+					{
+						"name": "GROSSAMOUNT",
+						"type": "String"
+					},
+					{
+						"name": "NETAMOUNT",
+						"type": "String"
+					},
+					{
+						"name": "TAXAMOUNT",
+						"type": "String"
+					},
+					{
+						"name": "LIFECYCLESTATUS",
+						"type": "String"
+					},
+					{
+						"name": "BILLINGSTATUS",
+						"type": "String"
+					},
+					{
+						"name": "DELIVERYSTATUS",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SourceDataset_g5a')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -3436,40 +3529,6 @@
 					"firstRowAsHeader": true
 				},
 				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/f_salesorder')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "SalesOrders1.csv",
-						"folderPath": "Sales",
-						"container": "bimexcontainer"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "SALESORDERID;CREATEDBY;CREATEDAT;CHANGEDBY;CHANGEDAT;FISCALYEARVARIANT;FISCALYEARPERIOD;NOTEID;PARTNERID;SALESORG;CURRENCY;GROSSAMOUNT;NETAMOUNT;TAXAMOUNT;LIFECYCLESTATUS;BILLINGSTATUS;DELIVERYSTATUS",
-						"type": "String"
-					}
-				]
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
