@@ -2364,7 +2364,7 @@
 						]
 					},
 					{
-						"name": "Copy data1",
+						"name": "Copy Business Partner",
 						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
@@ -2387,11 +2387,183 @@
 							"sink": {
 								"type": "AzureSqlSink",
 								"writeBehavior": "insert",
-								"sqlWriterUseTableLock": false
+								"sqlWriterUseTableLock": false,
+								"tableOption": "autoCreate",
+								"disableMetricsCollection": false
 							},
 							"enableStaging": false,
 							"translator": {
 								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "PARTNERID",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "PARTNERID",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "PARTNERROLE",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "PARTNERROLE",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "EMAILADDRESS",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "EMAILADDRESS",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "PHONENUMBER",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "PHONENUMBER",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "FAXNUMBER",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "FAXNUMBER",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "WEBADDRESS",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "WEBADDRESS",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "ADDRESSID",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ADDRESSID",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "COMPANYNAME",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "COMPANYNAME",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "LEGALFORM",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "LEGALFORM",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "CREATEDBY",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "CREATEDBY",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "CREATEDAT",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "CREATEDAT",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "CHANGEDBY",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "CHANGEDBY",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "CHANGEDAT",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "CHANGEDAT",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "CURRENCY",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "CURRENCY",
+											"type": "String",
+											"physicalType": "String"
+										}
+									}
+								],
 								"typeConversion": true,
 								"typeConversionSettings": {
 									"allowDataTruncation": true,
