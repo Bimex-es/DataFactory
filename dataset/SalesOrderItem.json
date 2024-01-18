@@ -1,0 +1,22 @@
+{
+	"name": "SalesOrderItem",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "SalesOrderItems",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "SalesOrderItems.xlsx",
+				"folderPath": "Sales",
+				"container": "bimexcontainer"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": []
+	}
+}
