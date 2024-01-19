@@ -7,7 +7,76 @@
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
-		"schema": [],
+		"schema": [
+			{
+				"name": "SALESORDERID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CREATEDBY",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CREATEDAT",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CHANGEDBY",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CHANGEDAT",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FISCALYEARVARIANT",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FISCALYEARPERIOD",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NOTEID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PARTNERID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SALESORG",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CURRENCY",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GROSSAMOUNT",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NETAMOUNT",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TAXAMOUNT",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LIFECYCLESTATUS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BILLINGSTATUS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DELIVERYSTATUS",
+				"type": "nvarchar"
+			}
+		],
 		"typeProperties": {
 			"schema": "dbo",
 			"table": "stg_Sales_Order"

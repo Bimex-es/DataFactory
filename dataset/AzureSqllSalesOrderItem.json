@@ -7,7 +7,60 @@
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
-		"schema": [],
+		"schema": [
+			{
+				"name": "SALESORDERID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SALESORDERITEM",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PRODUCTID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NOTEID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CURRENCY",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GROSSAMOUNT",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NETAMOUNT",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TAXAMOUNT",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ITEMATPSTATUS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OPITEMPOS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "QUANTITY",
+				"type": "nvarchar"
+			},
+			{
+				"name": "QUANTITYUNIT",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DELIVERYDATE",
+				"type": "nvarchar"
+			}
+		],
 		"typeProperties": {
 			"schema": "dbo",
 			"table": "stg_Sales_Order_Item"

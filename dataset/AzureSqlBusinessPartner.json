@@ -7,7 +7,64 @@
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
-		"schema": [],
+		"schema": [
+			{
+				"name": "PARTNERID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PARTNERROLE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EMAILADDRESS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PHONENUMBER",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FAXNUMBER",
+				"type": "nvarchar"
+			},
+			{
+				"name": "WEBADDRESS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ADDRESSID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "COMPANYNAME",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LEGALFORM",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CREATEDBY",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CREATEDAT",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CHANGEDBY",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CHANGEDAT",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CURRENCY",
+				"type": "nvarchar"
+			}
+		],
 		"typeProperties": {
 			"schema": "dbo",
 			"table": "stg_Business_Partner"

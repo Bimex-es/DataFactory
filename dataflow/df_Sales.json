@@ -1,0 +1,143 @@
+{
+	"name": "df_Sales",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqllSalesOrderItem",
+						"type": "DatasetReference"
+					},
+					"name": "SalesOrderItem"
+				},
+				{
+					"dataset": {
+						"referenceName": "AzureSqlSalesOrder",
+						"type": "DatasetReference"
+					},
+					"name": "source2"
+				},
+				{
+					"dataset": {
+						"referenceName": "AzureSqlBusinessPartner",
+						"type": "DatasetReference"
+					},
+					"name": "source3"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "join1"
+				},
+				{
+					"name": "select1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          SALESORDERID as string,",
+				"          SALESORDERITEM as string,",
+				"          PRODUCTID as string,",
+				"          NOTEID as string,",
+				"          CURRENCY as string,",
+				"          GROSSAMOUNT as string,",
+				"          NETAMOUNT as string,",
+				"          TAXAMOUNT as string,",
+				"          ITEMATPSTATUS as string,",
+				"          OPITEMPOS as string,",
+				"          QUANTITY as string,",
+				"          QUANTITYUNIT as string,",
+				"          DELIVERYDATE as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> SalesOrderItem",
+				"source(output(",
+				"          SALESORDERID as string,",
+				"          CREATEDBY as string,",
+				"          CREATEDAT as string,",
+				"          CHANGEDBY as string,",
+				"          CHANGEDAT as string,",
+				"          FISCALYEARVARIANT as string,",
+				"          FISCALYEARPERIOD as string,",
+				"          NOTEID as string,",
+				"          PARTNERID as string,",
+				"          SALESORG as string,",
+				"          CURRENCY as string,",
+				"          GROSSAMOUNT as string,",
+				"          NETAMOUNT as string,",
+				"          TAXAMOUNT as string,",
+				"          LIFECYCLESTATUS as string,",
+				"          BILLINGSTATUS as string,",
+				"          DELIVERYSTATUS as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source2",
+				"source(output(",
+				"          PARTNERID as string,",
+				"          PARTNERROLE as string,",
+				"          EMAILADDRESS as string,",
+				"          PHONENUMBER as string,",
+				"          FAXNUMBER as string,",
+				"          WEBADDRESS as string,",
+				"          ADDRESSID as string,",
+				"          COMPANYNAME as string,",
+				"          LEGALFORM as string,",
+				"          CREATEDBY as string,",
+				"          CREATEDAT as string,",
+				"          CHANGEDBY as string,",
+				"          CHANGEDAT as string,",
+				"          CURRENCY as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source3",
+				"SalesOrderItem, source2 join(Sales Order Item@SALESORDERID == source2@SALESORDERID,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"join1 select(mapColumn(",
+				"          SALESORDERID = SalesOrderItem@SALESORDERID,",
+				"          SALESORDERITEM,",
+				"          PRODUCTID,",
+				"          NOTEID = SalesOrderItem@NOTEID,",
+				"          CURRENCY = SalesOrderItem@CURRENCY,",
+				"          GROSSAMOUNT = SalesOrderItem@GROSSAMOUNT,",
+				"          NETAMOUNT = SalesOrderItem@NETAMOUNT,",
+				"          TAXAMOUNT = SalesOrderItem@TAXAMOUNT,",
+				"          ITEMATPSTATUS,",
+				"          OPITEMPOS,",
+				"          QUANTITY,",
+				"          QUANTITYUNIT,",
+				"          DELIVERYDATE,",
+				"          SALESORDERID = source2@SALESORDERID,",
+				"          CREATEDBY,",
+				"          CREATEDAT,",
+				"          CHANGEDBY,",
+				"          CHANGEDAT,",
+				"          FISCALYEARVARIANT,",
+				"          FISCALYEARPERIOD,",
+				"          NOTEID = source2@NOTEID,",
+				"          PARTNERID,",
+				"          SALESORG,",
+				"          CURRENCY = source2@CURRENCY,",
+				"          GROSSAMOUNT = source2@GROSSAMOUNT,",
+				"          NETAMOUNT = source2@NETAMOUNT,",
+				"          TAXAMOUNT = source2@TAXAMOUNT,",
+				"          LIFECYCLESTATUS,",
+				"          BILLINGSTATUS,",
+				"          DELIVERYSTATUS",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1"
+			]
+		}
+	}
+}
