@@ -7,7 +7,88 @@
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
-		"schema": [],
+		"schema": [
+			{
+				"name": "PRODUCTID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TYPECODE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PRODUCTCATEGORYID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LANGUAGE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SUPPLIER_PARTNERID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TAXTARIFFCODE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "QUANTITYUNIT",
+				"type": "nvarchar"
+			},
+			{
+				"name": "WEIGHTMEASURE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "WEIGHTUNIT",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CURRENCY",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PRICE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "WIDTH",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DEPTH",
+				"type": "nvarchar"
+			},
+			{
+				"name": "HEIGHT",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DIMENSIONUNIT",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CREATEDBY",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CREATEDAT",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CHANGEDBY",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CHANGEDAT",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PRODUCTPICURL",
+				"type": "nvarchar"
+			}
+		],
 		"typeProperties": {
 			"schema": "dbo",
 			"table": "stg_Products"

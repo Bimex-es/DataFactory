@@ -23,7 +23,14 @@
 						"referenceName": "AzureSqlBusinessPartner",
 						"type": "DatasetReference"
 					},
-					"name": "source3"
+					"name": "BusinessPartner"
+				},
+				{
+					"dataset": {
+						"referenceName": "AzureSqlProducts",
+						"type": "DatasetReference"
+					},
+					"name": "Producto"
 				}
 			],
 			"sinks": [],
@@ -41,7 +48,19 @@
 					"name": "selectSalesOrder"
 				},
 				{
-					"name": "join1"
+					"name": "joinSalesOrder"
+				},
+				{
+					"name": "selectBPartner"
+				},
+				{
+					"name": "joinBPartner"
+				},
+				{
+					"name": "selectProduct"
+				},
+				{
+					"name": "joinProduct"
 				}
 			],
 			"scriptLines": [
@@ -106,7 +125,33 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> source3",
+				"     format: 'table') ~> BusinessPartner",
+				"source(output(",
+				"          PRODUCTID as string,",
+				"          TYPECODE as string,",
+				"          PRODUCTCATEGORYID as string,",
+				"          LANGUAGE as string,",
+				"          SUPPLIER_PARTNERID as string,",
+				"          TAXTARIFFCODE as string,",
+				"          QUANTITYUNIT as string,",
+				"          WEIGHTMEASURE as string,",
+				"          WEIGHTUNIT as string,",
+				"          CURRENCY as string,",
+				"          PRICE as string,",
+				"          WIDTH as string,",
+				"          DEPTH as string,",
+				"          HEIGHT as string,",
+				"          DIMENSIONUNIT as string,",
+				"          CREATEDBY as string,",
+				"          CREATEDAT as string,",
+				"          CHANGEDBY as string,",
+				"          CHANGEDAT as string,",
+				"          PRODUCTPICURL as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> Producto",
 				"SalesOrderItem cast(output(",
 				"          GROSSAMOUNT as decimal(10,2),",
 				"          NETAMOUNT as decimal(10,2),",
@@ -156,7 +201,54 @@
 				"     joinType:'inner',",
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
-				"     broadcast: 'auto')~> join1"
+				"     broadcast: 'auto')~> joinSalesOrder",
+				"BusinessPartner select(mapColumn(",
+				"          {BP.PartnerID} = PARTNERID,",
+				"          {BP.PartnerRole} = PARTNERROLE,",
+				"          {BP.EmailAddress} = EMAILADDRESS,",
+				"          {BP.PhoneNumber} = PHONENUMBER,",
+				"          {BP.FaxNumber} = FAXNUMBER,",
+				"          {BP.WebAddress} = WEBADDRESS,",
+				"          {BP.AdressID} = ADDRESSID,",
+				"          {BP.CompanyName} = COMPANYNAME,",
+				"          {BP.LegalForm} = LEGALFORM",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> selectBPartner",
+				"joinSalesOrder, selectBPartner join({hdr.PartnerID} == {BP.PartnerID},",
+				"     joinType:'left',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> joinBPartner",
+				"Producto select(mapColumn(",
+				"          {Prod.ProductID} = PRODUCTID,",
+				"          {Prod.TypeCode} = TYPECODE,",
+				"          {Prod.ProdCategID} = PRODUCTCATEGORYID,",
+				"          {Prod.Language} = LANGUAGE,",
+				"          {Prod.Supplier_PartnID} = SUPPLIER_PARTNERID,",
+				"          {Prod.TaxTarifCode} = TAXTARIFFCODE,",
+				"          {Prod.QuantityUnit} = QUANTITYUNIT,",
+				"          {Prod.WeightMeasure} = WEIGHTMEASURE,",
+				"          {Prod.WeightUnit} = WEIGHTUNIT,",
+				"          {Prod.Currency} = CURRENCY,",
+				"          {Prod.Price} = PRICE,",
+				"          {Prod.Width} = WIDTH,",
+				"          {Prod.Depth} = DEPTH,",
+				"          {Prod.Height} = HEIGHT,",
+				"          {Prod.DimensionUnit} = DIMENSIONUNIT,",
+				"          {Prod.CreatedBy} = CREATEDBY,",
+				"          {Prod.CreatedAt} = CREATEDAT,",
+				"          {Prod.ChangedBy} = CHANGEDBY,",
+				"          {Prod.ChangedAt} = CHANGEDAT,",
+				"          {Prod.ProdPicURL} = PRODUCTPICURL",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> selectProduct",
+				"joinBPartner, selectProduct join({item.ProductID} == {Prod.ProductID},",
+				"     joinType:'left',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> joinProduct"
 			]
 		}
 	}
