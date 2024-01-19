@@ -116,9 +116,6 @@
 					"SapOpenHub1_password": {
 						"value": "[parameters('SapOpenHub1_password')]"
 					},
-					"SapTable1_password": {
-						"value": "[parameters('SapTable1_password')]"
-					},
 					"SapOpenHub1_properties_typeProperties_clientId": {
 						"value": "[parameters('SapOpenHub1_properties_typeProperties_clientId')]"
 					},
@@ -130,18 +127,6 @@
 					},
 					"SapOpenHub1_properties_typeProperties_systemNumber": {
 						"value": "[parameters('SapOpenHub1_properties_typeProperties_systemNumber')]"
-					},
-					"SapTable1_properties_typeProperties_clientId": {
-						"value": "[parameters('SapTable1_properties_typeProperties_clientId')]"
-					},
-					"SapTable1_properties_typeProperties_userName": {
-						"value": "[parameters('SapTable1_properties_typeProperties_userName')]"
-					},
-					"SapTable1_properties_typeProperties_server": {
-						"value": "[parameters('SapTable1_properties_typeProperties_server')]"
-					},
-					"SapTable1_properties_typeProperties_systemNumber": {
-						"value": "[parameters('SapTable1_properties_typeProperties_systemNumber')]"
 					}
 				}
 			},
@@ -162,6 +147,21 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"SapTable1_password": {
+						"value": "[parameters('SapTable1_password')]"
+					},
+					"SapTable1_properties_typeProperties_clientId": {
+						"value": "[parameters('SapTable1_properties_typeProperties_clientId')]"
+					},
+					"SapTable1_properties_typeProperties_userName": {
+						"value": "[parameters('SapTable1_properties_typeProperties_userName')]"
+					},
+					"SapTable1_properties_typeProperties_server": {
+						"value": "[parameters('SapTable1_properties_typeProperties_server')]"
+					},
+					"SapTable1_properties_typeProperties_systemNumber": {
+						"value": "[parameters('SapTable1_properties_typeProperties_systemNumber')]"
 					}
 				}
 			},

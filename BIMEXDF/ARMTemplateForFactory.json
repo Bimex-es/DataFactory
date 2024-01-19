@@ -2585,6 +2585,304 @@
 								"parameters": {}
 							}
 						]
+					},
+					{
+						"name": "Copy Products",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false,
+								"tableOption": "autoCreate",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "PRODUCTID",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "PRODUCTID",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "TYPECODE",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "TYPECODE",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "PRODUCTCATEGORYID",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "PRODUCTCATEGORYID",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "LANGUAGE",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "LANGUAGE",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "SUPPLIER_PARTNERID",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "SUPPLIER_PARTNERID",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "TAXTARIFFCODE",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "TAXTARIFFCODE",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "QUANTITYUNIT",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "QUANTITYUNIT",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "WEIGHTMEASURE",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "WEIGHTMEASURE",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "WEIGHTUNIT",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "WEIGHTUNIT",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "CURRENCY",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "CURRENCY",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "PRICE",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "PRICE",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "WIDTH",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "WIDTH",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "DEPTH",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "DEPTH",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "HEIGHT",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "HEIGHT",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "DIMENSIONUNIT",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "DIMENSIONUNIT",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "CREATEDBY",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "CREATEDBY",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "CREATEDAT",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "CREATEDAT",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "CHANGEDBY",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "CHANGEDBY",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "CHANGEDAT",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "CHANGEDAT",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "PRODUCTPICURL",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "PRODUCTPICURL",
+											"type": "String",
+											"physicalType": "String"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Products",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "AzureSqlProducts",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
 					}
 				],
 				"policy": {
@@ -2603,7 +2901,9 @@
 				"[concat(variables('factoryId'), '/datasets/SalesOrderItem')]",
 				"[concat(variables('factoryId'), '/datasets/AzureSqllSalesOrderItem')]",
 				"[concat(variables('factoryId'), '/datasets/BusinessPartner')]",
-				"[concat(variables('factoryId'), '/datasets/AzureSqlBusinessPartner')]"
+				"[concat(variables('factoryId'), '/datasets/AzureSqlBusinessPartner')]",
+				"[concat(variables('factoryId'), '/datasets/Products')]",
+				"[concat(variables('factoryId'), '/datasets/AzureSqlProducts')]"
 			]
 		},
 		{
@@ -4006,6 +4306,27 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlProducts')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "stg_Products"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlSalesOrder')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -4237,6 +4558,116 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Products')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Products.csv",
+						"folderPath": "Sales",
+						"container": "bimexcontainer"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "PRODUCTID",
+						"type": "String"
+					},
+					{
+						"name": "TYPECODE",
+						"type": "String"
+					},
+					{
+						"name": "PRODUCTCATEGORYID",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGE",
+						"type": "String"
+					},
+					{
+						"name": "SUPPLIER_PARTNERID",
+						"type": "String"
+					},
+					{
+						"name": "TAXTARIFFCODE",
+						"type": "String"
+					},
+					{
+						"name": "QUANTITYUNIT",
+						"type": "String"
+					},
+					{
+						"name": "WEIGHTMEASURE",
+						"type": "String"
+					},
+					{
+						"name": "WEIGHTUNIT",
+						"type": "String"
+					},
+					{
+						"name": "CURRENCY",
+						"type": "String"
+					},
+					{
+						"name": "PRICE",
+						"type": "String"
+					},
+					{
+						"name": "WIDTH",
+						"type": "String"
+					},
+					{
+						"name": "DEPTH",
+						"type": "String"
+					},
+					{
+						"name": "HEIGHT",
+						"type": "String"
+					},
+					{
+						"name": "DIMENSIONUNIT",
+						"type": "String"
+					},
+					{
+						"name": "CREATEDBY",
+						"type": "String"
+					},
+					{
+						"name": "CREATEDAT",
+						"type": "String"
+					},
+					{
+						"name": "CHANGEDBY",
+						"type": "String"
+					},
+					{
+						"name": "CHANGEDAT",
+						"type": "String"
+					},
+					{
+						"name": "PRODUCTPICURL",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
 			]
 		},
 		{

@@ -11,10 +11,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'SapOpenHub1'"
 		},
-		"SapTable1_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'SapTable1'"
-		},
 		"SapOpenHub1_properties_typeProperties_clientId": {
 			"type": "string",
 			"defaultValue": "200"
@@ -28,22 +24,6 @@
 			"defaultValue": "192.168.1.198"
 		},
 		"SapOpenHub1_properties_typeProperties_systemNumber": {
-			"type": "string",
-			"defaultValue": "00"
-		},
-		"SapTable1_properties_typeProperties_clientId": {
-			"type": "string",
-			"defaultValue": "200"
-		},
-		"SapTable1_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "bimex"
-		},
-		"SapTable1_properties_typeProperties_server": {
-			"type": "string",
-			"defaultValue": "172.16.1.177"
-		},
-		"SapTable1_properties_typeProperties_systemNumber": {
 			"type": "string",
 			"defaultValue": "00"
 		}
@@ -70,6 +50,25 @@
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "stg_pxq"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlProducts')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "stg_Products"
 				}
 			},
 			"dependsOn": []
@@ -289,6 +288,114 @@
 					"schema": "dbo",
 					"table": "fact_Finance"
 				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Products')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Products.csv",
+						"folderPath": "Sales",
+						"container": "bimexcontainer"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "PRODUCTID",
+						"type": "String"
+					},
+					{
+						"name": "TYPECODE",
+						"type": "String"
+					},
+					{
+						"name": "PRODUCTCATEGORYID",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGE",
+						"type": "String"
+					},
+					{
+						"name": "SUPPLIER_PARTNERID",
+						"type": "String"
+					},
+					{
+						"name": "TAXTARIFFCODE",
+						"type": "String"
+					},
+					{
+						"name": "QUANTITYUNIT",
+						"type": "String"
+					},
+					{
+						"name": "WEIGHTMEASURE",
+						"type": "String"
+					},
+					{
+						"name": "WEIGHTUNIT",
+						"type": "String"
+					},
+					{
+						"name": "CURRENCY",
+						"type": "String"
+					},
+					{
+						"name": "PRICE",
+						"type": "String"
+					},
+					{
+						"name": "WIDTH",
+						"type": "String"
+					},
+					{
+						"name": "DEPTH",
+						"type": "String"
+					},
+					{
+						"name": "HEIGHT",
+						"type": "String"
+					},
+					{
+						"name": "DIMENSIONUNIT",
+						"type": "String"
+					},
+					{
+						"name": "CREATEDBY",
+						"type": "String"
+					},
+					{
+						"name": "CREATEDAT",
+						"type": "String"
+					},
+					{
+						"name": "CHANGEDBY",
+						"type": "String"
+					},
+					{
+						"name": "CHANGEDAT",
+						"type": "String"
+					},
+					{
+						"name": "PRODUCTPICURL",
+						"type": "String"
+					}
+				]
 			},
 			"dependsOn": []
 		},
@@ -750,352 +857,6 @@
 				}
 			},
 			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SapTable1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "SapTable",
-				"typeProperties": {
-					"clientId": "[parameters('SapTable1_properties_typeProperties_clientId')]",
-					"language": "ES",
-					"sncMode": false,
-					"userName": "[parameters('SapTable1_properties_typeProperties_userName')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('SapTable1_password')]"
-					},
-					"server": "[parameters('SapTable1_properties_typeProperties_server')]",
-					"systemNumber": "[parameters('SapTable1_properties_typeProperties_systemNumber')]"
-				},
-				"connectVia": {
-					"referenceName": "integrationRuntime1",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Fact Finance')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "copy Fact Finance 2022",
-				"activities": [
-					{
-						"name": "Copy_g5a",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [
-							{
-								"name": "Source",
-								"value": "bimexcontainer/Finanzas/"
-							},
-							{
-								"name": "Destination",
-								"value": "dbo.fact_Finance"
-							}
-						],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
-									"wildcardFileName": "*",
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings",
-									"skipLineCount": 0
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"tableOption": "autoCreate"
-							},
-							"enableStaging": false,
-							"validateDataConsistency": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "0CO_AREA",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "0CO_AREA",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "0PROFIT_CTR",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "0PROFIT_CTR",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "ZDIRCOMP",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "ZDIRCOMP",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "ZDIV1",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "ZDIV1",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "ZFUNCION1",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "ZFUNCION1",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "ZUBIC1",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "ZUBIC1",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "ZUBIC1__ZORDEN",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "ZUBIC1__ZORDEN",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "0CHRT_ACCTS",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "0CHRT_ACCTS",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "ZACCOUNT7",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "ZACCOUNT7",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "0COMP_CODE",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "0COMP_CODE",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "0VERSION",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "0VERSION",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "0CALMONTH",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "0CALMONTH",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "0CALMONTH2",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "0CALMONTH2",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "0CALYEAR",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "0CALYEAR",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "0FISCPER",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "0FISCPER",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "0FISCPER3",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "0FISCPER3",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "0FISCVARNT",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "0FISCVARNT",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "0FISCYEAR",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "0FISCYEAR",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "0CURRENCY",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "0CURRENCY",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "0AMOUNT",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "0AMOUNT",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "0BALANCE",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "0BALANCE",
-											"type": "String"
-										}
-									}
-								],
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "SourceDataset_g5a",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DestinationDataset_g5a",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"folder": {
-					"name": "Finance"
-				},
-				"annotations": [],
-				"lastPublishTime": "2023-12-29T20:25:59Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/SourceDataset_g5a')]",
-				"[concat(variables('factoryId'), '/datasets/DestinationDataset_g5a')]"
-			]
 		}
 	]
 }
