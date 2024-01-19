@@ -61,7 +61,15 @@
 					"name": "sourceProdCategText"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlfactSales",
+						"type": "DatasetReference"
+					},
+					"name": "SinkFinal"
+				}
+			],
 			"transformations": [
 				{
 					"name": "CastSalesOrderItem"
@@ -463,7 +471,18 @@
 				"          Longitude = {Adr.Longitude}",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> selectFinal"
+				"     skipDuplicateMapOutputs: true) ~> selectFinal",
+				"selectFinal sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     recreate:true,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> SinkFinal"
 			]
 		}
 	}
