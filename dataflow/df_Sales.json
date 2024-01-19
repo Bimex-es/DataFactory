@@ -35,7 +35,13 @@
 					"name": "CastSalesOrder"
 				},
 				{
-					"name": "select1"
+					"name": "selectSalesORderItem"
+				},
+				{
+					"name": "selectSalesOrder"
+				},
+				{
+					"name": "join1"
 				}
 			],
 			"scriptLines": [
@@ -129,7 +135,28 @@
 				"          {item.DeliveryDate} = DELIVERYDATE",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> select1"
+				"     skipDuplicateMapOutputs: true) ~> selectSalesORderItem",
+				"CastSalesOrder select(mapColumn(",
+				"          {hdr.SalesOrderID} = SALESORDERID,",
+				"          {hdr.CreatedBy} = CREATEDBY,",
+				"          {hdr.CreatudAt} = CREATEDAT,",
+				"          {hdr.ChangedBy} = CHANGEDBY,",
+				"          {hdr.ChangedAt} = CHANGEDAT,",
+				"          {hdr.FiscalVariant} = FISCALYEARVARIANT,",
+				"          {hdr.FiscalPeriod} = FISCALYEARPERIOD,",
+				"          {hdr.PartnerID} = PARTNERID,",
+				"          {hdr.SalesOrg} = SALESORG,",
+				"          {hdr.LifeCycleStatus} = LIFECYCLESTATUS,",
+				"          {hdr.BillingStatus} = BILLINGSTATUS,",
+				"          {hdr.DeliveryStatus} = DELIVERYSTATUS",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> selectSalesOrder",
+				"selectSalesORderItem, selectSalesOrder join({item.SalesOrderID} == {hdr.SalesOrderID},",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1"
 			]
 		}
 	}
