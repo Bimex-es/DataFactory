@@ -467,6 +467,39 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/Account_Hier_csv')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Account_Hier.csv",
+						"container": "bimexcontainer"
+					},
+					"columnDelimiter": ";",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "  HIEID                    ;OBJVERS;NODEID;IOBJNM    ;NODENAME      ;Description;XXX;TLEVEL;LINK;PARENTID;CHILDID;NEXTID;INTERVL",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Adresses')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -617,6 +650,48 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlAccount_Hier')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "stg_account_hier"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlAccount_Hier_csv')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "stg_account_hier_csv"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlAdresses')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -627,79 +702,59 @@
 				},
 				"annotations": [],
 				"type": "AzureSqlTable",
-				"schema": [],
+				"schema": [
+					{
+						"name": "ADDRESSID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "STREET",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CITY",
+						"type": "nvarchar"
+					},
+					{
+						"name": "POSTALCODE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BUILDING",
+						"type": "nvarchar"
+					},
+					{
+						"name": "COUNTRY",
+						"type": "nvarchar"
+					},
+					{
+						"name": "REGION",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ADDRESSTYPE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "VALIDITY_STARTDATE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "VALIDITY_ENDDATE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LATITUDE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LONGITUDE",
+						"type": "nvarchar"
+					}
+				],
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "stg_Adresses"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureSqlBusinessPartner')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureSqlDatabase1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "stg_Business_Partner"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureSqlDISTRCHAN')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureSqlDatabase1",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Finance"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "stg_distr_chan"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureSqlPROFIT_CTR')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureSqlDatabase1",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Finance"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "stg_profit_ctr"
 				}
 			},
 			"dependsOn": [

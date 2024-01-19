@@ -13,6 +13,126 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlBusinessPartner')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "PARTNERID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PARTNERROLE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "EMAILADDRESS",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PHONENUMBER",
+						"type": "nvarchar"
+					},
+					{
+						"name": "FAXNUMBER",
+						"type": "nvarchar"
+					},
+					{
+						"name": "WEBADDRESS",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ADDRESSID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "COMPANYNAME",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LEGALFORM",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CREATEDBY",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CREATEDAT",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CHANGEDBY",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CHANGEDAT",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CURRENCY",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "stg_Business_Partner"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlDISTRCHAN')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Finance"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "stg_distr_chan"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlPROFIT_CTR')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Finance"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "stg_profit_ctr"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlPXQ')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -45,7 +165,32 @@
 				},
 				"annotations": [],
 				"type": "AzureSqlTable",
-				"schema": [],
+				"schema": [
+					{
+						"name": "PRODCATEGORYID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LANGUAGE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CREATEDBY",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CREATEDAT",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CHANGEDBY",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CHANGEDAT",
+						"type": "nvarchar"
+					}
+				],
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "stg_Product_Category"
@@ -64,7 +209,28 @@
 				},
 				"annotations": [],
 				"type": "AzureSqlTable",
-				"schema": [],
+				"schema": [
+					{
+						"name": "PRODCATEGORYID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LANGUAGE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SHORT_DESCR",
+						"type": "nvarchar"
+					},
+					{
+						"name": "MEDIUM_DESCR",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LONG_DESCR",
+						"type": "nvarchar"
+					}
+				],
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "stg_Prod_Categ_Text"
@@ -83,7 +249,28 @@
 				},
 				"annotations": [],
 				"type": "AzureSqlTable",
-				"schema": [],
+				"schema": [
+					{
+						"name": "PRODUCTID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LANGUAGE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SHORT_DESCR",
+						"type": "nvarchar"
+					},
+					{
+						"name": "MEDIUM_DESCR",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LONG_DESCR",
+						"type": "nvarchar"
+					}
+				],
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "stg_Product_Text"
@@ -102,7 +289,88 @@
 				},
 				"annotations": [],
 				"type": "AzureSqlTable",
-				"schema": [],
+				"schema": [
+					{
+						"name": "PRODUCTID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TYPECODE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PRODUCTCATEGORYID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LANGUAGE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SUPPLIER_PARTNERID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TAXTARIFFCODE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "QUANTITYUNIT",
+						"type": "nvarchar"
+					},
+					{
+						"name": "WEIGHTMEASURE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "WEIGHTUNIT",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CURRENCY",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PRICE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "WIDTH",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DEPTH",
+						"type": "nvarchar"
+					},
+					{
+						"name": "HEIGHT",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DIMENSIONUNIT",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CREATEDBY",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CREATEDAT",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CHANGEDBY",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CHANGEDAT",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PRODUCTPICURL",
+						"type": "nvarchar"
+					}
+				],
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "stg_Products"
@@ -121,7 +389,76 @@
 				},
 				"annotations": [],
 				"type": "AzureSqlTable",
-				"schema": [],
+				"schema": [
+					{
+						"name": "SALESORDERID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CREATEDBY",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CREATEDAT",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CHANGEDBY",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CHANGEDAT",
+						"type": "nvarchar"
+					},
+					{
+						"name": "FISCALYEARVARIANT",
+						"type": "nvarchar"
+					},
+					{
+						"name": "FISCALYEARPERIOD",
+						"type": "nvarchar"
+					},
+					{
+						"name": "NOTEID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PARTNERID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SALESORG",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CURRENCY",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GROSSAMOUNT",
+						"type": "nvarchar"
+					},
+					{
+						"name": "NETAMOUNT",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TAXAMOUNT",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LIFECYCLESTATUS",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BILLINGSTATUS",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DELIVERYSTATUS",
+						"type": "nvarchar"
+					}
+				],
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "stg_Sales_Order"
@@ -206,7 +543,7 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/AzureSqllSalesOrderItem')]",
+			"name": "[concat(parameters('factoryName'), '/AzureSqlfactSales')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -217,6 +554,78 @@
 				"annotations": [],
 				"type": "AzureSqlTable",
 				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "fact_Sales"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqllSalesOrderItem')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "SALESORDERID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SALESORDERITEM",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PRODUCTID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "NOTEID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CURRENCY",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GROSSAMOUNT",
+						"type": "nvarchar"
+					},
+					{
+						"name": "NETAMOUNT",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TAXAMOUNT",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ITEMATPSTATUS",
+						"type": "nvarchar"
+					},
+					{
+						"name": "OPITEMPOS",
+						"type": "nvarchar"
+					},
+					{
+						"name": "QUANTITY",
+						"type": "nvarchar"
+					},
+					{
+						"name": "QUANTITYUNIT",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DELIVERYDATE",
+						"type": "nvarchar"
+					}
+				],
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "stg_Sales_Order_Item"
@@ -470,324 +879,6 @@
 					},
 					{
 						"name": "LONG_DESCR",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Products')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "Products.csv",
-						"folderPath": "Sales",
-						"container": "bimexcontainer"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "PRODUCTID",
-						"type": "String"
-					},
-					{
-						"name": "TYPECODE",
-						"type": "String"
-					},
-					{
-						"name": "PRODUCTCATEGORYID",
-						"type": "String"
-					},
-					{
-						"name": "LANGUAGE",
-						"type": "String"
-					},
-					{
-						"name": "SUPPLIER_PARTNERID",
-						"type": "String"
-					},
-					{
-						"name": "TAXTARIFFCODE",
-						"type": "String"
-					},
-					{
-						"name": "QUANTITYUNIT",
-						"type": "String"
-					},
-					{
-						"name": "WEIGHTMEASURE",
-						"type": "String"
-					},
-					{
-						"name": "WEIGHTUNIT",
-						"type": "String"
-					},
-					{
-						"name": "CURRENCY",
-						"type": "String"
-					},
-					{
-						"name": "PRICE",
-						"type": "String"
-					},
-					{
-						"name": "WIDTH",
-						"type": "String"
-					},
-					{
-						"name": "DEPTH",
-						"type": "String"
-					},
-					{
-						"name": "HEIGHT",
-						"type": "String"
-					},
-					{
-						"name": "DIMENSIONUNIT",
-						"type": "String"
-					},
-					{
-						"name": "CREATEDBY",
-						"type": "String"
-					},
-					{
-						"name": "CREATEDAT",
-						"type": "String"
-					},
-					{
-						"name": "CHANGEDBY",
-						"type": "String"
-					},
-					{
-						"name": "CHANGEDAT",
-						"type": "String"
-					},
-					{
-						"name": "PRODUCTPICURL",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/PxQ')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Finance"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "PxQ.txt",
-						"container": "bimexcontainer"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "PK\u0003\u0004\u0014\u0000\u0006\u0000\b\u0000\u0000\u0000!\u0000�",
-						"type": "String"
-					},
-					{
-						"name": "lok\u0001\u0000\u0000\u0010\u0005\u0000\u0000\u0013\u0000\b\u0002[Content_Types].xml �\u0004\u0002(�\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000���N�0\f��H�C�+j�q@\b��a�\u0011&1\u001e $�\u001a-M�8\u001b���fcB��B�Q\u001b����v&�]c�-\u0004�Ζl\\�X\u0006V:��d�����e\u0018�U�8\u000b%�\u0003����j��{���-����?p���F`�<Xک\\hD�װ�^ȵX\u0001�\u001d��t6��yl5�t�\b�ؘ�=���$�A��\u000f��WɄ�FK\u0011��o���\u001f\u001d",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SalesOrder')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "SalesOrders",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "SalesOrders.xlsx",
-						"folderPath": "Sales",
-						"container": "bimexcontainer"
-					},
-					"firstRowAsHeader": true
-				},
-				"schema": [
-					{
-						"name": "SALESORDERID",
-						"type": "String"
-					},
-					{
-						"name": "CREATEDBY",
-						"type": "String"
-					},
-					{
-						"name": "CREATEDAT",
-						"type": "String"
-					},
-					{
-						"name": "CHANGEDBY",
-						"type": "String"
-					},
-					{
-						"name": "CHANGEDAT",
-						"type": "String"
-					},
-					{
-						"name": "FISCALYEARVARIANT",
-						"type": "String"
-					},
-					{
-						"name": "FISCALYEARPERIOD",
-						"type": "String"
-					},
-					{
-						"name": "NOTEID",
-						"type": "String"
-					},
-					{
-						"name": "PARTNERID",
-						"type": "String"
-					},
-					{
-						"name": "SALESORG",
-						"type": "String"
-					},
-					{
-						"name": "CURRENCY",
-						"type": "String"
-					},
-					{
-						"name": "GROSSAMOUNT",
-						"type": "String"
-					},
-					{
-						"name": "NETAMOUNT",
-						"type": "String"
-					},
-					{
-						"name": "TAXAMOUNT",
-						"type": "String"
-					},
-					{
-						"name": "LIFECYCLESTATUS",
-						"type": "String"
-					},
-					{
-						"name": "BILLINGSTATUS",
-						"type": "String"
-					},
-					{
-						"name": "DELIVERYSTATUS",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SalesOrderItem')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "SalesOrderItems",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "SalesOrderItems.xlsx",
-						"folderPath": "Sales",
-						"container": "bimexcontainer"
-					},
-					"firstRowAsHeader": true
-				},
-				"schema": [
-					{
-						"name": "SALESORDERID",
-						"type": "String"
-					},
-					{
-						"name": "SALESORDERITEM",
-						"type": "String"
-					},
-					{
-						"name": "PRODUCTID",
-						"type": "String"
-					},
-					{
-						"name": "NOTEID",
-						"type": "String"
-					},
-					{
-						"name": "CURRENCY",
-						"type": "String"
-					},
-					{
-						"name": "GROSSAMOUNT",
-						"type": "String"
-					},
-					{
-						"name": "NETAMOUNT",
-						"type": "String"
-					},
-					{
-						"name": "TAXAMOUNT",
-						"type": "String"
-					},
-					{
-						"name": "ITEMATPSTATUS",
-						"type": "String"
-					},
-					{
-						"name": "OPITEMPOS",
-						"type": "String"
-					},
-					{
-						"name": "QUANTITY",
-						"type": "String"
-					},
-					{
-						"name": "QUANTITYUNIT",
-						"type": "String"
-					},
-					{
-						"name": "DELIVERYDATE",
 						"type": "String"
 					}
 				]
