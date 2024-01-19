@@ -54,6 +54,25 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlProdCategText')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "stg_Prod_Categ_Text"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlProdText')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -355,6 +374,54 @@
 					},
 					{
 						"name": "CHANGEDAT",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ProdCategText')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "ProductCategoryTexts.csv",
+						"folderPath": "Sales",
+						"container": "bimexcontainer"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "PRODCATEGORYID",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGE",
+						"type": "String"
+					},
+					{
+						"name": "SHORT_DESCR",
+						"type": "String"
+					},
+					{
+						"name": "MEDIUM_DESCR",
+						"type": "String"
+					},
+					{
+						"name": "LONG_DESCR",
 						"type": "String"
 					}
 				]
@@ -721,151 +788,6 @@
 					},
 					{
 						"name": "DELIVERYDATE",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SourceDataset_g5a')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Finance"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"folderPath": "Finanzas",
-						"container": "bimexcontainer"
-					},
-					"columnDelimiter": ";",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "0CO_AREA",
-						"type": "String"
-					},
-					{
-						"name": "0PROFIT_CTR",
-						"type": "String"
-					},
-					{
-						"name": "ZDIRCOMP",
-						"type": "String"
-					},
-					{
-						"name": "ZDIV1",
-						"type": "String"
-					},
-					{
-						"name": "ZFUNCION1",
-						"type": "String"
-					},
-					{
-						"name": "ZUBIC1",
-						"type": "String"
-					},
-					{
-						"name": "ZUBIC1__ZORDEN",
-						"type": "String"
-					},
-					{
-						"name": "0CHRT_ACCTS",
-						"type": "String"
-					},
-					{
-						"name": "ZACCOUNT7",
-						"type": "String"
-					},
-					{
-						"name": "0COMP_CODE",
-						"type": "String"
-					},
-					{
-						"name": "0VERSION",
-						"type": "String"
-					},
-					{
-						"name": "0CALMONTH",
-						"type": "String"
-					},
-					{
-						"name": "0CALMONTH2",
-						"type": "String"
-					},
-					{
-						"name": "0CALYEAR",
-						"type": "String"
-					},
-					{
-						"name": "0FISCPER",
-						"type": "String"
-					},
-					{
-						"name": "0FISCPER3",
-						"type": "String"
-					},
-					{
-						"name": "0FISCVARNT",
-						"type": "String"
-					},
-					{
-						"name": "0FISCYEAR",
-						"type": "String"
-					},
-					{
-						"name": "0CURRENCY",
-						"type": "String"
-					},
-					{
-						"name": "0AMOUNT",
-						"type": "String"
-					},
-					{
-						"name": "0BALANCE",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ZDIVISION_HIER')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "ZDIVISION_HIER.csv",
-						"container": "bimexcontainer"
-					},
-					"columnDelimiter": ";",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "  HIEID                    ;OBJVERS;NODEID;IOBJNM    ;NODENAME;TLEVEL;LINK;PARENTID;CHILDID;NEXTID;INTERVL;DESCRIPCION",
 						"type": "String"
 					}
 				]

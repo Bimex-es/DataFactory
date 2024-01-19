@@ -3131,6 +3131,124 @@
 								"parameters": {}
 							}
 						]
+					},
+					{
+						"name": "Copy Prod Categ Text",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false,
+								"tableOption": "autoCreate",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "PRODCATEGORYID",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "PRODCATEGORYID",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "LANGUAGE",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "LANGUAGE",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "SHORT_DESCR",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "SHORT_DESCR",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "MEDIUM_DESCR",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "MEDIUM_DESCR",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "LONG_DESCR",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "LONG_DESCR",
+											"type": "String",
+											"physicalType": "String"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "ProdCategText",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "AzureSqlProdCategText",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
 					}
 				],
 				"policy": {
@@ -3155,7 +3273,9 @@
 				"[concat(variables('factoryId'), '/datasets/ProdCateg')]",
 				"[concat(variables('factoryId'), '/datasets/AzureSqlProdCateg')]",
 				"[concat(variables('factoryId'), '/datasets/ProductText')]",
-				"[concat(variables('factoryId'), '/datasets/AzureSqlProdText')]"
+				"[concat(variables('factoryId'), '/datasets/AzureSqlProdText')]",
+				"[concat(variables('factoryId'), '/datasets/ProdCategText')]",
+				"[concat(variables('factoryId'), '/datasets/AzureSqlProdCategText')]"
 			]
 		},
 		{
@@ -4579,6 +4699,27 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlProdCategText')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "stg_Prod_Categ_Text"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlProdText')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -4900,6 +5041,56 @@
 					},
 					{
 						"name": "CHANGEDAT",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ProdCategText')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "ProductCategoryTexts.csv",
+						"folderPath": "Sales",
+						"container": "bimexcontainer"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "PRODCATEGORYID",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGE",
+						"type": "String"
+					},
+					{
+						"name": "SHORT_DESCR",
+						"type": "String"
+					},
+					{
+						"name": "MEDIUM_DESCR",
+						"type": "String"
+					},
+					{
+						"name": "LONG_DESCR",
 						"type": "String"
 					}
 				]
