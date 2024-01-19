@@ -667,6 +667,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
+						"preCopyScript": "truncate table dbo.zdivision_hier",
 						"writeBehavior": "insert",
 						"sqlWriterUseTableLock": false,
 						"tableOption": "autoCreate",
@@ -864,6 +865,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
+						"preCopyScript": "truncate table dbo.zdivision_mast",
 						"writeBehavior": "insert",
 						"sqlWriterUseTableLock": false,
 						"tableOption": "autoCreate",
@@ -941,6 +943,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
+						"preCopyScript": "truncate table dbo.zfuncion_mast",
 						"writeBehavior": "insert",
 						"sqlWriterUseTableLock": false,
 						"tableOption": "autoCreate",
@@ -1021,6 +1024,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
+						"preCopyScript": "truncate table dbo.stg_zfuncion_hier",
 						"writeBehavior": "insert",
 						"sqlWriterUseTableLock": false,
 						"tableOption": "autoCreate",
@@ -1229,152 +1233,6 @@
 					"enableStaging": false,
 					"translator": {
 						"type": "TabularTranslator",
-						"mappings": [
-							{
-								"source": {
-									"name": "  HIEID                    ",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "  HIEID                    ",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "OBJVERS",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "OBJVERS",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "NODEID",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "NODEID",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "IOBJNM    ",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "IOBJNM    ",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "NODENAME                    ",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "NODENAME                    ",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "TLEVEL",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "TLEVEL",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "LINK",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "LINK",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "PARENTID",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "PARENTID",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "CHILDID",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "CHILDID",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "NEXTID",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "NEXTID",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "INTERVL",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "INTERVL",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "DESCRIP",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "DESCRIP",
-									"type": "String",
-									"physicalType": "String"
-								}
-							}
-						],
 						"typeConversion": true,
 						"typeConversionSettings": {
 							"allowDataTruncation": true,
@@ -1390,7 +1248,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "AzureSqlAccount_Hier",
+						"referenceName": "AzureSqlAccount_Hier_csv",
 						"type": "DatasetReference"
 					}
 				]

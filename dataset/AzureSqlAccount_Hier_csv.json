@@ -1,0 +1,16 @@
+{
+	"name": "AzureSqlAccount_Hier_csv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "stg_account_hier_csv"
+		}
+	}
+}
