@@ -1,5 +1,5 @@
 {
-	"name": "AzureSqlAccount_Hier_csv",
+	"name": "Account_Hier_csv",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureBlobStorage1",
