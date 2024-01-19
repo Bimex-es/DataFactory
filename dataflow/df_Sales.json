@@ -38,6 +38,27 @@
 						"type": "DatasetReference"
 					},
 					"name": "Address"
+				},
+				{
+					"dataset": {
+						"referenceName": "AzureSqlProdText",
+						"type": "DatasetReference"
+					},
+					"name": "sourceProdText"
+				},
+				{
+					"dataset": {
+						"referenceName": "AzureSqlProdCateg",
+						"type": "DatasetReference"
+					},
+					"name": "sourceProdCateg"
+				},
+				{
+					"dataset": {
+						"referenceName": "AzureSqlProdCategText",
+						"type": "DatasetReference"
+					},
+					"name": "sourceProdCategText"
 				}
 			],
 			"sinks": [],
@@ -74,6 +95,27 @@
 				},
 				{
 					"name": "joinAddress"
+				},
+				{
+					"name": "joinProdText"
+				},
+				{
+					"name": "selectProdText"
+				},
+				{
+					"name": "selectProdCateg"
+				},
+				{
+					"name": "selectProdCategText"
+				},
+				{
+					"name": "joinProdCategText"
+				},
+				{
+					"name": "joinProdCateg"
+				},
+				{
+					"name": "selectFinal"
 				}
 			],
 			"scriptLines": [
@@ -183,6 +225,40 @@
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     format: 'table') ~> Address",
+				"source(output(",
+				"          PRODUCTID as string,",
+				"          LANGUAGE as string,",
+				"          SHORT_DESCR as string,",
+				"          MEDIUM_DESCR as string,",
+				"          LONG_DESCR as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> sourceProdText",
+				"source(output(",
+				"          PRODCATEGORYID as string,",
+				"          LANGUAGE as string,",
+				"          CREATEDBY as string,",
+				"          CREATEDAT as string,",
+				"          CHANGEDBY as string,",
+				"          CHANGEDAT as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> sourceProdCateg",
+				"source(output(",
+				"          PRODCATEGORYID as string,",
+				"          LANGUAGE as string,",
+				"          SHORT_DESCR as string,",
+				"          MEDIUM_DESCR as string,",
+				"          LONG_DESCR as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> sourceProdCategText",
 				"SalesOrderItem cast(output(",
 				"          GROSSAMOUNT as decimal(10,2),",
 				"          NETAMOUNT as decimal(10,2),",
@@ -275,7 +351,7 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> selectProduct",
-				"joinBPartner, selectProduct join({item.ProductID} == {Prod.ProductID},",
+				"joinBPartner, joinProdCateg join({item.ProductID} == {Prod.ProductID},",
 				"     joinType:'left',",
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
@@ -298,7 +374,60 @@
 				"     joinType:'left',",
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
-				"     broadcast: 'auto')~> joinAddress"
+				"     broadcast: 'auto')~> joinAddress",
+				"selectProduct, selectProdText join({Prod.ProductID} == PRODUCTID,",
+				"     joinType:'left',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> joinProdText",
+				"sourceProdText select(mapColumn(",
+				"          {Ptext.ProductID} = PRODUCTID,",
+				"          {Ptext.Language} = LANGUAGE,",
+				"          {Ptext.shortDesc} = SHORT_DESCR,",
+				"          {Ptext.MedDesc} = MEDIUM_DESCR",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> selectProdText",
+				"sourceProdCateg select(mapColumn(",
+				"          {Pcat.ProdCategID} = PRODCATEGORYID,",
+				"          {Pcat.Language} = LANGUAGE",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> selectProdCateg",
+				"sourceProdCategText select(mapColumn(",
+				"          {Pctx.ProdCategoryID} = PRODCATEGORYID,",
+				"          {Pctx.Language} = LANGUAGE,",
+				"          {Pctx.ShortText} = SHORT_DESCR",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> selectProdCategText",
+				"selectProdCateg, selectProdCategText join({Pcat.ProdCategID} == {Pctx.ProdCategoryID},",
+				"     joinType:'left',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> joinProdCategText",
+				"joinProdText, joinProdCategText join({Prod.ProdCategID} == {Pcat.ProdCategID},",
+				"     joinType:'left',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> joinProdCateg",
+				"joinProduct select(mapColumn(",
+				"          SalesOrderID = {item.SalesOrderID},",
+				"          SalesOrderItem = {item.SalesOrderItem},",
+				"          CreatedAt = {hdr.CreatudAt},",
+				"          ChangedAt = {hdr.ChangedAt},",
+				"          Currency = {item.Currency},",
+				"          GrossAmount = {item.GrossAmount},",
+				"          NetAmount = {item.NetAmount},",
+				"          TaxAmount = {item.TaxAmount},",
+				"          AtpStatus = {item.AtpStatus},",
+				"          OpitemPos = {item.OpitemPos},",
+				"          Quantity = {item.Quantity},",
+				"          QuantityUnit = {item.QuantityUnit},",
+				"          DeliveryDate = {item.DeliveryDate}",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> selectFinal"
 			]
 		}
 	}

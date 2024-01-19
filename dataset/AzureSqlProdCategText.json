@@ -7,7 +7,28 @@
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
-		"schema": [],
+		"schema": [
+			{
+				"name": "PRODCATEGORYID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LANGUAGE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SHORT_DESCR",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MEDIUM_DESCR",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LONG_DESCR",
+				"type": "nvarchar"
+			}
+		],
 		"typeProperties": {
 			"schema": "dbo",
 			"table": "stg_Prod_Categ_Text"
