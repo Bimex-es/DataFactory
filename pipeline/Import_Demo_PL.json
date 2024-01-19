@@ -1384,7 +1384,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "Account_Hier_csv",
+						"referenceName": "AzureSqlAccount_Hier_csv",
 						"type": "DatasetReference"
 					}
 				],
