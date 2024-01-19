@@ -1,0 +1,45 @@
+{
+	"name": "ProdCategText",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "ProductCategoryTexts.csv",
+				"folderPath": "Sales",
+				"container": "bimexcontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "PRODCATEGORYID",
+				"type": "String"
+			},
+			{
+				"name": "LANGUAGE",
+				"type": "String"
+			},
+			{
+				"name": "SHORT_DESCR",
+				"type": "String"
+			},
+			{
+				"name": "MEDIUM_DESCR",
+				"type": "String"
+			},
+			{
+				"name": "LONG_DESCR",
+				"type": "String"
+			}
+		]
+	}
+}

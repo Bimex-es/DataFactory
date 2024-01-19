@@ -1,0 +1,16 @@
+{
+	"name": "AzureSqlProdCategText",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "stg_Prod_Categ_Text"
+		}
+	}
+}
