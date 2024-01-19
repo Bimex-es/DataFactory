@@ -383,7 +383,7 @@
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
 				"     broadcast: 'auto')~> joinAddress",
-				"selectProduct, selectProdText join({Prod.ProductID} == PRODUCTID,",
+				"selectProduct, selectProdText join({Prod.ProductID} == {Ptext.ProductID},",
 				"     joinType:'left',",
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
