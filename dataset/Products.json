@@ -1,0 +1,105 @@
+{
+	"name": "Products",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Products.csv",
+				"folderPath": "Sales",
+				"container": "bimexcontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "PRODUCTID",
+				"type": "String"
+			},
+			{
+				"name": "TYPECODE",
+				"type": "String"
+			},
+			{
+				"name": "PRODUCTCATEGORYID",
+				"type": "String"
+			},
+			{
+				"name": "LANGUAGE",
+				"type": "String"
+			},
+			{
+				"name": "SUPPLIER_PARTNERID",
+				"type": "String"
+			},
+			{
+				"name": "TAXTARIFFCODE",
+				"type": "String"
+			},
+			{
+				"name": "QUANTITYUNIT",
+				"type": "String"
+			},
+			{
+				"name": "WEIGHTMEASURE",
+				"type": "String"
+			},
+			{
+				"name": "WEIGHTUNIT",
+				"type": "String"
+			},
+			{
+				"name": "CURRENCY",
+				"type": "String"
+			},
+			{
+				"name": "PRICE",
+				"type": "String"
+			},
+			{
+				"name": "WIDTH",
+				"type": "String"
+			},
+			{
+				"name": "DEPTH",
+				"type": "String"
+			},
+			{
+				"name": "HEIGHT",
+				"type": "String"
+			},
+			{
+				"name": "DIMENSIONUNIT",
+				"type": "String"
+			},
+			{
+				"name": "CREATEDBY",
+				"type": "String"
+			},
+			{
+				"name": "CREATEDAT",
+				"type": "String"
+			},
+			{
+				"name": "CHANGEDBY",
+				"type": "String"
+			},
+			{
+				"name": "CHANGEDAT",
+				"type": "String"
+			},
+			{
+				"name": "PRODUCTPICURL",
+				"type": "String"
+			}
+		]
+	}
+}
