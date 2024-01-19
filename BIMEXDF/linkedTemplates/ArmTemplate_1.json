@@ -6,26 +6,6 @@
 			"type": "string",
 			"metadata": "Data Factory name",
 			"defaultValue": "BIMEXDF"
-		},
-		"SapOpenHub1_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'SapOpenHub1'"
-		},
-		"SapOpenHub1_properties_typeProperties_clientId": {
-			"type": "string",
-			"defaultValue": "200"
-		},
-		"SapOpenHub1_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "bimex"
-		},
-		"SapOpenHub1_properties_typeProperties_server": {
-			"type": "string",
-			"defaultValue": "192.168.1.198"
-		},
-		"SapOpenHub1_properties_typeProperties_systemNumber": {
-			"type": "string",
-			"defaultValue": "00"
 		}
 	},
 	"variables": {
@@ -50,6 +30,25 @@
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "stg_pxq"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlProdCateg')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "stg_Product_Category"
 				}
 			},
 			"dependsOn": []
@@ -288,6 +287,58 @@
 					"schema": "dbo",
 					"table": "fact_Finance"
 				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ProdCateg')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "ProductCategories.csv",
+						"folderPath": "Sales",
+						"container": "bimexcontainer"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "PRODCATEGORYID",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGE",
+						"type": "String"
+					},
+					{
+						"name": "CREATEDBY",
+						"type": "String"
+					},
+					{
+						"name": "CREATEDAT",
+						"type": "String"
+					},
+					{
+						"name": "CHANGEDBY",
+						"type": "String"
+					},
+					{
+						"name": "CHANGEDAT",
+						"type": "String"
+					}
+				]
 			},
 			"dependsOn": []
 		},
@@ -806,55 +857,6 @@
 						"type": "String"
 					}
 				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ZFUNCION_MAST')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "Hoja1",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "ZFUNCION_MAST.xlsx",
-						"container": "bimexcontainer"
-					},
-					"firstRowAsHeader": true
-				},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SapOpenHub1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "SapOpenHub",
-				"typeProperties": {
-					"clientId": "[parameters('SapOpenHub1_properties_typeProperties_clientId')]",
-					"language": "ES",
-					"userName": "[parameters('SapOpenHub1_properties_typeProperties_userName')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('SapOpenHub1_password')]"
-					},
-					"server": "[parameters('SapOpenHub1_properties_typeProperties_server')]",
-					"systemNumber": "[parameters('SapOpenHub1_properties_typeProperties_systemNumber')]"
-				},
-				"connectVia": {
-					"referenceName": "integrationRuntime1",
-					"type": "IntegrationRuntimeReference"
-				}
 			},
 			"dependsOn": []
 		}
