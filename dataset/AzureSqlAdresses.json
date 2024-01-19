@@ -7,7 +7,56 @@
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
-		"schema": [],
+		"schema": [
+			{
+				"name": "ADDRESSID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "STREET",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CITY",
+				"type": "nvarchar"
+			},
+			{
+				"name": "POSTALCODE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BUILDING",
+				"type": "nvarchar"
+			},
+			{
+				"name": "COUNTRY",
+				"type": "nvarchar"
+			},
+			{
+				"name": "REGION",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ADDRESSTYPE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VALIDITY_STARTDATE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VALIDITY_ENDDATE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LATITUDE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LONGITUDE",
+				"type": "nvarchar"
+			}
+		],
 		"typeProperties": {
 			"schema": "dbo",
 			"table": "stg_Adresses"

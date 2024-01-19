@@ -31,6 +31,13 @@
 						"type": "DatasetReference"
 					},
 					"name": "Producto"
+				},
+				{
+					"dataset": {
+						"referenceName": "AzureSqlAdresses",
+						"type": "DatasetReference"
+					},
+					"name": "Address"
 				}
 			],
 			"sinks": [],
@@ -61,6 +68,12 @@
 				},
 				{
 					"name": "joinProduct"
+				},
+				{
+					"name": "selectAddress"
+				},
+				{
+					"name": "joinAddress"
 				}
 			],
 			"scriptLines": [
@@ -152,6 +165,24 @@
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     format: 'table') ~> Producto",
+				"source(output(",
+				"          ADDRESSID as string,",
+				"          STREET as string,",
+				"          CITY as string,",
+				"          POSTALCODE as string,",
+				"          BUILDING as string,",
+				"          COUNTRY as string,",
+				"          REGION as string,",
+				"          ADDRESSTYPE as string,",
+				"          VALIDITY_STARTDATE as string,",
+				"          VALIDITY_ENDDATE as string,",
+				"          LATITUDE as string,",
+				"          LONGITUDE as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> Address",
 				"SalesOrderItem cast(output(",
 				"          GROSSAMOUNT as decimal(10,2),",
 				"          NETAMOUNT as decimal(10,2),",
@@ -215,7 +246,7 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> selectBPartner",
-				"joinSalesOrder, selectBPartner join({hdr.PartnerID} == {BP.PartnerID},",
+				"joinSalesOrder, joinAddress join({hdr.PartnerID} == {BP.PartnerID},",
 				"     joinType:'left',",
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
@@ -248,7 +279,26 @@
 				"     joinType:'left',",
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
-				"     broadcast: 'auto')~> joinProduct"
+				"     broadcast: 'auto')~> joinProduct",
+				"Address select(mapColumn(",
+				"          {Adr.AddressID} = ADDRESSID,",
+				"          {Adr.Street} = STREET,",
+				"          {Adr.City} = CITY,",
+				"          {Adr.PostalCode} = POSTALCODE,",
+				"          {Adr.Building} = BUILDING,",
+				"          {Adr.Country} = COUNTRY,",
+				"          {Adr.Region} = REGION,",
+				"          {Adr.AddressType} = ADDRESSTYPE,",
+				"          {Adr.Latitude} = LATITUDE,",
+				"          {Adr.Longitude} = LONGITUDE",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> selectAddress",
+				"selectBPartner, selectAddress join({BP.AdressID} == {Adr.AddressID},",
+				"     joinType:'left',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> joinAddress"
 			]
 		}
 	}
