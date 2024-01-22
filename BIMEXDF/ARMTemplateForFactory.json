@@ -1738,7 +1738,6 @@
 							},
 							"sink": {
 								"type": "AzureSqlSink",
-								"preCopyScript": "truncate table dbo.stg_account_hier_csv",
 								"writeBehavior": "insert",
 								"sqlWriterUseTableLock": false,
 								"tableOption": "autoCreate",
@@ -1747,6 +1746,164 @@
 							"enableStaging": false,
 							"translator": {
 								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "  HIEID                    ",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "  HIEID                    ",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "OBJVERS",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "OBJVERS",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "NODEID",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "NODEID",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "IOBJNM    ",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "IOBJNM    ",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "NODENAME      ",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "NODENAME      ",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Description",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Description",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "XXX",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "XXX",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "TLEVEL",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "TLEVEL",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "LINK",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "LINK",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "PARENTID",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "PARENTID",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "CHILDID",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "CHILDID",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "NEXTID",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "NEXTID",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "INTERVL",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "INTERVL",
+											"type": "String",
+											"physicalType": "String"
+										}
+									}
+								],
 								"typeConversion": true,
 								"typeConversionSettings": {
 									"allowDataTruncation": true,
