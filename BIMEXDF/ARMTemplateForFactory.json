@@ -1568,7 +1568,7 @@
 					},
 					{
 						"name": "az_c_account_hier",
-						"description": "truncate table dbo.stg_zfuncion_hier",
+						"description": "truncate table dbo.stg_zaccount_hier_csv",
 						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
