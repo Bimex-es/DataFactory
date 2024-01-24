@@ -16,6 +16,19 @@
 			},
 			"firstRowAsHeader": true
 		},
-		"schema": []
+		"schema": [
+			{
+				"name": "NODEID",
+				"type": "String"
+			},
+			{
+				"name": "DESCRIP",
+				"type": "String"
+			},
+			{
+				"name": "NODENAME                    ",
+				"type": "String"
+			}
+		]
 	}
 }
