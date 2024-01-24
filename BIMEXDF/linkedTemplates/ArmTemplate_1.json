@@ -13,6 +13,74 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlAdresses')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ADDRESSID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "STREET",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CITY",
+						"type": "nvarchar"
+					},
+					{
+						"name": "POSTALCODE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BUILDING",
+						"type": "nvarchar"
+					},
+					{
+						"name": "COUNTRY",
+						"type": "nvarchar"
+					},
+					{
+						"name": "REGION",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ADDRESSTYPE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "VALIDITY_STARTDATE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "VALIDITY_ENDDATE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LATITUDE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LONGITUDE",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "stg_Adresses"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlBusinessPartner')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -467,6 +535,25 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "stg_vbak"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlZDIVISION_HIER')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -783,102 +870,6 @@
 					},
 					{
 						"name": "CHANGEDAT",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ProdCategText')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "ProductCategoryTexts.csv",
-						"folderPath": "Sales",
-						"container": "bimexcontainer"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "PRODCATEGORYID",
-						"type": "String"
-					},
-					{
-						"name": "LANGUAGE",
-						"type": "String"
-					},
-					{
-						"name": "SHORT_DESCR",
-						"type": "String"
-					},
-					{
-						"name": "MEDIUM_DESCR",
-						"type": "String"
-					},
-					{
-						"name": "LONG_DESCR",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ProductText')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "ProductTexts.csv",
-						"folderPath": "Sales",
-						"container": "bimexcontainer"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "PRODUCTID",
-						"type": "String"
-					},
-					{
-						"name": "LANGUAGE",
-						"type": "String"
-					},
-					{
-						"name": "SHORT_DESCR",
-						"type": "String"
-					},
-					{
-						"name": "MEDIUM_DESCR",
-						"type": "String"
-					},
-					{
-						"name": "LONG_DESCR",
 						"type": "String"
 					}
 				]

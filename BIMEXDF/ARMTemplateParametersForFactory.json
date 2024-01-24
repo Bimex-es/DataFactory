@@ -14,7 +14,10 @@
 		"SapOpenHub1_password": {
 			"value": ""
 		},
-		"SapTable1_password": {
+		"SapTable2_password": {
+			"value": ""
+		},
+		"SqlServer1_connectionString": {
 			"value": ""
 		},
 		"HttpServerSPO_properties_typeProperties_url": {
@@ -32,16 +35,16 @@
 		"SapOpenHub1_properties_typeProperties_systemNumber": {
 			"value": "00"
 		},
-		"SapTable1_properties_typeProperties_clientId": {
+		"SapTable2_properties_typeProperties_clientId": {
 			"value": "200"
 		},
-		"SapTable1_properties_typeProperties_userName": {
+		"SapTable2_properties_typeProperties_userName": {
 			"value": "bimex"
 		},
-		"SapTable1_properties_typeProperties_server": {
+		"SapTable2_properties_typeProperties_server": {
 			"value": "172.16.1.177"
 		},
-		"SapTable1_properties_typeProperties_systemNumber": {
+		"SapTable2_properties_typeProperties_systemNumber": {
 			"value": "00"
 		}
 	}

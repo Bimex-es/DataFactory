@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
 		},
+		"SqlServer1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SqlServer1'"
+		},
 		"HttpServerSPO_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://bimexanalyticsbcn.sharepoint.com/sites/Bimex/_api/web/GetFileByServerRelativeUrl('/sites/Bimex/Shared%20Documents/Docs%20Test/Account_Hier.xlsx')/$value"
@@ -61,6 +65,19 @@
 					"url": "[parameters('HttpServerSPO_properties_typeProperties_url')]",
 					"enableServerCertificateValidation": true,
 					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SqlServer1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "SqlServer",
+				"typeProperties": {
+					"connectionString": "[parameters('SqlServer1_connectionString')]"
 				}
 			},
 			"dependsOn": []
@@ -685,76 +702,6 @@
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "stg_account_hier_csv"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureSqlAdresses')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureSqlDatabase1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "ADDRESSID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "STREET",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CITY",
-						"type": "nvarchar"
-					},
-					{
-						"name": "POSTALCODE",
-						"type": "nvarchar"
-					},
-					{
-						"name": "BUILDING",
-						"type": "nvarchar"
-					},
-					{
-						"name": "COUNTRY",
-						"type": "nvarchar"
-					},
-					{
-						"name": "REGION",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ADDRESSTYPE",
-						"type": "nvarchar"
-					},
-					{
-						"name": "VALIDITY_STARTDATE",
-						"type": "nvarchar"
-					},
-					{
-						"name": "VALIDITY_ENDDATE",
-						"type": "nvarchar"
-					},
-					{
-						"name": "LATITUDE",
-						"type": "nvarchar"
-					},
-					{
-						"name": "LONGITUDE",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "stg_Adresses"
 				}
 			},
 			"dependsOn": [
