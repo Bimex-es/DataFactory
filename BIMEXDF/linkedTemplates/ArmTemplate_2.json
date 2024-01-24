@@ -1775,6 +1775,151 @@
 							"enableStaging": false,
 							"translator": {
 								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "  HIEID                    ",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "HIEID                    ",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "OBJVERS",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "OBJVERS",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "NODEID",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "NODEID",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "IOBJNM    ",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "IOBJNM    ",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "NODENAME",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "NODENAME",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "TLEVEL",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "TLEVEL",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "LINK",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "LINK",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "PARENTID",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "PARENTID",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "CHILDID",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "CHILDID",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "NEXTID",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "NEXTID",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "INTERVL",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "INTERVL",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "DESCRIPCION",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "DESCRIPCION",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									}
+								],
 								"typeConversion": true,
 								"typeConversionSettings": {
 									"allowDataTruncation": true,
@@ -1820,6 +1965,7 @@
 							},
 							"sink": {
 								"type": "AzureSqlSink",
+								"preCopyScript": "truncate table dbo.zdivision_mast",
 								"writeBehavior": "insert",
 								"sqlWriterUseTableLock": false,
 								"tableOption": "autoCreate",
