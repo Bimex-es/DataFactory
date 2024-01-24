@@ -1230,7 +1230,6 @@
 							},
 							"sink": {
 								"type": "AzureSqlSink",
-								"preCopyScript": "truncate table dbo.zdivision_mast",
 								"writeBehavior": "insert",
 								"sqlWriterUseTableLock": false,
 								"tableOption": "autoCreate",
@@ -1249,7 +1248,7 @@
 										"sink": {
 											"name": "NODEID",
 											"type": "String",
-											"physicalType": "String"
+											"physicalType": "nvarchar"
 										}
 									},
 									{
@@ -1261,7 +1260,19 @@
 										"sink": {
 											"name": "DESCRIPCION",
 											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "NODENAME",
+											"type": "String",
 											"physicalType": "String"
+										},
+										"sink": {
+											"name": "NODENAME",
+											"type": "String",
+											"physicalType": "nvarchar"
 										}
 									}
 								],
@@ -6297,7 +6308,20 @@
 					},
 					"firstRowAsHeader": true
 				},
-				"schema": []
+				"schema": [
+					{
+						"name": "NODEID",
+						"type": "String"
+					},
+					{
+						"name": "DESCRIPCION",
+						"type": "String"
+					},
+					{
+						"name": "NODENAME",
+						"type": "String"
+					}
+				]
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
