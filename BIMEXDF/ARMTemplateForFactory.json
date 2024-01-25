@@ -2218,7 +2218,14 @@
 					{
 						"name": "Copy Adresses",
 						"type": "Copy",
-						"dependsOn": [],
+						"dependsOn": [
+							{
+								"activity": "Copy_Sales_Order",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
 						"policy": {
 							"timeout": "0.12:00:00",
 							"retry": 0,
@@ -2421,7 +2428,14 @@
 					{
 						"name": "Copy Sales Order Item",
 						"type": "Copy",
-						"dependsOn": [],
+						"dependsOn": [
+							{
+								"activity": "Copy Adresses",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
 						"policy": {
 							"timeout": "0.12:00:00",
 							"retry": 0,
@@ -2632,7 +2646,14 @@
 					{
 						"name": "Copy Business Partner",
 						"type": "Copy",
-						"dependsOn": [],
+						"dependsOn": [
+							{
+								"activity": "Copy Sales Order Item",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
 						"policy": {
 							"timeout": "0.12:00:00",
 							"retry": 0,
@@ -2855,7 +2876,14 @@
 					{
 						"name": "Copy Products",
 						"type": "Copy",
-						"dependsOn": [],
+						"dependsOn": [
+							{
+								"activity": "Copy Business Partner",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
 						"policy": {
 							"timeout": "0.12:00:00",
 							"retry": 0,
@@ -3153,7 +3181,14 @@
 					{
 						"name": "Copy Product Categ",
 						"type": "Copy",
-						"dependsOn": [],
+						"dependsOn": [
+							{
+								"activity": "Copy Products",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
 						"policy": {
 							"timeout": "0.12:00:00",
 							"retry": 0,
@@ -3283,7 +3318,14 @@
 					{
 						"name": "Copy Product Text",
 						"type": "Copy",
-						"dependsOn": [],
+						"dependsOn": [
+							{
+								"activity": "Copy Product Categ",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
 						"policy": {
 							"timeout": "0.12:00:00",
 							"retry": 0,
@@ -3401,7 +3443,14 @@
 					{
 						"name": "Copy Prod Categ Text",
 						"type": "Copy",
-						"dependsOn": [],
+						"dependsOn": [
+							{
+								"activity": "Copy Product Text",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
 						"policy": {
 							"timeout": "0.12:00:00",
 							"retry": 0,
@@ -3515,6 +3564,27 @@
 								"parameters": {}
 							}
 						]
+					},
+					{
+						"name": "Fact_Sales",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Copy Prod Categ Text",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Fact_Sales",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
 					}
 				],
 				"policy": {
@@ -3541,7 +3611,8 @@
 				"[concat(variables('factoryId'), '/datasets/ProductText')]",
 				"[concat(variables('factoryId'), '/datasets/AzureSqlProdText')]",
 				"[concat(variables('factoryId'), '/datasets/ProdCategText')]",
-				"[concat(variables('factoryId'), '/datasets/AzureSqlProdCategText')]"
+				"[concat(variables('factoryId'), '/datasets/AzureSqlProdCategText')]",
+				"[concat(variables('factoryId'), '/pipelines/Fact_Sales')]"
 			]
 		},
 		{
