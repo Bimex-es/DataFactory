@@ -13,7 +13,7 @@
 				"fileName": "DIR_COMPRAS.csv",
 				"container": "bimexcontainer"
 			},
-			"columnDelimiter": ",",
+			"columnDelimiter": ";",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
