@@ -69,7 +69,7 @@
 						"fileName": "DIR_COMPRAS.csv",
 						"container": "bimexcontainer"
 					},
-					"columnDelimiter": ",",
+					"columnDelimiter": ";",
 					"escapeChar": "\\",
 					"firstRowAsHeader": true,
 					"quoteChar": "\""
@@ -2912,158 +2912,26 @@
 								"mappings": [
 									{
 										"source": {
-											"name": "  HIEID                    ",
+											"name": "Direccion",
 											"type": "String",
 											"physicalType": "String"
 										},
 										"sink": {
-											"name": "  HIEID                    ",
+											"name": "Direccion",
 											"type": "String",
-											"physicalType": "String"
+											"physicalType": "nvarchar"
 										}
 									},
 									{
 										"source": {
-											"name": "OBJVERS",
+											"name": "Descripcion",
 											"type": "String",
 											"physicalType": "String"
 										},
 										"sink": {
-											"name": "OBJVERS",
+											"name": "Descripcion",
 											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "NODEID",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "NODEID",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "IOBJNM    ",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "IOBJNM    ",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "NODENAME      ",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "NODENAME      ",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "Description",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Description",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "XXX",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "XXX",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "TLEVEL",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "TLEVEL",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "LINK",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "LINK",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "PARENTID",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "PARENTID",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "CHILDID",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "CHILDID",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "NEXTID",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "NEXTID",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "INTERVL",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "INTERVL",
-											"type": "String",
-											"physicalType": "String"
+											"physicalType": "nvarchar"
 										}
 									}
 								],
