@@ -1918,7 +1918,7 @@
 					},
 					{
 						"name": "az_c_zubic",
-						"description": "",
+						"description": "truncate table dbo.stg_zubic",
 						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
@@ -2109,7 +2109,7 @@
 					},
 					{
 						"name": "az_c_dir_compras",
-						"description": "",
+						"description": "truncate table dbo.stg_zubic",
 						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
