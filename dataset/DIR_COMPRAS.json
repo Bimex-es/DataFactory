@@ -1,0 +1,20 @@
+{
+	"name": "DIR_COMPRAS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "DIR_COMPRAS.csv",
+				"container": "bimexcontainer"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": []
+	}
+}
