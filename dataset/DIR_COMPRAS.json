@@ -8,6 +8,7 @@
 		"annotations": [],
 		"type": "Excel",
 		"typeProperties": {
+			"sheetName": "DIR_COMPRAS",
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": "DIR_COMPRAS.csv",
