@@ -1624,12 +1624,24 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "Direccion;Descripcion",
+									"name": "Direccion",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "Direccion;Descripcion",
+									"name": "Direccion",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Descripcion",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Descripcion",
 									"type": "String",
 									"physicalType": "nvarchar"
 								}
