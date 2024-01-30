@@ -1,0 +1,68 @@
+{
+	"name": "ZUBIC",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "ZUBIC.csv",
+				"container": "bimexcontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "UBICACI�N",
+				"type": "String"
+			},
+			{
+				"name": "IDIOMA",
+				"type": "String"
+			},
+			{
+				"name": "PERIODO",
+				"type": "String"
+			},
+			{
+				"name": "VARIANTE",
+				"type": "String"
+			},
+			{
+				"name": "EJERCICIO",
+				"type": "String"
+			},
+			{
+				"name": "ZEJERNUM",
+				"type": "String"
+			},
+			{
+				"name": "TIPO DE UBIC",
+				"type": "String"
+			},
+			{
+				"name": "FORMATO",
+				"type": "String"
+			},
+			{
+				"name": "ORDEN DASH",
+				"type": "String"
+			},
+			{
+				"name": "DESC BREVE",
+				"type": "String"
+			},
+			{
+				"name": "DESC MEDIA",
+				"type": "String"
+			}
+		]
+	}
+}
