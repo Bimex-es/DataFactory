@@ -13,6 +13,680 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/SapTableResource1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SapTable2",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"Linked": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "SapTableResource",
+				"schema": [],
+				"typeProperties": {
+					"tableName": "VBAK"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/dataflow1')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "Account_Hier",
+								"type": "DatasetReference"
+							},
+							"name": "source1"
+						},
+						{
+							"dataset": {
+								"referenceName": "Account_Hier",
+								"type": "DatasetReference"
+							},
+							"name": "source2"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "AzureSql0ACCOUNT_HIER",
+								"type": "DatasetReference"
+							},
+							"name": "sink1"
+						}
+					],
+					"transformations": [
+						{
+							"name": "join1"
+						},
+						{
+							"name": "select1"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          {  HIEID                    } as string,",
+						"          OBJVERS as string,",
+						"          NODEID as string,",
+						"          {IOBJNM    } as string,",
+						"          {NODENAME      } as string,",
+						"          Description as string,",
+						"          XXX as string,",
+						"          TLEVEL as string,",
+						"          LINK as string,",
+						"          PARENTID as string,",
+						"          CHILDID as string,",
+						"          NEXTID as string,",
+						"          INTERVL as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> source1",
+						"source(output(",
+						"          {  HIEID                    } as string,",
+						"          OBJVERS as string,",
+						"          NODEID as string,",
+						"          {IOBJNM    } as string,",
+						"          {NODENAME      } as string,",
+						"          Description as string,",
+						"          XXX as string,",
+						"          TLEVEL as string,",
+						"          LINK as string,",
+						"          PARENTID as string,",
+						"          CHILDID as string,",
+						"          NEXTID as string,",
+						"          INTERVL as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> source2",
+						"source1, source2 join(source1@PARENTID == source2@NODEID,",
+						"     joinType:'left',",
+						"     matchType:'exact',",
+						"     ignoreSpaces: false,",
+						"     broadcast: 'auto')~> join1",
+						"join1 select(mapColumn(",
+						"          Child = source1@{NODENAME      },",
+						"          {Parent   } = source2@{NODENAME      }",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> select1",
+						"select1 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     recreate:true,",
+						"     format: 'table',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError',",
+						"     mapColumn(",
+						"          Child,",
+						"          {Parent   }",
+						"     )) ~> sink1"
+					]
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/df_Sales')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "AzureSqllSalesOrderItem",
+								"type": "DatasetReference"
+							},
+							"name": "SalesOrderItem"
+						},
+						{
+							"dataset": {
+								"referenceName": "AzureSqlSalesOrder",
+								"type": "DatasetReference"
+							},
+							"name": "SalesOrder"
+						},
+						{
+							"dataset": {
+								"referenceName": "AzureSqlBusinessPartner",
+								"type": "DatasetReference"
+							},
+							"name": "BusinessPartner"
+						},
+						{
+							"dataset": {
+								"referenceName": "AzureSqlProducts",
+								"type": "DatasetReference"
+							},
+							"name": "Producto"
+						},
+						{
+							"dataset": {
+								"referenceName": "AzureSqlAdresses",
+								"type": "DatasetReference"
+							},
+							"name": "Address"
+						},
+						{
+							"dataset": {
+								"referenceName": "AzureSqlProdText",
+								"type": "DatasetReference"
+							},
+							"name": "sourceProdText"
+						},
+						{
+							"dataset": {
+								"referenceName": "AzureSqlProdCateg",
+								"type": "DatasetReference"
+							},
+							"name": "sourceProdCateg"
+						},
+						{
+							"dataset": {
+								"referenceName": "AzureSqlProdCategText",
+								"type": "DatasetReference"
+							},
+							"name": "sourceProdCategText"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "AzureSqlfactSales",
+								"type": "DatasetReference"
+							},
+							"name": "SinkFinal"
+						}
+					],
+					"transformations": [
+						{
+							"name": "CastSalesOrderItem"
+						},
+						{
+							"name": "CastSalesOrder"
+						},
+						{
+							"name": "selectSalesORderItem"
+						},
+						{
+							"name": "selectSalesOrder"
+						},
+						{
+							"name": "joinSalesOrder"
+						},
+						{
+							"name": "selectBPartner"
+						},
+						{
+							"name": "joinBPartner"
+						},
+						{
+							"name": "selectProduct"
+						},
+						{
+							"name": "joinProduct"
+						},
+						{
+							"name": "selectAddress"
+						},
+						{
+							"name": "joinAddress"
+						},
+						{
+							"name": "joinProdText"
+						},
+						{
+							"name": "selectProdText"
+						},
+						{
+							"name": "selectProdCateg"
+						},
+						{
+							"name": "selectProdCategText"
+						},
+						{
+							"name": "joinProdCategText"
+						},
+						{
+							"name": "joinProdCateg"
+						},
+						{
+							"name": "selectFinal"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          SALESORDERID as string,",
+						"          SALESORDERITEM as string,",
+						"          PRODUCTID as string,",
+						"          NOTEID as string,",
+						"          CURRENCY as string,",
+						"          GROSSAMOUNT as string,",
+						"          NETAMOUNT as string,",
+						"          TAXAMOUNT as string,",
+						"          ITEMATPSTATUS as string,",
+						"          OPITEMPOS as string,",
+						"          QUANTITY as string,",
+						"          QUANTITYUNIT as string,",
+						"          DELIVERYDATE as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     isolationLevel: 'READ_UNCOMMITTED',",
+						"     format: 'table') ~> SalesOrderItem",
+						"source(output(",
+						"          SALESORDERID as string,",
+						"          CREATEDBY as string,",
+						"          CREATEDAT as string,",
+						"          CHANGEDBY as string,",
+						"          CHANGEDAT as string,",
+						"          FISCALYEARVARIANT as string,",
+						"          FISCALYEARPERIOD as string,",
+						"          NOTEID as string,",
+						"          PARTNERID as string,",
+						"          SALESORG as string,",
+						"          CURRENCY as string,",
+						"          GROSSAMOUNT as string,",
+						"          NETAMOUNT as string,",
+						"          TAXAMOUNT as string,",
+						"          LIFECYCLESTATUS as string,",
+						"          BILLINGSTATUS as string,",
+						"          DELIVERYSTATUS as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     isolationLevel: 'READ_UNCOMMITTED',",
+						"     format: 'table') ~> SalesOrder",
+						"source(output(",
+						"          PARTNERID as string,",
+						"          PARTNERROLE as string,",
+						"          EMAILADDRESS as string,",
+						"          PHONENUMBER as string,",
+						"          FAXNUMBER as string,",
+						"          WEBADDRESS as string,",
+						"          ADDRESSID as string,",
+						"          COMPANYNAME as string,",
+						"          LEGALFORM as string,",
+						"          CREATEDBY as string,",
+						"          CREATEDAT as string,",
+						"          CHANGEDBY as string,",
+						"          CHANGEDAT as string,",
+						"          CURRENCY as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     isolationLevel: 'READ_UNCOMMITTED',",
+						"     format: 'table') ~> BusinessPartner",
+						"source(output(",
+						"          PRODUCTID as string,",
+						"          TYPECODE as string,",
+						"          PRODUCTCATEGORYID as string,",
+						"          LANGUAGE as string,",
+						"          SUPPLIER_PARTNERID as string,",
+						"          TAXTARIFFCODE as string,",
+						"          QUANTITYUNIT as string,",
+						"          WEIGHTMEASURE as string,",
+						"          WEIGHTUNIT as string,",
+						"          CURRENCY as string,",
+						"          PRICE as string,",
+						"          WIDTH as string,",
+						"          DEPTH as string,",
+						"          HEIGHT as string,",
+						"          DIMENSIONUNIT as string,",
+						"          CREATEDBY as string,",
+						"          CREATEDAT as string,",
+						"          CHANGEDBY as string,",
+						"          CHANGEDAT as string,",
+						"          PRODUCTPICURL as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     isolationLevel: 'READ_UNCOMMITTED',",
+						"     format: 'table') ~> Producto",
+						"source(output(",
+						"          ADDRESSID as string,",
+						"          STREET as string,",
+						"          CITY as string,",
+						"          POSTALCODE as string,",
+						"          BUILDING as string,",
+						"          COUNTRY as string,",
+						"          REGION as string,",
+						"          ADDRESSTYPE as string,",
+						"          VALIDITY_STARTDATE as string,",
+						"          VALIDITY_ENDDATE as string,",
+						"          LATITUDE as string,",
+						"          LONGITUDE as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     isolationLevel: 'READ_UNCOMMITTED',",
+						"     format: 'table') ~> Address",
+						"source(output(",
+						"          PRODUCTID as string,",
+						"          LANGUAGE as string,",
+						"          SHORT_DESCR as string,",
+						"          MEDIUM_DESCR as string,",
+						"          LONG_DESCR as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     isolationLevel: 'READ_UNCOMMITTED',",
+						"     format: 'table') ~> sourceProdText",
+						"source(output(",
+						"          PRODCATEGORYID as string,",
+						"          LANGUAGE as string,",
+						"          CREATEDBY as string,",
+						"          CREATEDAT as string,",
+						"          CHANGEDBY as string,",
+						"          CHANGEDAT as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     isolationLevel: 'READ_UNCOMMITTED',",
+						"     format: 'table') ~> sourceProdCateg",
+						"source(output(",
+						"          PRODCATEGORYID as string,",
+						"          LANGUAGE as string,",
+						"          SHORT_DESCR as string,",
+						"          MEDIUM_DESCR as string,",
+						"          LONG_DESCR as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     isolationLevel: 'READ_UNCOMMITTED',",
+						"     format: 'table') ~> sourceProdCategText",
+						"SalesOrderItem cast(output(",
+						"          GROSSAMOUNT as decimal(10,2),",
+						"          NETAMOUNT as decimal(10,2),",
+						"          TAXAMOUNT as decimal(10,2),",
+						"          QUANTITY as integer",
+						"     ),",
+						"     errors: true) ~> CastSalesOrderItem",
+						"SalesOrder cast(output(",
+						"          GROSSAMOUNT as decimal(10,2),",
+						"          NETAMOUNT as decimal(10,2),",
+						"          TAXAMOUNT as decimal(10,2)",
+						"     ),",
+						"     errors: true) ~> CastSalesOrder",
+						"CastSalesOrderItem select(mapColumn(",
+						"          {item.SalesOrderID} = SALESORDERID,",
+						"          {item.SalesOrderItem} = SALESORDERITEM,",
+						"          {item.ProductID} = PRODUCTID,",
+						"          {item.Currency} = CURRENCY,",
+						"          {item.GrossAmount} = GROSSAMOUNT,",
+						"          {item.NetAmount} = NETAMOUNT,",
+						"          {item.TaxAmount} = TAXAMOUNT,",
+						"          {item.AtpStatus} = ITEMATPSTATUS,",
+						"          {item.OpitemPos} = OPITEMPOS,",
+						"          {item.Quantity} = QUANTITY,",
+						"          {item.QuantityUnit} = QUANTITYUNIT,",
+						"          {item.DeliveryDate} = DELIVERYDATE",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> selectSalesORderItem",
+						"CastSalesOrder select(mapColumn(",
+						"          {hdr.SalesOrderID} = SALESORDERID,",
+						"          {hdr.CreatedBy} = CREATEDBY,",
+						"          {hdr.CreatudAt} = CREATEDAT,",
+						"          {hdr.ChangedBy} = CHANGEDBY,",
+						"          {hdr.ChangedAt} = CHANGEDAT,",
+						"          {hdr.FiscalVariant} = FISCALYEARVARIANT,",
+						"          {hdr.FiscalPeriod} = FISCALYEARPERIOD,",
+						"          {hdr.PartnerID} = PARTNERID,",
+						"          {hdr.SalesOrg} = SALESORG,",
+						"          {hdr.LifeCycleStatus} = LIFECYCLESTATUS,",
+						"          {hdr.BillingStatus} = BILLINGSTATUS,",
+						"          {hdr.DeliveryStatus} = DELIVERYSTATUS",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> selectSalesOrder",
+						"selectSalesORderItem, selectSalesOrder join({item.SalesOrderID} == {hdr.SalesOrderID},",
+						"     joinType:'inner',",
+						"     matchType:'exact',",
+						"     ignoreSpaces: false,",
+						"     broadcast: 'auto')~> joinSalesOrder",
+						"BusinessPartner select(mapColumn(",
+						"          {BP.PartnerID} = PARTNERID,",
+						"          {BP.PartnerRole} = PARTNERROLE,",
+						"          {BP.EmailAddress} = EMAILADDRESS,",
+						"          {BP.PhoneNumber} = PHONENUMBER,",
+						"          {BP.FaxNumber} = FAXNUMBER,",
+						"          {BP.WebAddress} = WEBADDRESS,",
+						"          {BP.AdressID} = ADDRESSID,",
+						"          {BP.CompanyName} = COMPANYNAME,",
+						"          {BP.LegalForm} = LEGALFORM",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> selectBPartner",
+						"joinSalesOrder, joinAddress join({hdr.PartnerID} == {BP.PartnerID},",
+						"     joinType:'left',",
+						"     matchType:'exact',",
+						"     ignoreSpaces: false,",
+						"     broadcast: 'auto')~> joinBPartner",
+						"Producto select(mapColumn(",
+						"          {Prod.ProductID} = PRODUCTID,",
+						"          {Prod.TypeCode} = TYPECODE,",
+						"          {Prod.ProdCategID} = PRODUCTCATEGORYID,",
+						"          {Prod.Language} = LANGUAGE,",
+						"          {Prod.Supplier_PartnID} = SUPPLIER_PARTNERID,",
+						"          {Prod.TaxTarifCode} = TAXTARIFFCODE,",
+						"          {Prod.QuantityUnit} = QUANTITYUNIT,",
+						"          {Prod.WeightMeasure} = WEIGHTMEASURE,",
+						"          {Prod.WeightUnit} = WEIGHTUNIT,",
+						"          {Prod.Currency} = CURRENCY,",
+						"          {Prod.Price} = PRICE,",
+						"          {Prod.Width} = WIDTH,",
+						"          {Prod.Depth} = DEPTH,",
+						"          {Prod.Height} = HEIGHT,",
+						"          {Prod.DimensionUnit} = DIMENSIONUNIT,",
+						"          {Prod.CreatedBy} = CREATEDBY,",
+						"          {Prod.CreatedAt} = CREATEDAT,",
+						"          {Prod.ChangedBy} = CHANGEDBY,",
+						"          {Prod.ChangedAt} = CHANGEDAT,",
+						"          {Prod.ProdPicURL} = PRODUCTPICURL",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> selectProduct",
+						"joinBPartner, joinProdCateg join({item.ProductID} == {Prod.ProductID},",
+						"     joinType:'left',",
+						"     matchType:'exact',",
+						"     ignoreSpaces: false,",
+						"     broadcast: 'auto')~> joinProduct",
+						"Address select(mapColumn(",
+						"          {Adr.AddressID} = ADDRESSID,",
+						"          {Adr.Street} = STREET,",
+						"          {Adr.City} = CITY,",
+						"          {Adr.PostalCode} = POSTALCODE,",
+						"          {Adr.Building} = BUILDING,",
+						"          {Adr.Country} = COUNTRY,",
+						"          {Adr.Region} = REGION,",
+						"          {Adr.AddressType} = ADDRESSTYPE,",
+						"          {Adr.Latitude} = LATITUDE,",
+						"          {Adr.Longitude} = LONGITUDE",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> selectAddress",
+						"selectBPartner, selectAddress join({BP.AdressID} == {Adr.AddressID},",
+						"     joinType:'left',",
+						"     matchType:'exact',",
+						"     ignoreSpaces: false,",
+						"     broadcast: 'auto')~> joinAddress",
+						"selectProduct, selectProdText join({Prod.ProductID} == {Ptext.ProductID},",
+						"     joinType:'left',",
+						"     matchType:'exact',",
+						"     ignoreSpaces: false,",
+						"     broadcast: 'auto')~> joinProdText",
+						"sourceProdText select(mapColumn(",
+						"          {Ptext.ProductID} = PRODUCTID,",
+						"          {Ptext.Language} = LANGUAGE,",
+						"          {Ptext.shortDesc} = SHORT_DESCR,",
+						"          {Ptext.MedDesc} = MEDIUM_DESCR",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> selectProdText",
+						"sourceProdCateg select(mapColumn(",
+						"          {Pcat.ProdCategID} = PRODCATEGORYID,",
+						"          {Pcat.Language} = LANGUAGE",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> selectProdCateg",
+						"sourceProdCategText select(mapColumn(",
+						"          {Pctx.ProdCategoryID} = PRODCATEGORYID,",
+						"          {Pctx.Language} = LANGUAGE,",
+						"          {Pctx.ShortText} = SHORT_DESCR",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> selectProdCategText",
+						"selectProdCateg, selectProdCategText join({Pcat.ProdCategID} == {Pctx.ProdCategoryID},",
+						"     joinType:'left',",
+						"     matchType:'exact',",
+						"     ignoreSpaces: false,",
+						"     broadcast: 'auto')~> joinProdCategText",
+						"joinProdText, joinProdCategText join({Prod.ProdCategID} == {Pcat.ProdCategID},",
+						"     joinType:'left',",
+						"     matchType:'exact',",
+						"     ignoreSpaces: false,",
+						"     broadcast: 'auto')~> joinProdCateg",
+						"joinProduct select(mapColumn(",
+						"          SalesOrderID = {item.SalesOrderID},",
+						"          SalesOrderItem = {item.SalesOrderItem},",
+						"          CreatedAt = {hdr.CreatudAt},",
+						"          ChangedAt = {hdr.ChangedAt},",
+						"          FiscalPeriod = {hdr.FiscalPeriod},",
+						"          SalesOrg = {hdr.SalesOrg},",
+						"          LifeCycleStatus = {hdr.LifeCycleStatus},",
+						"          BillingStatus = {hdr.BillingStatus},",
+						"          DeliveryStatus = {hdr.DeliveryStatus},",
+						"          Currency = {item.Currency},",
+						"          GrossAmount = {item.GrossAmount},",
+						"          NetAmount = {item.NetAmount},",
+						"          TaxAmount = {item.TaxAmount},",
+						"          AtpStatus = {item.AtpStatus},",
+						"          OpitemPos = {item.OpitemPos},",
+						"          Quantity = {item.Quantity},",
+						"          QuantityUnit = {item.QuantityUnit},",
+						"          DeliveryDate = {item.DeliveryDate},",
+						"          ProductID = {Prod.ProductID},",
+						"          TypeCode = {Prod.TypeCode},",
+						"          Supplier_PartnID = {Prod.Supplier_PartnID},",
+						"          TaxTarifCode = {Prod.TaxTarifCode},",
+						"          WeightMeasure = {Prod.WeightMeasure},",
+						"          WeightUnit = {Prod.WeightUnit},",
+						"          Price = {Prod.Price},",
+						"          Width = {Prod.Width},",
+						"          Depth = {Prod.Depth},",
+						"          Height = {Prod.Height},",
+						"          ProdPicURL = {Prod.ProdPicURL},",
+						"          ProdCategID = {Pcat.ProdCategID},",
+						"          ProductShortDesc = {Ptext.shortDesc},",
+						"          CategoryShortText = {Pctx.ShortText},",
+						"          PartnerID = {BP.PartnerID},",
+						"          PartnerRole = {BP.PartnerRole},",
+						"          EmailAddress = {BP.EmailAddress},",
+						"          PhoneNumber = {BP.PhoneNumber},",
+						"          WebAddress = {BP.WebAddress},",
+						"          CompanyName = {BP.CompanyName},",
+						"          LegalForm = {BP.LegalForm},",
+						"          AddressID = {Adr.AddressID},",
+						"          AddressType = {Adr.AddressType},",
+						"          Street = {Adr.Street},",
+						"          Building = {Adr.Building},",
+						"          PostalCode = {Adr.PostalCode},",
+						"          City = {Adr.City},",
+						"          Country = {Adr.Country},",
+						"          Region = {Adr.Region},",
+						"          Latitude = {Adr.Latitude},",
+						"          Longitude = {Adr.Longitude}",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> selectFinal",
+						"selectFinal sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     recreate:true,",
+						"     format: 'table',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError') ~> SinkFinal"
+					]
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Account Hier')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "DF_Account_Hier",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "dataflow1",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"source1": {},
+									"source2": {},
+									"sink1": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"folder": {
+					"name": "Finance"
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-12-29T23:29:26Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/dataflow1')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Fact_Sales')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -64,7 +738,9 @@
 				},
 				"annotations": []
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/df_Sales')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Sales')]",
@@ -1693,6 +2369,9 @@
 								]
 							}
 						],
+						"policy": {
+							"secureInput": false
+						},
 						"userProperties": [],
 						"typeProperties": {
 							"pipeline": {
