@@ -2143,11 +2143,14 @@
 						"userProperties": [],
 						"typeProperties": {
 							"source": {
-								"type": "ExcelSource",
+								"type": "DelimitedTextSource",
 								"storeSettings": {
 									"type": "AzureBlobStorageReadSettings",
 									"recursive": true,
 									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
 								}
 							},
 							"sink": {
@@ -2327,7 +2330,7 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "DIR_COMPRAS",
+								"referenceName": "DIRCOMPRAS",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -2373,7 +2376,7 @@
 				"[concat(variables('factoryId'), '/datasets/AzureSqlAccount_Hier_csv')]",
 				"[concat(variables('factoryId'), '/datasets/ZUBIC')]",
 				"[concat(variables('factoryId'), '/datasets/AzureSqlZUBIC')]",
-				"[concat(variables('factoryId'), '/datasets/DIR_COMPRAS')]",
+				"[concat(variables('factoryId'), '/datasets/DIRCOMPRAS')]",
 				"[concat(variables('factoryId'), '/datasets/AzureSqlDIR_COMPRAS')]"
 			]
 		},
@@ -6275,32 +6278,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/DIR_COMPRAS')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "DIR_COMPRAS",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "DIR_COMPRAS.csv",
-						"container": "bimexcontainer"
-					},
-					"firstRowAsHeader": true
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/DestinationDataset_g5a')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -7864,6 +7841,39 @@
 				"[concat(variables('factoryId'), '/datasets/AzureSqlProdCateg')]",
 				"[concat(variables('factoryId'), '/datasets/AzureSqlProdCategText')]",
 				"[concat(variables('factoryId'), '/datasets/AzureSqlfactSales')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DIRCOMPRAS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "DIR_COMPRAS.csv",
+						"container": "bimexcontainer"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Direccion;Descripcion",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
 			]
 		}
 	]

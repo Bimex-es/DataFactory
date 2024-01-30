@@ -53,30 +53,6 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/DIR_COMPRAS')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "DIR_COMPRAS",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "DIR_COMPRAS.csv",
-						"container": "bimexcontainer"
-					},
-					"firstRowAsHeader": true
-				},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/DestinationDataset_g5a')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -885,6 +861,37 @@
 					"referenceName": "integrationRuntime2",
 					"type": "IntegrationRuntimeReference"
 				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DIRCOMPRAS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "DIR_COMPRAS.csv",
+						"container": "bimexcontainer"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Direccion;Descripcion",
+						"type": "String"
+					}
+				]
 			},
 			"dependsOn": []
 		},
@@ -2856,11 +2863,14 @@
 						"userProperties": [],
 						"typeProperties": {
 							"source": {
-								"type": "ExcelSource",
+								"type": "DelimitedTextSource",
 								"storeSettings": {
 									"type": "AzureBlobStorageReadSettings",
 									"recursive": true,
 									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
 								}
 							},
 							"sink": {
@@ -3040,7 +3050,7 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "DIR_COMPRAS",
+								"referenceName": "DIRCOMPRAS",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -3070,7 +3080,7 @@
 				"[concat(variables('factoryId'), '/datasets/ZFUNCION_MAST')]",
 				"[concat(variables('factoryId'), '/datasets/ZFUNCION_HIER')]",
 				"[concat(variables('factoryId'), '/datasets/ZUBIC')]",
-				"[concat(variables('factoryId'), '/datasets/DIR_COMPRAS')]"
+				"[concat(variables('factoryId'), '/datasets/DIRCOMPRAS')]"
 			]
 		},
 		{
