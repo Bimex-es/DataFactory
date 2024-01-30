@@ -8,6 +8,7 @@
 		"annotations": [],
 		"type": "Excel",
 		"typeProperties": {
+			"sheetName": "ZUBIC",
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": "ZUBIC.csv",
