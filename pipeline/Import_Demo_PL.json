@@ -1186,7 +1186,7 @@
 			},
 			{
 				"name": "az_c_account_hier",
-				"description": "truncate table dbo.stg_zaccount_hier_csv",
+				"description": "",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -1211,6 +1211,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
+						"preCopyScript": "truncate table dbo.stg_zaccount_hier_csv",
 						"writeBehavior": "insert",
 						"sqlWriterUseTableLock": false,
 						"tableOption": "autoCreate",
@@ -1399,7 +1400,7 @@
 			},
 			{
 				"name": "az_c_zubic",
-				"description": "truncate table dbo.stg_zubic",
+				"description": "",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -1424,6 +1425,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
+						"preCopyScript": "truncate table dbo.stg_zubic",
 						"writeBehavior": "insert",
 						"sqlWriterUseTableLock": false,
 						"tableOption": "autoCreate",
@@ -1588,7 +1590,7 @@
 			},
 			{
 				"name": "az_c_dir_compras",
-				"description": "truncate table dbo.stg_dir_compras",
+				"description": "",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -1613,6 +1615,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
+						"preCopyScript": "truncate table dbo.stg_dir_compras",
 						"writeBehavior": "insert",
 						"sqlWriterUseTableLock": false,
 						"tableOption": "autoCreate",
