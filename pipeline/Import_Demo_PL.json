@@ -1435,158 +1435,134 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "  HIEID                    ",
+									"name": "UBICACI�N",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "  HIEID                    ",
+									"name": "UBICACI�N",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
 								"source": {
-									"name": "OBJVERS",
+									"name": "IDIOMA",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "OBJVERS",
+									"name": "IDIOMA",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
 								"source": {
-									"name": "NODEID",
+									"name": "PERIODO",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "NODEID",
+									"name": "PERIODO",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
 								"source": {
-									"name": "IOBJNM    ",
+									"name": "VARIANTE",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "IOBJNM    ",
+									"name": "VARIANTE",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
 								"source": {
-									"name": "NODENAME      ",
+									"name": "EJERCICIO",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "NODENAME      ",
+									"name": "EJERCICIO",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
 								"source": {
-									"name": "Description",
+									"name": "ZEJERNUM",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "Description",
+									"name": "ZEJERNUM",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
 								"source": {
-									"name": "XXX",
+									"name": "TIPO DE UBIC",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "XXX",
+									"name": "TIPO DE UBIC",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
 								"source": {
-									"name": "TLEVEL",
+									"name": "FORMATO",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "TLEVEL",
+									"name": "FORMATO",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
 								"source": {
-									"name": "LINK",
+									"name": "ORDEN DASH",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "LINK",
+									"name": "ORDEN DASH",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
 								"source": {
-									"name": "PARENTID",
+									"name": "DESC BREVE",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "PARENTID",
+									"name": "DESC BREVE",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
 								"source": {
-									"name": "CHILDID",
+									"name": "DESC MEDIA",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "CHILDID",
+									"name": "DESC MEDIA",
 									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "NEXTID",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "NEXTID",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "INTERVL",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "INTERVL",
-									"type": "String",
-									"physicalType": "String"
+									"physicalType": "nvarchar"
 								}
 							}
 						],
