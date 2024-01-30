@@ -53,6 +53,37 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/DIRCOMPRAS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "DIR_COMPRAS.csv",
+						"container": "bimexcontainer"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Direccion;Descripcion",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/DestinationDataset_g5a')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -800,17 +831,64 @@
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "Excel",
+				"type": "DelimitedText",
 				"typeProperties": {
-					"sheetName": "ZUBIC",
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"fileName": "ZUBIC.csv",
 						"container": "bimexcontainer"
 					},
-					"firstRowAsHeader": true
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
 				},
-				"schema": []
+				"schema": [
+					{
+						"name": "UBICACI�N",
+						"type": "String"
+					},
+					{
+						"name": "IDIOMA",
+						"type": "String"
+					},
+					{
+						"name": "PERIODO",
+						"type": "String"
+					},
+					{
+						"name": "VARIANTE",
+						"type": "String"
+					},
+					{
+						"name": "EJERCICIO",
+						"type": "String"
+					},
+					{
+						"name": "ZEJERNUM",
+						"type": "String"
+					},
+					{
+						"name": "TIPO DE UBIC",
+						"type": "String"
+					},
+					{
+						"name": "FORMATO",
+						"type": "String"
+					},
+					{
+						"name": "ORDEN DASH",
+						"type": "String"
+					},
+					{
+						"name": "DESC BREVE",
+						"type": "String"
+					},
+					{
+						"name": "DESC MEDIA",
+						"type": "String"
+					}
+				]
 			},
 			"dependsOn": []
 		},
@@ -861,37 +939,6 @@
 					"referenceName": "integrationRuntime2",
 					"type": "IntegrationRuntimeReference"
 				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DIRCOMPRAS')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "DIR_COMPRAS.csv",
-						"container": "bimexcontainer"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "Direccion;Descripcion",
-						"type": "String"
-					}
-				]
 			},
 			"dependsOn": []
 		},
@@ -2651,11 +2698,14 @@
 						"userProperties": [],
 						"typeProperties": {
 							"source": {
-								"type": "ExcelSource",
+								"type": "DelimitedTextSource",
 								"storeSettings": {
 									"type": "AzureBlobStorageReadSettings",
 									"recursive": true,
 									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
 								}
 							},
 							"sink": {
