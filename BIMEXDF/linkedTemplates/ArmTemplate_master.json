@@ -96,9 +96,6 @@
 					"AzureSqlDatabase1_connectionString": {
 						"value": "[parameters('AzureSqlDatabase1_connectionString')]"
 					},
-					"SqlServer1_connectionString": {
-						"value": "[parameters('SqlServer1_connectionString')]"
-					},
 					"HttpServerSPO_properties_typeProperties_url": {
 						"value": "[parameters('HttpServerSPO_properties_typeProperties_url')]"
 					}
@@ -145,6 +142,9 @@
 					},
 					"SapTable2_password": {
 						"value": "[parameters('SapTable2_password')]"
+					},
+					"SqlServer1_connectionString": {
+						"value": "[parameters('SqlServer1_connectionString')]"
 					},
 					"SapOpenHub1_properties_typeProperties_clientId": {
 						"value": "[parameters('SapOpenHub1_properties_typeProperties_clientId')]"

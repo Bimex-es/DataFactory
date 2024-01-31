@@ -13,74 +13,6 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/AzureSqlAdresses')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureSqlDatabase1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "ADDRESSID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "STREET",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CITY",
-						"type": "nvarchar"
-					},
-					{
-						"name": "POSTALCODE",
-						"type": "nvarchar"
-					},
-					{
-						"name": "BUILDING",
-						"type": "nvarchar"
-					},
-					{
-						"name": "COUNTRY",
-						"type": "nvarchar"
-					},
-					{
-						"name": "REGION",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ADDRESSTYPE",
-						"type": "nvarchar"
-					},
-					{
-						"name": "VALIDITY_STARTDATE",
-						"type": "nvarchar"
-					},
-					{
-						"name": "VALIDITY_ENDDATE",
-						"type": "nvarchar"
-					},
-					{
-						"name": "LATITUDE",
-						"type": "nvarchar"
-					},
-					{
-						"name": "LONGITUDE",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "stg_Adresses"
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlBusinessPartner')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -193,6 +125,25 @@
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "stg_distr_chan"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlOrders')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Orders_test"
 				}
 			},
 			"dependsOn": []

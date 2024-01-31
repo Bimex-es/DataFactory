@@ -4664,6 +4664,73 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SqlServerSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false,
+								"tableOption": "autoCreate",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "SqlServerTable",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "AzureSqlOrders",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/SqlServerTable')]",
+				"[concat(variables('factoryId'), '/datasets/AzureSqlOrders')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/0ACCOUNT')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -5446,6 +5513,27 @@
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "stg_distr_chan"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlOrders')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Orders_test"
 				}
 			},
 			"dependsOn": [
@@ -6806,6 +6894,102 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/SqlServerTable')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SqlServer1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "SALESORDERID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CREATEDBY",
+						"type": "varchar"
+					},
+					{
+						"name": "CREATEDAT",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CHANGEDBY",
+						"type": "varchar"
+					},
+					{
+						"name": "CHANGEDAT",
+						"type": "nvarchar"
+					},
+					{
+						"name": "FISCALYEARVARIANT",
+						"type": "varchar"
+					},
+					{
+						"name": "FISCALYEARPERIOD",
+						"type": "varchar"
+					},
+					{
+						"name": "NOTEID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PARTNERID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SALESORG",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CURRENCY",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GROSSAMOUNT",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 10
+					},
+					{
+						"name": "NETAMOUNT",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 10
+					},
+					{
+						"name": "TAXAMOUNT",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 10
+					},
+					{
+						"name": "LIFECYCLESTATUS",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BILLINGSTATUS",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DELIVERYSTATUS",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "SalesOrders"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/SqlServer1')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/ZDIVISION_HIER')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -7126,9 +7310,15 @@
 				"type": "SqlServer",
 				"typeProperties": {
 					"connectionString": "[parameters('SqlServer1_connectionString')]"
+				},
+				"connectVia": {
+					"referenceName": "integrationRuntime2",
+					"type": "IntegrationRuntimeReference"
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/integrationRuntime2')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/integrationRuntime1')]",
