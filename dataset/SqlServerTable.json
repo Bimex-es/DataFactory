@@ -1,0 +1,91 @@
+{
+	"name": "SqlServerTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServer1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "SALESORDERID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CREATEDBY",
+				"type": "varchar"
+			},
+			{
+				"name": "CREATEDAT",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CHANGEDBY",
+				"type": "varchar"
+			},
+			{
+				"name": "CHANGEDAT",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FISCALYEARVARIANT",
+				"type": "varchar"
+			},
+			{
+				"name": "FISCALYEARPERIOD",
+				"type": "varchar"
+			},
+			{
+				"name": "NOTEID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PARTNERID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SALESORG",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CURRENCY",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GROSSAMOUNT",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 10
+			},
+			{
+				"name": "NETAMOUNT",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 10
+			},
+			{
+				"name": "TAXAMOUNT",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 10
+			},
+			{
+				"name": "LIFECYCLESTATUS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BILLINGSTATUS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DELIVERYSTATUS",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "SalesOrders"
+		}
+	}
+}
