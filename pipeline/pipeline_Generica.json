@@ -40,17 +40,51 @@
 				"inputs": [
 					{
 						"referenceName": "SqlServerTable",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"Schema": {
+								"value": "@pipeline().parameters.SchemaSource",
+								"type": "Expression"
+							},
+							"TableName": {
+								"value": "@pipeline().parameters.TableSource",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
 					{
 						"referenceName": "AzureSqlTable",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"SchemaDest": {
+								"value": "@pipeline().parameters.SchemaTarget",
+								"type": "Expression"
+							},
+							"TableDest": {
+								"value": "@pipeline().parameters.TableTarget",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			}
 		],
+		"parameters": {
+			"SchemaSource": {
+				"type": "string"
+			},
+			"TableSource": {
+				"type": "string"
+			},
+			"SchemaTarget": {
+				"type": "string"
+			},
+			"TableTarget": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
