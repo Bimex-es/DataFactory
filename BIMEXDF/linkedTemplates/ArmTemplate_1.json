@@ -13,101 +13,6 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/AzureSqlBusinessPartner')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureSqlDatabase1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "PARTNERID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "PARTNERROLE",
-						"type": "nvarchar"
-					},
-					{
-						"name": "EMAILADDRESS",
-						"type": "nvarchar"
-					},
-					{
-						"name": "PHONENUMBER",
-						"type": "nvarchar"
-					},
-					{
-						"name": "FAXNUMBER",
-						"type": "nvarchar"
-					},
-					{
-						"name": "WEBADDRESS",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ADDRESSID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "COMPANYNAME",
-						"type": "nvarchar"
-					},
-					{
-						"name": "LEGALFORM",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CREATEDBY",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CREATEDAT",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CHANGEDBY",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CHANGEDAT",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CURRENCY",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "stg_Business_Partner"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureSqlDIR_COMPRAS')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureSqlDatabase1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "stg_dir_compras"
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlDISTRCHAN')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -505,6 +410,39 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"SchemaDest": {
+						"type": "string"
+					},
+					"TableDest": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": {
+						"value": "@dataset().SchemaDest",
+						"type": "Expression"
+					},
+					"table": {
+						"value": "@dataset().TableDest",
+						"type": "Expression"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlTable1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -785,6 +723,37 @@
 					},
 					{
 						"name": "CURRENCY",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DIRCOMPRAS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "DIR_COMPRAS.csv",
+						"container": "bimexcontainer"
+					},
+					"columnDelimiter": ";",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Direccion;Descripcion",
 						"type": "String"
 					}
 				]
