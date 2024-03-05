@@ -1,0 +1,16 @@
+{
+	"name": "AzureSqlSalesOrder_TW",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "imp",
+			"table": "stg_sales_order_tw"
+		}
+	}
+}

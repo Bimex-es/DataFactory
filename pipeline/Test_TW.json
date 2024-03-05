@@ -1,5 +1,5 @@
 {
-	"name": "pipeline1",
+	"name": "Test_TW",
 	"properties": {
 		"activities": [
 			{
@@ -16,12 +16,16 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "SqlServerSource",
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
+						"type": "ExcelSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						}
 					},
 					"sink": {
 						"type": "AzureSqlSink",
+						"preCopyScript": "truncate table imp.stg_sales_order_TW",
 						"writeBehavior": "insert",
 						"sqlWriterUseTableLock": false,
 						"tableOption": "autoCreate",
@@ -39,13 +43,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "SqlServerTable",
+						"referenceName": "SalesOrder",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "AzureSqlOrders",
+						"referenceName": "AzureSqlSalesOrder_TW",
 						"type": "DatasetReference"
 					}
 				]
