@@ -15,9 +15,25 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
 		},
+		"Hubspot1_clientSecret": {
+			"type": "secureString",
+			"metadata": "Secure string for 'clientSecret' of 'Hubspot1'"
+		},
+		"Hubspot1_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'Hubspot1'"
+		},
+		"Hubspot1_refreshToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'refreshToken' of 'Hubspot1'"
+		},
 		"HttpServerSPO_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://bimexanalyticsbcn.sharepoint.com/sites/Bimex/_api/web/GetFileByServerRelativeUrl('/sites/Bimex/Shared%20Documents/Docs%20Test/Account_Hier.xlsx')/$value"
+		},
+		"Hubspot1_properties_typeProperties_clientId": {
+			"type": "string",
+			"defaultValue": "pat-na1-7aa99e14-8223-4cb6-970b-c1754b942e1e"
 		}
 	},
 	"variables": {
@@ -61,6 +77,34 @@
 					"url": "[parameters('HttpServerSPO_properties_typeProperties_url')]",
 					"enableServerCertificateValidation": true,
 					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Hubspot1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "Hubspot",
+				"typeProperties": {
+					"clientId": "[parameters('Hubspot1_properties_typeProperties_clientId')]",
+					"clientSecret": {
+						"type": "SecureString",
+						"value": "[parameters('Hubspot1_clientSecret')]"
+					},
+					"accessToken": {
+						"type": "SecureString",
+						"value": "[parameters('Hubspot1_accessToken')]"
+					},
+					"refreshToken": {
+						"type": "SecureString",
+						"value": "[parameters('Hubspot1_refreshToken')]"
+					},
+					"useEncryptedEndpoints": true,
+					"useHostVerification": true,
+					"usePeerVerification": true
 				}
 			},
 			"dependsOn": []
@@ -813,27 +857,6 @@
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "stg_Business_Partner"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureSqlDIR_COMPRAS')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureSqlDatabase1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "stg_dir_compras"
 				}
 			},
 			"dependsOn": [

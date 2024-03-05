@@ -13,6 +13,25 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlDIR_COMPRAS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "stg_dir_compras"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlDISTRCHAN')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -410,6 +429,25 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlSalesOrder_TW')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "imp",
+					"table": "stg_sales_order_tw"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlTable')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -644,119 +682,6 @@
 					"schema": "dbo",
 					"table": "stg_Sales_Order_Item"
 				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/BusinessPartner')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "BusinessPartners",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "BusinessPartners.xlsx",
-						"folderPath": "Sales",
-						"container": "bimexcontainer"
-					},
-					"firstRowAsHeader": true
-				},
-				"schema": [
-					{
-						"name": "PARTNERID",
-						"type": "String"
-					},
-					{
-						"name": "PARTNERROLE",
-						"type": "String"
-					},
-					{
-						"name": "EMAILADDRESS",
-						"type": "String"
-					},
-					{
-						"name": "PHONENUMBER",
-						"type": "String"
-					},
-					{
-						"name": "FAXNUMBER",
-						"type": "String"
-					},
-					{
-						"name": "WEBADDRESS",
-						"type": "String"
-					},
-					{
-						"name": "ADDRESSID",
-						"type": "String"
-					},
-					{
-						"name": "COMPANYNAME",
-						"type": "String"
-					},
-					{
-						"name": "LEGALFORM",
-						"type": "String"
-					},
-					{
-						"name": "CREATEDBY",
-						"type": "String"
-					},
-					{
-						"name": "CREATEDAT",
-						"type": "String"
-					},
-					{
-						"name": "CHANGEDBY",
-						"type": "String"
-					},
-					{
-						"name": "CHANGEDAT",
-						"type": "String"
-					},
-					{
-						"name": "CURRENCY",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DIRCOMPRAS')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "DIR_COMPRAS.csv",
-						"container": "bimexcontainer"
-					},
-					"columnDelimiter": ";",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "Direccion;Descripcion",
-						"type": "String"
-					}
-				]
 			},
 			"dependsOn": []
 		}

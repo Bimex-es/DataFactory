@@ -15,6 +15,18 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
 		},
+		"Hubspot1_clientSecret": {
+			"type": "secureString",
+			"metadata": "Secure string for 'clientSecret' of 'Hubspot1'"
+		},
+		"Hubspot1_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'Hubspot1'"
+		},
+		"Hubspot1_refreshToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'refreshToken' of 'Hubspot1'"
+		},
 		"SapOpenHub1_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'SapOpenHub1'"
@@ -30,6 +42,10 @@
 		"HttpServerSPO_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://bimexanalyticsbcn.sharepoint.com/sites/Bimex/_api/web/GetFileByServerRelativeUrl('/sites/Bimex/Shared%20Documents/Docs%20Test/Account_Hier.xlsx')/$value"
+		},
+		"Hubspot1_properties_typeProperties_clientId": {
+			"type": "string",
+			"defaultValue": "pat-na1-7aa99e14-8223-4cb6-970b-c1754b942e1e"
 		},
 		"SapOpenHub1_properties_typeProperties_clientId": {
 			"type": "string",
@@ -96,8 +112,20 @@
 					"AzureSqlDatabase1_connectionString": {
 						"value": "[parameters('AzureSqlDatabase1_connectionString')]"
 					},
+					"Hubspot1_clientSecret": {
+						"value": "[parameters('Hubspot1_clientSecret')]"
+					},
+					"Hubspot1_accessToken": {
+						"value": "[parameters('Hubspot1_accessToken')]"
+					},
+					"Hubspot1_refreshToken": {
+						"value": "[parameters('Hubspot1_refreshToken')]"
+					},
 					"HttpServerSPO_properties_typeProperties_url": {
 						"value": "[parameters('HttpServerSPO_properties_typeProperties_url')]"
+					},
+					"Hubspot1_properties_typeProperties_clientId": {
+						"value": "[parameters('Hubspot1_properties_typeProperties_clientId')]"
 					}
 				}
 			},

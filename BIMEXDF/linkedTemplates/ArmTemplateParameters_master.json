@@ -11,6 +11,15 @@
 		"AzureSqlDatabase1_connectionString": {
 			"value": ""
 		},
+		"Hubspot1_clientSecret": {
+			"value": ""
+		},
+		"Hubspot1_accessToken": {
+			"value": ""
+		},
+		"Hubspot1_refreshToken": {
+			"value": ""
+		},
 		"SapOpenHub1_password": {
 			"value": ""
 		},
@@ -22,6 +31,9 @@
 		},
 		"HttpServerSPO_properties_typeProperties_url": {
 			"value": "https://bimexanalyticsbcn.sharepoint.com/sites/Bimex/_api/web/GetFileByServerRelativeUrl('/sites/Bimex/Shared%20Documents/Docs%20Test/Account_Hier.xlsx')/$value"
+		},
+		"Hubspot1_properties_typeProperties_clientId": {
+			"value": "pat-na1-7aa99e14-8223-4cb6-970b-c1754b942e1e"
 		},
 		"SapOpenHub1_properties_typeProperties_clientId": {
 			"value": "200"
