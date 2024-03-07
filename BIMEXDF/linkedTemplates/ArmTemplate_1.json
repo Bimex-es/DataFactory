@@ -54,6 +54,25 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlDivisionMast_TW')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "imp",
+					"table": "stg_division_mast_tw"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlOrders')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -609,78 +628,6 @@
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "fact_Sales"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureSqllSalesOrderItem')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureSqlDatabase1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "SALESORDERID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "SALESORDERITEM",
-						"type": "nvarchar"
-					},
-					{
-						"name": "PRODUCTID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "NOTEID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CURRENCY",
-						"type": "nvarchar"
-					},
-					{
-						"name": "GROSSAMOUNT",
-						"type": "nvarchar"
-					},
-					{
-						"name": "NETAMOUNT",
-						"type": "nvarchar"
-					},
-					{
-						"name": "TAXAMOUNT",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ITEMATPSTATUS",
-						"type": "nvarchar"
-					},
-					{
-						"name": "OPITEMPOS",
-						"type": "nvarchar"
-					},
-					{
-						"name": "QUANTITY",
-						"type": "nvarchar"
-					},
-					{
-						"name": "QUANTITYUNIT",
-						"type": "nvarchar"
-					},
-					{
-						"name": "DELIVERYDATE",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "stg_Sales_Order_Item"
 				}
 			},
 			"dependsOn": []
