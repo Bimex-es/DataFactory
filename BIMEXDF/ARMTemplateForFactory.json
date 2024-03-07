@@ -7643,6 +7643,13 @@
 							"type": "PipelineReference"
 						},
 						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "Test_TW_Maestro",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
 					}
 				],
 				"type": "ScheduleTrigger",
@@ -7650,14 +7657,15 @@
 					"recurrence": {
 						"frequency": "Minute",
 						"interval": 15,
-						"startTime": "2024-03-05T12:00:05",
-						"endTime": "2024-03-06T12:00:04",
+						"startTime": "2024-03-07T12:00:05",
+						"endTime": "2024-03-08T12:00:04",
 						"timeZone": "Romance Standard Time"
 					}
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/Test_TW')]"
+				"[concat(variables('factoryId'), '/pipelines/Test_TW')]",
+				"[concat(variables('factoryId'), '/pipelines/Test_TW_Maestro')]"
 			]
 		},
 		{
