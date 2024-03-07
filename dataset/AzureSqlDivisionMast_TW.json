@@ -1,0 +1,16 @@
+{
+	"name": "AzureSqlDivisionMast_TW",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "imp",
+			"table": "stg_division_mast_tw"
+		}
+	}
+}
