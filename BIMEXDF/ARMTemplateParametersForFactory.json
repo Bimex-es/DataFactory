@@ -20,6 +20,9 @@
 		"Hubspot1_refreshToken": {
 			"value": ""
 		},
+		"SapOdp1_password": {
+			"value": ""
+		},
 		"SapOpenHub1_password": {
 			"value": ""
 		},
@@ -34,6 +37,18 @@
 		},
 		"Hubspot1_properties_typeProperties_clientId": {
 			"value": "pat-na1-7aa99e14-8223-4cb6-970b-c1754b942e1e"
+		},
+		"SapOdp1_properties_typeProperties_clientId": {
+			"value": "200"
+		},
+		"SapOdp1_properties_typeProperties_userName": {
+			"value": "bimex"
+		},
+		"SapOdp1_properties_typeProperties_server": {
+			"value": "172.16.1.178"
+		},
+		"SapOdp1_properties_typeProperties_systemNumber": {
+			"value": "00"
 		},
 		"SapOpenHub1_properties_typeProperties_clientId": {
 			"value": "200"

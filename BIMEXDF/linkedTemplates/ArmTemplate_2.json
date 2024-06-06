@@ -7,17 +7,29 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "BIMEXDF"
 		},
+		"SapOdp1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SapOdp1'"
+		},
 		"SapOpenHub1_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'SapOpenHub1'"
 		},
-		"SapTable2_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'SapTable2'"
+		"SapOdp1_properties_typeProperties_clientId": {
+			"type": "string",
+			"defaultValue": "200"
 		},
-		"SqlServer1_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'SqlServer1'"
+		"SapOdp1_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "bimex"
+		},
+		"SapOdp1_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "172.16.1.178"
+		},
+		"SapOdp1_properties_typeProperties_systemNumber": {
+			"type": "string",
+			"defaultValue": "00"
 		},
 		"SapOpenHub1_properties_typeProperties_clientId": {
 			"type": "string",
@@ -34,28 +46,31 @@
 		"SapOpenHub1_properties_typeProperties_systemNumber": {
 			"type": "string",
 			"defaultValue": "00"
-		},
-		"SapTable2_properties_typeProperties_clientId": {
-			"type": "string",
-			"defaultValue": "200"
-		},
-		"SapTable2_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "bimex"
-		},
-		"SapTable2_properties_typeProperties_server": {
-			"type": "string",
-			"defaultValue": "172.16.1.177"
-		},
-		"SapTable2_properties_typeProperties_systemNumber": {
-			"type": "string",
-			"defaultValue": "00"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlfactSales')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "fact_Sales"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqllSalesOrderItem')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
@@ -1051,6 +1066,31 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/SapOdp1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "SapOdp",
+				"typeProperties": {
+					"clientId": "[parameters('SapOdp1_properties_typeProperties_clientId')]",
+					"sncMode": false,
+					"userName": "[parameters('SapOdp1_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('SapOdp1_password')]"
+					},
+					"server": "[parameters('SapOdp1_properties_typeProperties_server')]",
+					"systemNumber": "[parameters('SapOdp1_properties_typeProperties_systemNumber')]"
+				},
+				"connectVia": {
+					"referenceName": "integrationRuntime2",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SapOpenHub1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -1067,48 +1107,6 @@
 					},
 					"server": "[parameters('SapOpenHub1_properties_typeProperties_server')]",
 					"systemNumber": "[parameters('SapOpenHub1_properties_typeProperties_systemNumber')]"
-				},
-				"connectVia": {
-					"referenceName": "integrationRuntime2",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SapTable2')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "SapTable",
-				"typeProperties": {
-					"clientId": "[parameters('SapTable2_properties_typeProperties_clientId')]",
-					"sncMode": false,
-					"userName": "[parameters('SapTable2_properties_typeProperties_userName')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('SapTable2_password')]"
-					},
-					"server": "[parameters('SapTable2_properties_typeProperties_server')]",
-					"systemNumber": "[parameters('SapTable2_properties_typeProperties_systemNumber')]"
-				},
-				"connectVia": {
-					"referenceName": "integrationRuntime2",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SqlServer1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "SqlServer",
-				"typeProperties": {
-					"connectionString": "[parameters('SqlServer1_connectionString')]"
 				},
 				"connectVia": {
 					"referenceName": "integrationRuntime2",
