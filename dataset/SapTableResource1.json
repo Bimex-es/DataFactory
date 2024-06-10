@@ -5,11 +5,6 @@
 			"referenceName": "SapTable2",
 			"type": "LinkedServiceReference"
 		},
-		"parameters": {
-			"Linked": {
-				"type": "string"
-			}
-		},
 		"annotations": [],
 		"type": "SapTableResource",
 		"schema": [],

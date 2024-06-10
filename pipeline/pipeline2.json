@@ -45,7 +45,11 @@
 				"outputs": [
 					{
 						"referenceName": "AzureSqlTable",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"SchemaDest": "dbo",
+							"TableDest": "sapkonv"
+						}
 					}
 				]
 			}
