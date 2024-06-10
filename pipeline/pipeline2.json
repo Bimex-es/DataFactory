@@ -17,6 +17,8 @@
 				"typeProperties": {
 					"source": {
 						"type": "SapTableSource",
+						"rfcTableOptions": "KNUMV EQ '0000000001'",
+						"customRfcReadTableFunctionModule": "",
 						"partitionOption": "None"
 					},
 					"sink": {
