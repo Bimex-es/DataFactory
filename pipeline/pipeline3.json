@@ -26,11 +26,303 @@
 					"sink": {
 						"type": "AzureSqlSink",
 						"writeBehavior": "insert",
-						"sqlWriterUseTableLock": false
+						"sqlWriterUseTableLock": false,
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
 					},
 					"enableStaging": false,
 					"translator": {
 						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "SOCIEDAD",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "SOCIEDAD",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SINIESTRO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "SINIESTRO",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "OCURRIDO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "OCURRIDO",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "HORA_DE_OCURRIDO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "HORA_DE_OCURRIDO",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "MES_DE_OCURRIDO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "MES_DE_OCURRIDO",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AÑO_DE_OCURRIDO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "AÑO_DE_OCURRIDO",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DIA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DIA",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "POLIZA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "POLIZA",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "INCISO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "INCISO",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TIPO_VEHICULO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "TIPO_VEHICULO",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "EQUIPO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "EQUIPO",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TR1_TR2",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "TR1_TR2",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DESCRIPCION",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DESCRIPCION",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "MOD",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "MOD",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FRECUENCIA_POR_SERIE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "FRECUENCIA_POR_SERIE",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "EDAD",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "EDAD",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SEXO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "SEXO",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ESTADO_SIN",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ESTADO_SIN",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ENTIDAD_SIN",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ENTIDAD_SIN",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SINIESTRALIDAD_RESULTADO_MONTO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "SINIESTRALIDAD_RESULTADO_MONTO",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ESCALA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ESCALA",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "RANGO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "RANGO",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PAGO_TOTAL",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "PAGO_TOTAL",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CAUSA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CAUSA",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							}
+						],
 						"typeConversion": true,
 						"typeConversionSettings": {
 							"allowDataTruncation": true,
