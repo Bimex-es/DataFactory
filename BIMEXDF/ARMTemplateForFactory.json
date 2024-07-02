@@ -5328,6 +5328,43 @@
 								"parameters": {}
 							}
 						]
+					},
+					{
+						"name": "Data flow1",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [
+							{
+								"activity": "Copy data1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "dataflow2",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"source1": {},
+									"sink1": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
 					}
 				],
 				"policy": {
@@ -5340,7 +5377,8 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/Excel1')]",
-				"[concat(variables('factoryId'), '/datasets/AzureSqlTable2')]"
+				"[concat(variables('factoryId'), '/datasets/AzureSqlTable2')]",
+				"[concat(variables('factoryId'), '/dataflows/dataflow2')]"
 			]
 		},
 		{
@@ -8630,7 +8668,7 @@
 						"          RANGO,",
 						"          PAGO_TOTAL,",
 						"          CAUSA,",
-						"          AUDIT_TRAIL = FECHA_ACT,",
+						"          AUDIT_TRAIL,",
 						"          OBSERVACIONES,",
 						"          FECHA_ACT",
 						"     )) ~> sink1"
