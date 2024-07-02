@@ -4980,6 +4980,370 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/pipeline3')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "ExcelSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "truncate table wtw.Siniestros",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false,
+								"tableOption": "autoCreate",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "SINIESTRO",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "SINIESTRO",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "SOCIEDAD",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "SOCIEDAD",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "OCURRIDO",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "OCURRIDO",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "HORA_DE_OCURRIDO",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "HORA_DE_OCURRIDO",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "MES_DE_OCURRIDO",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "MES_DE_OCURRIDO",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "AÑO_DE_OCURRIDO",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "AÑO_DE_OCURRIDO",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "DIA",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "DIA",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "POLIZA",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "POLIZA",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "INCISO",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "INCISO",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "TIPO_VEHICULO",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "TIPO_VEHICULO",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "EQUIPO",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "EQUIPO",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "TR1_TR2",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "TR1_TR2",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "DESCRIPCION",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "DESCRIPCION",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "MOD",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "MOD",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "FRECUENCIA_POR_SERIE",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "FRECUENCIA_POR_SERIE",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "EDAD",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "EDAD",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "SEXO",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "SEXO",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "ESTADO_SIN",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ESTADO_SIN",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "ENTIDAD_SIN",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ENTIDAD_SIN",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "SINIESTRALIDAD_RESULTADO_MONTO",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "SINIESTRALIDAD_RESULTADO_MONTO",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "ESCALA",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ESCALA",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "RANGO",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "RANGO",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "PAGO_TOTAL",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "PAGO_TOTAL",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "CAUSA",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "CAUSA",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Excel1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "AzureSqlTable2",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"folder": {
+					"name": "WTW"
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/Excel1')]",
+				"[concat(variables('factoryId'), '/datasets/AzureSqlTable2')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/pipeline_Generica')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -6369,8 +6733,29 @@
 				"type": "AzureSqlTable",
 				"schema": [],
 				"typeProperties": {
-					"schema": "dbo",
-					"table": "stg_vbak"
+					"schema": "wtw",
+					"table": "F_Siniestros"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable2')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "wtw",
+					"table": "Siniestros"
 				}
 			},
 			"dependsOn": [
@@ -6716,6 +7101,130 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Excel1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "Base",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "WTW Draft siniestralidad Estafeta.xlsx",
+						"folderPath": "WTW",
+						"container": "bimexcontainer"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "SOCIEDAD",
+						"type": "String"
+					},
+					{
+						"name": "SINIESTRO",
+						"type": "String"
+					},
+					{
+						"name": "OCURRIDO",
+						"type": "String"
+					},
+					{
+						"name": "HORA_DE_OCURRIDO",
+						"type": "String"
+					},
+					{
+						"name": "MES_DE_OCURRIDO",
+						"type": "String"
+					},
+					{
+						"name": "AÑO_DE_OCURRIDO",
+						"type": "String"
+					},
+					{
+						"name": "DIA",
+						"type": "String"
+					},
+					{
+						"name": "POLIZA",
+						"type": "String"
+					},
+					{
+						"name": "INCISO",
+						"type": "String"
+					},
+					{
+						"name": "TIPO_VEHICULO",
+						"type": "String"
+					},
+					{
+						"name": "EQUIPO",
+						"type": "String"
+					},
+					{
+						"name": "TR1_TR2",
+						"type": "String"
+					},
+					{
+						"name": "DESCRIPCION",
+						"type": "String"
+					},
+					{
+						"name": "MOD",
+						"type": "String"
+					},
+					{
+						"name": "FRECUENCIA_POR_SERIE",
+						"type": "String"
+					},
+					{
+						"name": "EDAD",
+						"type": "String"
+					},
+					{
+						"name": "SEXO",
+						"type": "String"
+					},
+					{
+						"name": "ESTADO_SIN",
+						"type": "String"
+					},
+					{
+						"name": "ENTIDAD_SIN",
+						"type": "String"
+					},
+					{
+						"name": "SINIESTRALIDAD_RESULTADO_MONTO",
+						"type": "String"
+					},
+					{
+						"name": "ESCALA",
+						"type": "String"
+					},
+					{
+						"name": "RANGO",
+						"type": "String"
+					},
+					{
+						"name": "PAGO_TOTAL",
+						"type": "String"
+					},
+					{
+						"name": "CAUSA",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
 			]
 		},
 		{
@@ -8012,6 +8521,128 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/dataflow2')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"folder": {
+					"name": "WTW"
+				},
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "Excel1",
+								"type": "DatasetReference"
+							},
+							"name": "source1"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "AzureSqlTable1",
+								"type": "DatasetReference"
+							},
+							"name": "sink1"
+						}
+					],
+					"transformations": [
+						{
+							"name": "derivedColumn1"
+						},
+						{
+							"name": "cast1"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          SOCIEDAD as string,",
+						"          SINIESTRO as string,",
+						"          OCURRIDO as date,",
+						"          HORA_DE_OCURRIDO as string,",
+						"          MES_DE_OCURRIDO as string,",
+						"          {AÑO_DE_OCURRIDO} as string,",
+						"          DIA as string,",
+						"          POLIZA as string,",
+						"          INCISO as string,",
+						"          TIPO_VEHICULO as string,",
+						"          EQUIPO as string,",
+						"          TR1_TR2 as string,",
+						"          DESCRIPCION as string,",
+						"          MOD as string,",
+						"          FRECUENCIA_POR_SERIE as string,",
+						"          EDAD as string,",
+						"          SEXO as string,",
+						"          ESTADO_SIN as string,",
+						"          ENTIDAD_SIN as string,",
+						"          SINIESTRALIDAD_RESULTADO_MONTO as decimal(10,0) '000,000,000.000',",
+						"          ESCALA as string,",
+						"          RANGO as string,",
+						"          PAGO_TOTAL as decimal(10,0) '000,000,000.000',",
+						"          CAUSA as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> source1",
+						"source1 derive(HORA_DE_OCURRIDO = substring(HORA_DE_OCURRIDO, 12, 8),",
+						"          AUDIT_TRAIL = '',",
+						"          OBSERVACIONES = '',",
+						"          FECHA_ACT = 01/01/1900) ~> derivedColumn1",
+						"derivedColumn1 cast(output(",
+						"          FECHA_ACT as date 'dd-MM-yyyy'",
+						"     ),",
+						"     errors: true) ~> cast1",
+						"cast1 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     recreate:true,",
+						"     format: 'table',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError',",
+						"     mapColumn(",
+						"          SOCIEDAD,",
+						"          SINIESTRO,",
+						"          OCURRIDO,",
+						"          HORA_DE_OCURRIDO,",
+						"          MES_DE_OCURRIDO,",
+						"          {AÑO_DE_OCURRIDO},",
+						"          DIA,",
+						"          POLIZA,",
+						"          INCISO,",
+						"          TIPO_VEHICULO,",
+						"          EQUIPO,",
+						"          TR1_TR2,",
+						"          DESCRIPCION,",
+						"          MOD,",
+						"          FRECUENCIA_POR_SERIE,",
+						"          EDAD,",
+						"          SEXO,",
+						"          ESTADO_SIN,",
+						"          ENTIDAD_SIN,",
+						"          SINIESTRALIDAD_RESULTADO_MONTO,",
+						"          ESCALA,",
+						"          RANGO,",
+						"          PAGO_TOTAL,",
+						"          CAUSA,",
+						"          AUDIT_TRAIL = FECHA_ACT,",
+						"          OBSERVACIONES,",
+						"          FECHA_ACT",
+						"     )) ~> sink1"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/Excel1')]",
+				"[concat(variables('factoryId'), '/datasets/AzureSqlTable1')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/df_Sales')]",
 			"type": "Microsoft.DataFactory/factories/dataflows",
 			"apiVersion": "2018-06-01",
@@ -8511,514 +9142,6 @@
 				"[concat(variables('factoryId'), '/datasets/AzureSqlProdCateg')]",
 				"[concat(variables('factoryId'), '/datasets/AzureSqlProdCategText')]",
 				"[concat(variables('factoryId'), '/datasets/AzureSqlfactSales')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pipeline3')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Copy data1",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "ExcelSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
-									"enablePartitionDiscovery": false
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"writeBehavior": "insert",
-								"sqlWriterUseTableLock": false,
-								"tableOption": "autoCreate",
-								"disableMetricsCollection": false
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "SOCIEDAD",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "SOCIEDAD",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "SINIESTRO",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "SINIESTRO",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "OCURRIDO",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "OCURRIDO",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "HORA_DE_OCURRIDO",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "HORA_DE_OCURRIDO",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "MES_DE_OCURRIDO",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "MES_DE_OCURRIDO",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "AÑO_DE_OCURRIDO",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "AÑO_DE_OCURRIDO",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "DIA",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "DIA",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "POLIZA",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "POLIZA",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "INCISO",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "INCISO",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "TIPO_VEHICULO",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "TIPO_VEHICULO",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "EQUIPO",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "EQUIPO",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "TR1_TR2",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "TR1_TR2",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "DESCRIPCION",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "DESCRIPCION",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "MOD",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "MOD",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "FRECUENCIA_POR_SERIE",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "FRECUENCIA_POR_SERIE",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "EDAD",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "EDAD",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "SEXO",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "SEXO",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "ESTADO_SIN",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "ESTADO_SIN",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "ENTIDAD_SIN",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "ENTIDAD_SIN",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "SINIESTRALIDAD_RESULTADO_MONTO",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "SINIESTRALIDAD_RESULTADO_MONTO",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "ESCALA",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "ESCALA",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "RANGO",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "RANGO",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "PAGO_TOTAL",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "PAGO_TOTAL",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "CAUSA",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "CAUSA",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									}
-								],
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "Excel1",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "AzureSqlTable2",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"folder": {
-					"name": "WTW"
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/Excel1')]",
-				"[concat(variables('factoryId'), '/datasets/AzureSqlTable2')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Excel1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "Base",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "WTW Draft siniestralidad Estafeta.xlsx",
-						"folderPath": "WTW",
-						"container": "bimexcontainer"
-					},
-					"firstRowAsHeader": true
-				},
-				"schema": [
-					{
-						"name": "SOCIEDAD",
-						"type": "String"
-					},
-					{
-						"name": "SINIESTRO",
-						"type": "String"
-					},
-					{
-						"name": "OCURRIDO",
-						"type": "String"
-					},
-					{
-						"name": "HORA_DE_OCURRIDO",
-						"type": "String"
-					},
-					{
-						"name": "MES_DE_OCURRIDO",
-						"type": "String"
-					},
-					{
-						"name": "AÑO_DE_OCURRIDO",
-						"type": "String"
-					},
-					{
-						"name": "DIA",
-						"type": "String"
-					},
-					{
-						"name": "POLIZA",
-						"type": "String"
-					},
-					{
-						"name": "INCISO",
-						"type": "String"
-					},
-					{
-						"name": "TIPO_VEHICULO",
-						"type": "String"
-					},
-					{
-						"name": "EQUIPO",
-						"type": "String"
-					},
-					{
-						"name": "TR1_TR2",
-						"type": "String"
-					},
-					{
-						"name": "DESCRIPCION",
-						"type": "String"
-					},
-					{
-						"name": "MOD",
-						"type": "String"
-					},
-					{
-						"name": "FRECUENCIA_POR_SERIE",
-						"type": "String"
-					},
-					{
-						"name": "EDAD",
-						"type": "String"
-					},
-					{
-						"name": "SEXO",
-						"type": "String"
-					},
-					{
-						"name": "ESTADO_SIN",
-						"type": "String"
-					},
-					{
-						"name": "ENTIDAD_SIN",
-						"type": "String"
-					},
-					{
-						"name": "SINIESTRALIDAD_RESULTADO_MONTO",
-						"type": "String"
-					},
-					{
-						"name": "ESCALA",
-						"type": "String"
-					},
-					{
-						"name": "RANGO",
-						"type": "String"
-					},
-					{
-						"name": "PAGO_TOTAL",
-						"type": "String"
-					},
-					{
-						"name": "CAUSA",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureSqlTable2')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureSqlDatabase1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "wtw",
-					"table": "Siniestros"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
 			]
 		}
 	]

@@ -184,12 +184,38 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'BIMEXDF_ArmTemplate_1')]"
+			]
+		},
+		{
+			"name": "BIMEXDF_ArmTemplate_3",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_3.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
 					},
 					"SapOdp1_password": {
 						"value": "[parameters('SapOdp1_password')]"
 					},
 					"SapOpenHub1_password": {
 						"value": "[parameters('SapOpenHub1_password')]"
+					},
+					"SapTable2_password": {
+						"value": "[parameters('SapTable2_password')]"
+					},
+					"SqlServer1_connectionString": {
+						"value": "[parameters('SqlServer1_connectionString')]"
 					},
 					"SapOdp1_properties_typeProperties_clientId": {
 						"value": "[parameters('SapOdp1_properties_typeProperties_clientId')]"
@@ -214,32 +240,6 @@
 					},
 					"SapOpenHub1_properties_typeProperties_systemNumber": {
 						"value": "[parameters('SapOpenHub1_properties_typeProperties_systemNumber')]"
-					}
-				}
-			},
-			"dependsOn": [
-				"[resourceId('Microsoft.Resources/deployments', 'BIMEXDF_ArmTemplate_1')]"
-			]
-		},
-		{
-			"name": "BIMEXDF_ArmTemplate_3",
-			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2018-02-01",
-			"properties": {
-				"mode": "incremental",
-				"templateLink": {
-					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_3.json', parameters('containerSasToken'))]",
-					"contentVersion": "1.0.0.0"
-				},
-				"parameters": {
-					"factoryName": {
-						"value": "[parameters('factoryName')]"
-					},
-					"SapTable2_password": {
-						"value": "[parameters('SapTable2_password')]"
-					},
-					"SqlServer1_connectionString": {
-						"value": "[parameters('SqlServer1_connectionString')]"
 					},
 					"SapTable2_properties_typeProperties_clientId": {
 						"value": "[parameters('SapTable2_properties_typeProperties_clientId')]"
