@@ -25,6 +25,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
+						"preCopyScript": "truncate table wtw.Siniestros",
 						"writeBehavior": "insert",
 						"sqlWriterUseTableLock": false,
 						"tableOption": "autoCreate",
@@ -36,26 +37,26 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "SOCIEDAD",
+									"name": "SINIESTRO",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "SOCIEDAD",
+									"name": "SINIESTRO",
 									"type": "String",
-									"physicalType": "nvarchar"
+									"physicalType": "varchar"
 								}
 							},
 							{
 								"source": {
-									"name": "SINIESTRO",
+									"name": "SOCIEDAD",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "SINIESTRO",
+									"name": "SOCIEDAD",
 									"type": "String",
-									"physicalType": "nvarchar"
+									"physicalType": "varchar"
 								}
 							},
 							{
