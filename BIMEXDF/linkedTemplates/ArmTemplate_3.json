@@ -3425,6 +3425,7 @@
 						"     upsertable:false,",
 						"     recreate:true,",
 						"     format: 'table',",
+						"     preSQLs:['drop table wtw.F_Siniestros'],",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true,",
 						"     errorHandlingOption: 'stopOnFirstError',",
