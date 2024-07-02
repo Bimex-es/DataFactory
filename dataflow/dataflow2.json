@@ -27,6 +27,9 @@
 			"transformations": [
 				{
 					"name": "derivedColumn1"
+				},
+				{
+					"name": "cast1"
 				}
 			],
 			"scriptLines": [
@@ -63,7 +66,11 @@
 				"          AUDIT_TRAIL = ERROR_FUNCTION(''),",
 				"          OBSERVACIONES = ERROR_FUNCTION(''),",
 				"          FECHA_ACT = ERROR_FUNCTION('')) ~> derivedColumn1",
-				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"derivedColumn1 cast(output(",
+				"          FECHA_ACT as date 'dd-MM-yyyy'",
+				"     ),",
+				"     errors: true) ~> cast1",
+				"cast1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     deletable:false,",
 				"     insertable:false,",
@@ -100,7 +107,7 @@
 				"          RANGO,",
 				"          PAGO_TOTAL,",
 				"          CAUSA,",
-				"          AUDIT_TRAIL,",
+				"          AUDIT_TRAIL = FECHA_ACT,",
 				"          OBSERVACIONES,",
 				"          FECHA_ACT",
 				"     )) ~> sink1"
