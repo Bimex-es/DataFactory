@@ -63,7 +63,7 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> source1",
 				"source1 derive(HORA_DE_OCURRIDO = substring(HORA_DE_OCURRIDO, 12, 8),",
-				"          AUDIT_TRAIL = '',",
+				"          AUDIT_TRAIL = 'Excel',",
 				"          OBSERVACIONES = '',",
 				"          FECHA_ACT = 01/01/1900) ~> derivedColumn1",
 				"derivedColumn1 cast(output(",
