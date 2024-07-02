@@ -106,7 +106,7 @@
 				"          RANGO,",
 				"          PAGO_TOTAL,",
 				"          CAUSA,",
-				"          AUDIT_TRAIL = FECHA_ACT,",
+				"          AUDIT_TRAIL,",
 				"          OBSERVACIONES,",
 				"          FECHA_ACT",
 				"     )) ~> sink1"
