@@ -333,7 +333,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "Excel1",
+						"referenceName": "Excel_Kungs",
 						"type": "DatasetReference"
 					}
 				],

@@ -1,0 +1,123 @@
+{
+	"name": "Excel_Kungs",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Base",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Kunts WTW Draft siniestralidad Estafeta.xlsx",
+				"folderPath": "WTW",
+				"container": "bimexcontainer"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "ID",
+				"type": "String"
+			},
+			{
+				"name": "SOCIEDAD",
+				"type": "String"
+			},
+			{
+				"name": "SINIESTRO",
+				"type": "String"
+			},
+			{
+				"name": "OCURRIDO",
+				"type": "String"
+			},
+			{
+				"name": "HORA_DE_OCURRIDO",
+				"type": "String"
+			},
+			{
+				"name": "MES_DE_OCURRIDO",
+				"type": "String"
+			},
+			{
+				"name": "AÑO_DE_OCURRIDO",
+				"type": "String"
+			},
+			{
+				"name": "DIA",
+				"type": "String"
+			},
+			{
+				"name": "POLIZA",
+				"type": "String"
+			},
+			{
+				"name": "INCISO",
+				"type": "String"
+			},
+			{
+				"name": "TIPO_VEHICULO",
+				"type": "String"
+			},
+			{
+				"name": "EQUIPO",
+				"type": "String"
+			},
+			{
+				"name": "TR1_TR2",
+				"type": "String"
+			},
+			{
+				"name": "DESCRIPCION",
+				"type": "String"
+			},
+			{
+				"name": "MOD",
+				"type": "String"
+			},
+			{
+				"name": "FRECUENCIA_POR_SERIE",
+				"type": "String"
+			},
+			{
+				"name": "EDAD",
+				"type": "String"
+			},
+			{
+				"name": "SEXO",
+				"type": "String"
+			},
+			{
+				"name": "ESTADO_SIN",
+				"type": "String"
+			},
+			{
+				"name": "ENTIDAD_SIN",
+				"type": "String"
+			},
+			{
+				"name": "SINIESTRALIDAD_RESULTADO_MONTO",
+				"type": "String"
+			},
+			{
+				"name": "ESCALA",
+				"type": "String"
+			},
+			{
+				"name": "RANGO",
+				"type": "String"
+			},
+			{
+				"name": "PAGO_TOTAL",
+				"type": "String"
+			},
+			{
+				"name": "CAUSA",
+				"type": "String"
+			}
+		]
+	}
+}
