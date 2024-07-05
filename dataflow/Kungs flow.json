@@ -1,0 +1,117 @@
+{
+	"name": "Kungs flow",
+	"properties": {
+		"folder": {
+			"name": "WTW"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Excel1",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable1",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "cast1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          SOCIEDAD as string,",
+				"          SINIESTRO as string,",
+				"          OCURRIDO as date,",
+				"          HORA_DE_OCURRIDO as string,",
+				"          MES_DE_OCURRIDO as string,",
+				"          {AÑO_DE_OCURRIDO} as string,",
+				"          DIA as string,",
+				"          POLIZA as string,",
+				"          INCISO as string,",
+				"          TIPO_VEHICULO as string,",
+				"          EQUIPO as string,",
+				"          TR1_TR2 as string,",
+				"          DESCRIPCION as string,",
+				"          MOD as string,",
+				"          FRECUENCIA_POR_SERIE as string,",
+				"          EDAD as string,",
+				"          SEXO as string,",
+				"          ESTADO_SIN as string,",
+				"          ENTIDAD_SIN as string,",
+				"          SINIESTRALIDAD_RESULTADO_MONTO as decimal(10,0) '000,000,000.000',",
+				"          ESCALA as string,",
+				"          RANGO as string,",
+				"          PAGO_TOTAL as decimal(10,0) '000,000,000.000',",
+				"          CAUSA as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 derive(HORA_DE_OCURRIDO = substring(HORA_DE_OCURRIDO, 12, 8),",
+				"          AUDIT_TRAIL = 'Excel',",
+				"          OBSERVACIONES = '',",
+				"          FECHA_ACT = 01/01/1900) ~> derivedColumn1",
+				"derivedColumn1 cast(output(",
+				"          FECHA_ACT as date 'dd-MM-yyyy'",
+				"     ),",
+				"     errors: true) ~> cast1",
+				"cast1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     recreate:true,",
+				"     format: 'table',",
+				"     preSQLs:['truncate table wtw.F_Siniestros'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          SOCIEDAD,",
+				"          SINIESTRO,",
+				"          OCURRIDO,",
+				"          HORA_DE_OCURRIDO,",
+				"          MES_DE_OCURRIDO,",
+				"          {AÑO_DE_OCURRIDO},",
+				"          DIA,",
+				"          POLIZA,",
+				"          INCISO,",
+				"          TIPO_VEHICULO,",
+				"          EQUIPO,",
+				"          TR1_TR2,",
+				"          DESCRIPCION,",
+				"          MOD,",
+				"          FRECUENCIA_POR_SERIE,",
+				"          EDAD,",
+				"          SEXO,",
+				"          ESTADO_SIN,",
+				"          ENTIDAD_SIN,",
+				"          SINIESTRALIDAD_RESULTADO_MONTO,",
+				"          ESCALA,",
+				"          RANGO,",
+				"          PAGO_TOTAL,",
+				"          CAUSA,",
+				"          AUDIT_TRAIL,",
+				"          OBSERVACIONES,",
+				"          FECHA_ACT",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}
