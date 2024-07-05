@@ -25,7 +25,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "truncate table wtw.Siniestros",
+						"preCopyScript": "truncate table wtw.SiniestrosKungs",
 						"writeBehavior": "insert",
 						"sqlWriterUseTableLock": false,
 						"tableOption": "autoCreate",
@@ -37,14 +37,14 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "SINIESTRO",
+									"name": "ID",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "SINIESTRO",
+									"name": "ID",
 									"type": "String",
-									"physicalType": "varchar"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -56,7 +56,19 @@
 								"sink": {
 									"name": "SOCIEDAD",
 									"type": "String",
-									"physicalType": "varchar"
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SINIESTRO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "SINIESTRO",
+									"type": "String",
+									"physicalType": "nvarchar"
 								}
 							},
 							{
@@ -339,7 +351,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "AzureSqlTable2",
+						"referenceName": "AzureSqlTableKungs1",
 						"type": "DatasetReference"
 					}
 				]
@@ -347,6 +359,8 @@
 			{
 				"name": "Data flow1",
 				"type": "ExecuteDataFlow",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy data1",
