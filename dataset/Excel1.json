@@ -1,103 +1,117 @@
 {
-	"name": "Products",
+	"name": "Excel1",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureBlobStorage1",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
-		"type": "DelimitedText",
+		"type": "Excel",
 		"typeProperties": {
+			"sheetName": "Base",
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "Products.csv",
-				"folderPath": "Sales",
+				"fileName": "WTW Draft siniestralidad Estafeta.xlsx",
+				"folderPath": "WTW",
 				"container": "bimexcontainer"
 			},
-			"columnDelimiter": ",",
-			"escapeChar": "\\",
-			"firstRowAsHeader": true,
-			"quoteChar": "\""
+			"firstRowAsHeader": true
 		},
 		"schema": [
 			{
-				"name": "PRODUCTID",
+				"name": "SOCIEDAD",
 				"type": "String"
 			},
 			{
-				"name": "TYPECODE",
+				"name": "SINIESTRO",
 				"type": "String"
 			},
 			{
-				"name": "PRODUCTCATEGORYID",
+				"name": "OCURRIDO",
 				"type": "String"
 			},
 			{
-				"name": "LANGUAGE",
+				"name": "HORA_DE_OCURRIDO",
 				"type": "String"
 			},
 			{
-				"name": "SUPPLIER_PARTNERID",
+				"name": "MES_DE_OCURRIDO",
 				"type": "String"
 			},
 			{
-				"name": "TAXTARIFFCODE",
+				"name": "AÑO_DE_OCURRIDO",
 				"type": "String"
 			},
 			{
-				"name": "QUANTITYUNIT",
+				"name": "DIA",
 				"type": "String"
 			},
 			{
-				"name": "WEIGHTMEASURE",
+				"name": "POLIZA",
 				"type": "String"
 			},
 			{
-				"name": "WEIGHTUNIT",
+				"name": "INCISO",
 				"type": "String"
 			},
 			{
-				"name": "CURRENCY",
+				"name": "TIPO_VEHICULO",
 				"type": "String"
 			},
 			{
-				"name": "PRICE",
+				"name": "EQUIPO",
 				"type": "String"
 			},
 			{
-				"name": "WIDTH",
+				"name": "TR1_TR2",
 				"type": "String"
 			},
 			{
-				"name": "DEPTH",
+				"name": "DESCRIPCION",
 				"type": "String"
 			},
 			{
-				"name": "HEIGHT",
+				"name": "MOD",
 				"type": "String"
 			},
 			{
-				"name": "DIMENSIONUNIT",
+				"name": "FRECUENCIA_POR_SERIE",
 				"type": "String"
 			},
 			{
-				"name": "CREATEDBY",
+				"name": "EDAD",
 				"type": "String"
 			},
 			{
-				"name": "CREATEDAT",
+				"name": "SEXO",
 				"type": "String"
 			},
 			{
-				"name": "CHANGEDBY",
+				"name": "ESTADO_SIN",
 				"type": "String"
 			},
 			{
-				"name": "CHANGEDAT",
+				"name": "ENTIDAD_SIN",
 				"type": "String"
 			},
 			{
-				"name": "PRODUCTPICURL",
+				"name": "SINIESTRALIDAD_RESULTADO_MONTO",
+				"type": "String"
+			},
+			{
+				"name": "ESCALA",
+				"type": "String"
+			},
+			{
+				"name": "RANGO",
+				"type": "String"
+			},
+			{
+				"name": "PAGO_TOTAL",
+				"type": "String"
+			},
+			{
+				"name": "CAUSA",
 				"type": "String"
 			}
 		]

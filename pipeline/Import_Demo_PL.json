@@ -1675,7 +1675,7 @@
 			"name": "Finance"
 		},
 		"annotations": [],
-		"lastPublishTime": "2023-12-29T20:25:59Z"
+		"lastPublishTime": "2024-01-30T15:47:02Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

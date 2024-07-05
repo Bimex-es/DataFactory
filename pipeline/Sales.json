@@ -1607,6 +1607,9 @@
 						]
 					}
 				],
+				"policy": {
+					"secureInput": false
+				},
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
@@ -1620,6 +1623,8 @@
 		"folder": {
 			"name": "Sales"
 		},
-		"annotations": []
-	}
+		"annotations": [],
+		"lastPublishTime": "2024-01-25T12:26:18Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
 }

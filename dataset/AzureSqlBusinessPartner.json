@@ -69,5 +69,6 @@
 			"schema": "dbo",
 			"table": "stg_Business_Partner"
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }

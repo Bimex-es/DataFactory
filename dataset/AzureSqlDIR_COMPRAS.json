@@ -12,5 +12,6 @@
 			"schema": "dbo",
 			"table": "stg_dir_compras"
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }

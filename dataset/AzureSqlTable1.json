@@ -9,8 +9,9 @@
 		"type": "AzureSqlTable",
 		"schema": [],
 		"typeProperties": {
-			"schema": "dbo",
-			"table": "stg_vbak"
+			"schema": "wtw",
+			"table": "F_Siniestros"
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }

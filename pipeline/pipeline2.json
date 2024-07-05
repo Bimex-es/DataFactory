@@ -1,5 +1,5 @@
 {
-	"name": "Test_TW_Maestro",
+	"name": "pipeline2",
 	"properties": {
 		"activities": [
 			{
@@ -16,16 +16,13 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "ExcelSource",
-						"storeSettings": {
-							"type": "AzureBlobStorageReadSettings",
-							"recursive": true,
-							"enablePartitionDiscovery": false
-						}
+						"type": "SapTableSource",
+						"rfcTableOptions": "KNUMV EQ '0000000001'",
+						"customRfcReadTableFunctionModule": "",
+						"partitionOption": "None"
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "truncate table imp.stg_division_mast_tw",
 						"writeBehavior": "insert",
 						"sqlWriterUseTableLock": false,
 						"tableOption": "autoCreate",
@@ -43,20 +40,24 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ZDIVISION_MAST",
+						"referenceName": "SapTableResource1",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "AzureSqlDivisionMast_TW",
-						"type": "DatasetReference"
+						"referenceName": "AzureSqlTable",
+						"type": "DatasetReference",
+						"parameters": {
+							"SchemaDest": "dbo",
+							"TableDest": "sapkonv"
+						}
 					}
 				]
 			}
 		],
 		"annotations": [],
-		"lastPublishTime": "2024-03-07T09:40:36Z"
+		"lastPublishTime": "2024-06-25T16:10:34Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

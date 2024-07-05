@@ -12,5 +12,6 @@
 			"schema": "dbo",
 			"table": "Orders_test"
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }

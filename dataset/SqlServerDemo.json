@@ -1,16 +1,16 @@
 {
-	"name": "AzureSqlSalesOrder_TW",
+	"name": "SqlServerDemo",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureSqlDatabase1",
+			"referenceName": "SqlServer1",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
-		"type": "AzureSqlTable",
+		"type": "SqlServerTable",
 		"schema": [],
 		"typeProperties": {
-			"schema": "imp",
-			"table": "stg_sales_order_tw"
+			"schema": "dbo",
+			"table": "SalesOrderItems"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"

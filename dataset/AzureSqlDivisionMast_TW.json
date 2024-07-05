@@ -12,5 +12,6 @@
 			"schema": "imp",
 			"table": "stg_division_mast_tw"
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }

@@ -5,16 +5,12 @@
 			"referenceName": "SapTable2",
 			"type": "LinkedServiceReference"
 		},
-		"parameters": {
-			"Linked": {
-				"type": "string"
-			}
-		},
 		"annotations": [],
 		"type": "SapTableResource",
 		"schema": [],
 		"typeProperties": {
-			"tableName": "VBAK"
+			"tableName": "KONV"
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }
