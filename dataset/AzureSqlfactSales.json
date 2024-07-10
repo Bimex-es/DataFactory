@@ -7,7 +7,216 @@
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
-		"schema": [],
+		"schema": [
+			{
+				"name": "KeiId",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "SalesOrderID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SalesOrderItem",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CreatedAt",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ChangedAt",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FiscalPeriod",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SalesOrg",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LifeCycleStatus",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BillingStatus",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DeliveryStatus",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Currency",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GrossAmount",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "NetAmount",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "TaxAmount",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "AtpStatus",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OpitemPos",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Quantity",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "QuantityUnit",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DeliveryDate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ProductID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TypeCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Supplier_PartnID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxTarifCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "WeightMeasure",
+				"type": "nvarchar"
+			},
+			{
+				"name": "WeightUnit",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Price",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Width",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Depth",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Height",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ProdPicURL",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ProdCategID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ProductShortDesc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CategoryShortText",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PartnerID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PartnerRole",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EmailAddress",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PhoneNumber",
+				"type": "nvarchar"
+			},
+			{
+				"name": "WebAddress",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CompanyName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LegalForm",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AddressID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AddressType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Street",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Building",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PostalCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "City",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Country",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Region",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Latitude",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Longitude",
+				"type": "nvarchar"
+			}
+		],
 		"typeProperties": {
 			"schema": "dbo",
 			"table": "fact_Sales"
