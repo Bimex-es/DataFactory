@@ -16,42 +16,42 @@
 				},
 				{
 					"dataset": {
-						"referenceName": "AzureSqlSalesOrder",
+						"referenceName": "AzureSqlWebinar",
 						"type": "DatasetReference"
 					},
 					"name": "SalesOrder"
 				},
 				{
 					"dataset": {
-						"referenceName": "AzureSqlBusinessPartner",
+						"referenceName": "AzureSqlWebinar",
 						"type": "DatasetReference"
 					},
 					"name": "BusinessPartner"
 				},
 				{
 					"dataset": {
-						"referenceName": "AzureSqlProducts",
+						"referenceName": "AzureSqlWebinar",
 						"type": "DatasetReference"
 					},
 					"name": "Producto"
 				},
 				{
 					"dataset": {
-						"referenceName": "AzureSqlAdresses",
+						"referenceName": "AzureSqlWebinar",
 						"type": "DatasetReference"
 					},
 					"name": "Address"
 				},
 				{
 					"dataset": {
-						"referenceName": "AzureSqlProdText",
+						"referenceName": "AzureSqlWebinar",
 						"type": "DatasetReference"
 					},
 					"name": "sourceProdText"
 				},
 				{
 					"dataset": {
-						"referenceName": "AzureSqlProdCateg",
+						"referenceName": "AzureSqlWebinar",
 						"type": "DatasetReference"
 					},
 					"name": "sourceProdCateg"
@@ -133,10 +133,26 @@
 				}
 			],
 			"scriptLines": [
-				"source(allowSchemaDrift: true,",
+				"source(output(",
+				"          SALESORDERID as string,",
+				"          SALESORDERITEM as string,",
+				"          PRODUCTID as string,",
+				"          NOTEID as string,",
+				"          CURRENCY as string,",
+				"          GROSSAMOUNT as decimal(38,18),",
+				"          NETAMOUNT as decimal(38,18),",
+				"          TAXAMOUNT as decimal(38,18),",
+				"          ITEMATPSTATUS as string,",
+				"          OPITEMPOS as string,",
+				"          QUANTITY as integer,",
+				"          QUANTITYUNIT as string,",
+				"          DELIVERYDATE as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> SalesOrderItem",
+				"     query: 'select * from dbo.zcdsorditm',",
+				"     format: 'query') ~> SalesOrderItem",
 				"source(output(",
 				"          SALESORDERID as string,",
 				"          CREATEDBY as string,",
@@ -149,9 +165,9 @@
 				"          PARTNERID as string,",
 				"          SALESORG as string,",
 				"          CURRENCY as string,",
-				"          GROSSAMOUNT as string,",
-				"          NETAMOUNT as string,",
-				"          TAXAMOUNT as string,",
+				"          GROSSAMOUNT as decimal(38,18),",
+				"          NETAMOUNT as decimal(38,18),",
+				"          TAXAMOUNT as decimal(38,18),",
 				"          LIFECYCLESTATUS as string,",
 				"          BILLINGSTATUS as string,",
 				"          DELIVERYSTATUS as string",
@@ -159,7 +175,8 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> SalesOrder",
+				"     query: 'select * from dbo.zcdsalesord',",
+				"     format: 'query') ~> SalesOrder",
 				"source(output(",
 				"          PARTNERID as string,",
 				"          PARTNERROLE as string,",
@@ -179,7 +196,8 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> BusinessPartner",
+				"     query: 'select * from dbo.zcdsbpartn',",
+				"     format: 'query') ~> BusinessPartner",
 				"source(output(",
 				"          PRODUCTID as string,",
 				"          TYPECODE as string,",
@@ -191,10 +209,10 @@
 				"          WEIGHTMEASURE as string,",
 				"          WEIGHTUNIT as string,",
 				"          CURRENCY as string,",
-				"          PRICE as string,",
-				"          WIDTH as string,",
-				"          DEPTH as string,",
-				"          HEIGHT as string,",
+				"          PRICE as decimal(38,18),",
+				"          WIDTH as decimal(38,18),",
+				"          DEPTH as decimal(38,18),",
+				"          HEIGHT as decimal(38,18),",
 				"          DIMENSIONUNIT as string,",
 				"          CREATEDBY as string,",
 				"          CREATEDAT as string,",
@@ -205,7 +223,8 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> Producto",
+				"     query: 'select * from dbo.zcdsproduct',",
+				"     format: 'query') ~> Producto",
 				"source(output(",
 				"          ADDRESSID as string,",
 				"          STREET as string,",
@@ -223,27 +242,20 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> Address",
+				"     query: 'select * from dbo.zcdsaddeess',",
+				"     format: 'query') ~> Address",
 				"source(output(",
 				"          PRODUCTID as string,",
 				"          LANGUAGE as string,",
 				"          SHORT_DESCR as string,",
-				"          MEDIUM_DESCR as string,",
-				"          LONG_DESCR as string",
+				"          MEDIUM_DESCR as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> sourceProdText",
-				"source(output(",
-				"          PRODCATEGORYID as string,",
-				"          LANGUAGE as string,",
-				"          CREATEDBY as string,",
-				"          CREATEDAT as string,",
-				"          CHANGEDBY as string,",
-				"          CHANGEDAT as string",
-				"     ),",
-				"     allowSchemaDrift: true,",
+				"     query: 'select * from dbo.zcdsprotext',",
+				"     format: 'query') ~> sourceProdText",
+				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     format: 'table') ~> sourceProdCateg",
