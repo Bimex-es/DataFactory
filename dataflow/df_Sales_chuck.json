@@ -9,7 +9,7 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "AzureSqllSalesOrderItem",
+						"referenceName": "AzureSqlWebinar",
 						"type": "DatasetReference"
 					},
 					"name": "SalesOrderItem"
@@ -133,22 +133,7 @@
 				}
 			],
 			"scriptLines": [
-				"source(output(",
-				"          SALESORDERID as string,",
-				"          SALESORDERITEM as string,",
-				"          PRODUCTID as string,",
-				"          NOTEID as string,",
-				"          CURRENCY as string,",
-				"          GROSSAMOUNT as string,",
-				"          NETAMOUNT as string,",
-				"          TAXAMOUNT as string,",
-				"          ITEMATPSTATUS as string,",
-				"          OPITEMPOS as string,",
-				"          QUANTITY as string,",
-				"          QUANTITYUNIT as string,",
-				"          DELIVERYDATE as string",
-				"     ),",
-				"     allowSchemaDrift: true,",
+				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     format: 'table') ~> SalesOrderItem",
