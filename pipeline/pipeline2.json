@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "SapTableSource",
-						"rfcTableOptions": "KNUMV EQ '0000000001'",
+						"rfcTableOptions": "",
 						"customRfcReadTableFunctionModule": "",
 						"partitionOption": "None"
 					},
@@ -47,11 +47,7 @@
 				"outputs": [
 					{
 						"referenceName": "AzureSqlTable",
-						"type": "DatasetReference",
-						"parameters": {
-							"SchemaDest": "dbo",
-							"TableDest": "sapkonv"
-						}
+						"type": "DatasetReference"
 					}
 				]
 			}

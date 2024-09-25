@@ -5,26 +5,12 @@
 			"referenceName": "AzureSqlDatabase1",
 			"type": "LinkedServiceReference"
 		},
-		"parameters": {
-			"SchemaDest": {
-				"type": "string"
-			},
-			"TableDest": {
-				"type": "string"
-			}
-		},
 		"annotations": [],
 		"type": "AzureSqlTable",
 		"schema": [],
 		"typeProperties": {
-			"schema": {
-				"value": "@dataset().SchemaDest",
-				"type": "Expression"
-			},
-			"table": {
-				"value": "@dataset().TableDest",
-				"type": "Expression"
-			}
+			"schema": "dbo",
+			"table": "SAPADDRESS"
 		}
 	}
 }
