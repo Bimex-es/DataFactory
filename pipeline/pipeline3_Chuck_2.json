@@ -17,7 +17,43 @@
 				"typeProperties": {
 					"dataflow": {
 						"referenceName": "df_Sales_chuck",
-						"type": "DataFlowReference"
+						"type": "DataFlowReference",
+						"datasetParameters": {
+							"SalesOrderItem": {
+								"TableNameWebinar": {
+									"value": "ZCDSORDITM",
+									"type": "Expression"
+								}
+							},
+							"SalesOrder": {
+								"TableNameWebinar": "ZCDSALESORD"
+							},
+							"BusinessPartner": {
+								"TableNameWebinar": "ZCDSBPARTN"
+							},
+							"Producto": {
+								"TableNameWebinar": "ZCDSPRODUCT"
+							},
+							"Address": {
+								"TableNameWebinar": "ZCDSADDEESS"
+							},
+							"sourceProdText": {
+								"TableNameWebinar": "ZCDSPROTEXT"
+							},
+							"sourceProdCateg": {
+								"TableNameWebinar": "ZCDSCATEG"
+							},
+							"sourceProdCategText": {
+								"TableNameWebinar": "ZCDSCATEXT"
+							}
+						},
+						"linkedServiceParameters": {
+							"sourceProdCategText": {
+								"schemaLinkedService": {
+									"TableNameWebinar": "ZCDSCATEXT"
+								}
+							}
+						}
 					},
 					"compute": {
 						"coreCount": 8,
