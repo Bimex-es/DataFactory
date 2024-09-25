@@ -1,0 +1,20 @@
+{
+	"name": "SapTableResource2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SapTable2",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"table_name": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SapTableResource",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "@dataset().table_name"
+		}
+	}
+}
