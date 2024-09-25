@@ -1,0 +1,27 @@
+{
+	"name": "AzureSqlWebinar",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"TableNameWebinar": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "dbo",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@toLower(dataset().TableNameWebinar)",
+				"type": "Expression"
+			}
+		}
+	}
+}
