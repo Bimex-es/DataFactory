@@ -1,0 +1,79 @@
+{
+	"name": "pipeline_DF_Sales",
+	"properties": {
+		"activities": [
+			{
+				"name": "Data Sales",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "df_Sales_Webinar",
+						"type": "DataFlowReference",
+						"datasetParameters": {
+							"SalesOrderItem": {
+								"TableNameWebinar": {
+									"value": "ZCDSORDITM",
+									"type": "Expression"
+								}
+							},
+							"SalesOrder": {
+								"TableNameWebinar": "ZCDSALESORD"
+							},
+							"BusinessPartner": {
+								"TableNameWebinar": "ZCDSBPARTN"
+							},
+							"Producto": {
+								"TableNameWebinar": "ZCDSPRODUCT"
+							},
+							"Address": {
+								"TableNameWebinar": "ZCDSADDEESS"
+							},
+							"sourceProdText": {
+								"TableNameWebinar": "ZCDSPROTEXT"
+							},
+							"sourceProdCateg": {
+								"TableNameWebinar": "ZCDSCATEG"
+							},
+							"sourceProdCategText": {
+								"TableNameWebinar": "ZCDSCATEXT"
+							}
+						}
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"parameters": {
+			"Tablenames": {
+				"type": "array",
+				"defaultValue": [
+					"ZCDSADDEESS",
+					"ZCDSBPARTN",
+					"ZCDSPRODUCT",
+					"ZCDSCATEG",
+					"ZCDSCATEXT",
+					"ZCDSPROTEXT",
+					"ZCDSALESORD",
+					"ZCDSORDITM"
+				]
+			}
+		},
+		"folder": {
+			"name": "Webinar"
+		},
+		"annotations": []
+	}
+}
