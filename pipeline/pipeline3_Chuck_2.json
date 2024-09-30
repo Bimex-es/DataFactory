@@ -46,13 +46,6 @@
 							"sourceProdCategText": {
 								"TableNameWebinar": "ZCDSCATEXT"
 							}
-						},
-						"linkedServiceParameters": {
-							"sourceProdCategText": {
-								"schemaLinkedService": {
-									"TableNameWebinar": "ZCDSCATEXT"
-								}
-							}
 						}
 					},
 					"compute": {
