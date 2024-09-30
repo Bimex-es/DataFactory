@@ -1,6 +1,165 @@
 {
 	"name": "pipeline_Delta_Sales",
 	"properties": {
+		"activities": [
+			{
+				"name": "ForEachDeltaTable",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.Tablenames",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "WatermarkLookup",
+							"type": "Lookup",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderQuery": "select MAX(WatermarkValue) as WatermarkValue from dbo.watermarktable where TableName = '@{item()}'",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "AzureSqlDatabase",
+									"type": "DatasetReference"
+								}
+							}
+						},
+						{
+							"name": "SapToSqlDelta",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "WatermarkLookup",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "SapTableSource",
+									"rfcTableOptions": "LASTCHANGEDATETIME gt '@{activity('WatermarkLookup').output.firstRow.WatermarkValue}'",
+									"customRfcReadTableFunctionModule": "",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"writeBehavior": "upsert",
+									"upsertSettings": {
+										"useTempDB": true,
+										"keys": {
+											"value": "@array(activity('TablePropertiesLookup').output.value[0].KeyColumn)",
+											"type": "Expression"
+										}
+									},
+									"sqlWriterUseTableLock": false,
+									"tableOption": "autoCreate",
+									"disableMetricsCollection": false
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "SapTableResource2",
+									"type": "DatasetReference",
+									"parameters": {
+										"table_name": {
+											"value": "@item()",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "AzureSqlInc",
+									"type": "DatasetReference",
+									"parameters": {
+										"TableNameInc": {
+											"value": "@item()",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						},
+						{
+							"name": "Watermark Stored Procedure",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "SapToSqlDelta",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[update_watermark_table]",
+								"storedProcedureParameters": {
+									"Lastdatetime": {
+										"value": {
+											"value": "@formatDateTime(addHours(pipeline().TriggerTime, 2), 'yyyyMMddHHmmss')\n",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"Tablename": {
+										"value": {
+											"value": "@item()",
+											"type": "Expression"
+										},
+										"type": "String"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "AzureSqlDatabase1",
+								"type": "LinkedServiceReference"
+							}
+						}
+					]
+				}
+			}
+		],
 		"folder": {
 			"name": "Webinar"
 		},
