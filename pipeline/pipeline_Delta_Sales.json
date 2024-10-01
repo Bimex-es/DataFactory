@@ -78,7 +78,6 @@
 								},
 								"sink": {
 									"type": "AzureSqlSink",
-									"preCopyScript": "turncate table dev.{@item()};",
 									"writeBehavior": "upsert",
 									"upsertSettings": {
 										"useTempDB": true,
