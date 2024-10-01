@@ -82,8 +82,7 @@
 									"upsertSettings": {
 										"useTempDB": true,
 										"keys": [
-											"SALESORDERID",
-											"SALESORDERITEM"
+											"SALESORDERID"
 										]
 									},
 									"sqlWriterUseTableLock": false,
@@ -204,7 +203,7 @@
 			"Tablenames": {
 				"type": "array",
 				"defaultValue": [
-					"ZCDSORDITM"
+					"ZCDSALESORD"
 				]
 			}
 		},
