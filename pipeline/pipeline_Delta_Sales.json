@@ -75,10 +75,10 @@
 									"writeBehavior": "upsert",
 									"upsertSettings": {
 										"useTempDB": true,
-										"keys": {
-											"value": "@array(activity('TablePropertiesLookup').output.value[0].KeyColumn)",
-											"type": "Expression"
-										}
+										"keys": [
+											"SALESORDERID",
+											"SALESORDERITEM"
+										]
 									},
 									"sqlWriterUseTableLock": false,
 									"tableOption": "autoCreate",
