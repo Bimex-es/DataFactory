@@ -70,7 +70,7 @@
 								"source": {
 									"type": "SapTableSource",
 									"rfcTableOptions": {
-										"value": "LASTCHANGEDATETIME gt '@{activity('WatermarkLookup').output.firstRow.WatermarkValue}'",
+										"value": "CHANGEDAT gt '@{activity('WatermarkLookup').output.firstRow.WatermarkValue}'",
 										"type": "Expression"
 									},
 									"customRfcReadTableFunctionModule": "",
