@@ -33,7 +33,7 @@
 									"partitionOption": "None"
 								},
 								"dataset": {
-									"referenceName": "AzureSqlDatabase",
+									"referenceName": "AzureSqlTableWatermark",
 									"type": "DatasetReference"
 								}
 							}
@@ -44,6 +44,12 @@
 							"dependsOn": [
 								{
 									"activity": "WatermarkLookup",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								},
+								{
+									"activity": "TablePropertiesLookup",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -154,6 +160,34 @@
 							"linkedServiceName": {
 								"referenceName": "AzureSqlDatabase1",
 								"type": "LinkedServiceReference"
+							}
+						},
+						{
+							"name": "TablePropertiesLookup",
+							"type": "Lookup",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderQuery": {
+										"value": "select KeyColumn as KeyColumn from [dbo].[tableproperties] where TableName= '@{item()}'",
+										"type": "Expression"
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "AzureSqlTableProperties",
+									"type": "DatasetReference"
+								}
 							}
 						}
 					]
