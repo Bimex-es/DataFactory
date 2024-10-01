@@ -198,7 +198,7 @@
 			"Tablenames": {
 				"type": "array",
 				"defaultValue": [
-					"ZCDSORDERITEM"
+					"ZCDSORDITM"
 				]
 			}
 		},
