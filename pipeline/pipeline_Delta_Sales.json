@@ -160,6 +160,14 @@
 				}
 			}
 		],
+		"parameters": {
+			"Tablenames": {
+				"type": "array",
+				"defaultValue": [
+					"ZCDSORDERITEM"
+				]
+			}
+		},
 		"folder": {
 			"name": "Webinar"
 		},
