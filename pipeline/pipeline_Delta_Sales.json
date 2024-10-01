@@ -178,7 +178,7 @@
 								"source": {
 									"type": "AzureSqlSource",
 									"sqlReaderQuery": {
-										"value": "select KeyColumn as KeyColumn from [dbo].[tableproperties] where TableName= '@{item()}'",
+										"value": "select KeyColumn as KeyColumn from [dbo].[tablepropertieskeys] where TableName= '@{item()}'",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
