@@ -28,7 +28,10 @@
 							"typeProperties": {
 								"source": {
 									"type": "AzureSqlSource",
-									"sqlReaderQuery": "select MAX(WatermarkValue) as WatermarkValue from dbo.watermarktable where TableName = '@{item()}'",
+									"sqlReaderQuery": {
+										"value": "select MAX(WatermarkValue) as WatermarkValue from dbo.watermarktable where TableName = '@{item()}'",
+										"type": "Expression"
+									},
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
 								},
@@ -66,12 +69,16 @@
 							"typeProperties": {
 								"source": {
 									"type": "SapTableSource",
-									"rfcTableOptions": "LASTCHANGEDATETIME gt '@{activity('WatermarkLookup').output.firstRow.WatermarkValue}'",
+									"rfcTableOptions": {
+										"value": "LASTCHANGEDATETIME gt '@{activity('WatermarkLookup').output.firstRow.WatermarkValue}'",
+										"type": "Expression"
+									},
 									"customRfcReadTableFunctionModule": "",
 									"partitionOption": "None"
 								},
 								"sink": {
 									"type": "AzureSqlSink",
+									"preCopyScript": "turncate table dev.{@item()};",
 									"writeBehavior": "upsert",
 									"upsertSettings": {
 										"useTempDB": true,
