@@ -1,0 +1,9 @@
+{
+	"name": "pipeline_CDC",
+	"properties": {
+		"folder": {
+			"name": "Webinar"
+		},
+		"annotations": []
+	}
+}
