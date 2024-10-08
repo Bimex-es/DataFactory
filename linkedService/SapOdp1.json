@@ -2,15 +2,29 @@
 	"name": "SapOdp1",
 	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
+		"parameters": {
+			"Server": {
+				"type": "string",
+				"defaultValue": "172.16.1.177"
+			},
+			"System": {
+				"type": "string",
+				"defaultValue": "00"
+			},
+			"Client": {
+				"type": "string",
+				"defaultValue": "200"
+			}
+		},
 		"annotations": [],
 		"type": "SapOdp",
 		"typeProperties": {
-			"clientId": "200",
+			"clientId": "@{linkedService().Client}",
 			"sncMode": false,
 			"userName": "bimex",
-			"server": "172.16.1.178",
-			"systemNumber": "00",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIyODVkNzAxZC02MWI0LTRhODEtYjk4NS05N2U5ZmJhYThkMWQiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"server": "@{linkedService().Server}",
+			"systemNumber": "@{linkedService().System}",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI1MzNkODc2ZC0yMWQ2LTQzMWYtODg2ZC1mN2Y3NGJiYzlkZDMiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
 			"referenceName": "integrationRuntime2",
