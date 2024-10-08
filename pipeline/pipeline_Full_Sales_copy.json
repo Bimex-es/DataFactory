@@ -33,7 +33,7 @@
 								"sink": {
 									"type": "AzureSqlSink",
 									"preCopyScript": {
-										"value": "truncate table dbo.@{item()};",
+										"value": "truncate table webinar.@{item()};",
 										"type": "Expression"
 									},
 									"writeBehavior": "insert",
