@@ -1,0 +1,103 @@
+{
+	"name": "pipeline_Full_Sales_copy",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.Tablenames",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy data",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "SapTableSource",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"preCopyScript": {
+										"value": "truncate table dbo.@{item()};",
+										"type": "Expression"
+									},
+									"writeBehavior": "insert",
+									"sqlWriterUseTableLock": false,
+									"tableOption": "autoCreate",
+									"disableMetricsCollection": false
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "SapTableResource2",
+									"type": "DatasetReference",
+									"parameters": {
+										"table_name": {
+											"value": "@item()",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "AzureSqlWebinar",
+									"type": "DatasetReference",
+									"parameters": {
+										"TableNameWebinar": {
+											"value": "@item()",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"Tablenames": {
+				"type": "array",
+				"defaultValue": [
+					"ZCDSADDEESS",
+					"ZCDSBPARTN",
+					"ZCDSPRODUCT",
+					"ZCDSCATEG",
+					"ZCDSCATEXT",
+					"ZCDSPROTEXT",
+					"ZCDSALESORD",
+					"ZCDSORDITM"
+				]
+			}
+		},
+		"folder": {
+			"name": "Webinar"
+		},
+		"annotations": []
+	}
+}
