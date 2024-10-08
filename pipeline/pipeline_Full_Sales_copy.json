@@ -65,14 +65,8 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "AzureSqlWebinar",
-									"type": "DatasetReference",
-									"parameters": {
-										"TableNameWebinar": {
-											"value": "@item()",
-											"type": "Expression"
-										}
-									}
+									"referenceName": "AzureSqlWebinar_copy",
+									"type": "DatasetReference"
 								}
 							]
 						}
