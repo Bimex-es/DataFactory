@@ -1,0 +1,34 @@
+{
+	"name": "SapTable3",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"parameters": {
+			"Server": {
+				"type": "string",
+				"defaultValue": "172.16.1.177"
+			},
+			"System": {
+				"type": "string",
+				"defaultValue": "00"
+			},
+			"Client": {
+				"type": "string",
+				"defaultValue": "200"
+			}
+		},
+		"annotations": [],
+		"type": "SapTable",
+		"typeProperties": {
+			"clientId": "@{linkedService().Client}",
+			"sncMode": false,
+			"userName": "bimex",
+			"server": "@{linkedService().Server}",
+			"systemNumber": "@{linkedService().Server}",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI1YjczOTY3YS05OTMzLTQ2NmItYjYyMy0zZTJlY2YzYzQ1NWIiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntime2",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
