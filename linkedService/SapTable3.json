@@ -22,9 +22,9 @@
 			"clientId": "@{linkedService().Client}",
 			"sncMode": false,
 			"userName": "bimex",
-			"server": "@{linkedService().Server}",
+			"server": "172.16.1.177",
 			"systemNumber": "@{linkedService().Server}",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI1YjczOTY3YS05OTMzLTQ2NmItYjYyMy0zZTJlY2YzYzQ1NWIiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI4YjI0NzljZC1iZTBiLTQ3NjEtOWRjMy01NGMzNWEyMjQzZGEiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
 			"referenceName": "integrationRuntime2",
