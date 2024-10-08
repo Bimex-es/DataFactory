@@ -2,7 +2,7 @@
 	"name": "df_Sales_Webinar",
 	"properties": {
 		"folder": {
-			"name": "Webinar"
+			"name": "WTW/Webinar"
 		},
 		"type": "MappingDataFlow",
 		"typeProperties": {

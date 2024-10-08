@@ -2,7 +2,7 @@
 	"name": "df_cdc",
 	"properties": {
 		"folder": {
-			"name": "Webinar"
+			"name": "WTW/Webinar"
 		},
 		"type": "MappingDataFlow",
 		"typeProperties": {
