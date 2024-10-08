@@ -198,6 +198,9 @@
 				]
 			}
 		],
+		"folder": {
+			"name": "Test"
+		},
 		"annotations": []
 	}
 }
