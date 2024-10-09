@@ -32,11 +32,10 @@
 								},
 								"sink": {
 									"type": "AzureSqlSink",
-									"preCopyScript": {
-										"value": "truncate table webinar.@{item()};",
-										"type": "Expression"
+									"writeBehavior": "upsert",
+									"upsertSettings": {
+										"useTempDB": true
 									},
-									"writeBehavior": "insert",
 									"sqlWriterUseTableLock": false,
 									"tableOption": "autoCreate",
 									"disableMetricsCollection": false
