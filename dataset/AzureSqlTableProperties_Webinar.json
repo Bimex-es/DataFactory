@@ -1,0 +1,28 @@
+{
+	"name": "AzureSqlTableProperties_Webinar",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Webinar"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "TableName",
+				"type": "varchar"
+			},
+			{
+				"name": "KeyColumn",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "webinar",
+			"table": "tablepropertieskeys"
+		}
+	}
+}
