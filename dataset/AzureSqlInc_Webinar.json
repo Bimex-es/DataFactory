@@ -1,0 +1,24 @@
+{
+	"name": "AzureSqlInc_Webinar",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"TableNameInc": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "webinar",
+			"table": {
+				"value": "@toLower(dataset().TableNameInc)",
+				"type": "Expression"
+			}
+		}
+	}
+}
