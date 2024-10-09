@@ -3,7 +3,12 @@
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "SapTable2",
-			"type": "LinkedServiceReference"
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"Server": "172.16.1.177",
+				"System": "00",
+				"Client": "200"
+			}
 		},
 		"parameters": {
 			"table_name": {
@@ -14,7 +19,10 @@
 		"type": "SapTableResource",
 		"schema": [],
 		"typeProperties": {
-			"tableName": "@dataset().table_name"
+			"tableName": {
+				"value": "@dataset().table_name",
+				"type": "Expression"
+			}
 		}
 	}
 }
