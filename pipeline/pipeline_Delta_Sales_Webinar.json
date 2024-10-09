@@ -29,14 +29,14 @@
 								"source": {
 									"type": "AzureSqlSource",
 									"sqlReaderQuery": {
-										"value": "select MAX(WatermarkValue) as WatermarkValue from dbo.watermarktable where TableName = '@{item()}'",
+										"value": "select MAX(WatermarkValue) as WatermarkValue from webinar.watermarktable where TableName = '@{item()}'",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
 								},
 								"dataset": {
-									"referenceName": "AzureSqlTableWatermark",
+									"referenceName": "AzureSqlTableWatermark_Webinar",
 									"type": "DatasetReference"
 								}
 							}
@@ -113,7 +113,7 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "AzureSqlInc",
+									"referenceName": "AzureSqlInc_Webinar",
 									"type": "DatasetReference",
 									"parameters": {
 										"TableNameInc": {
@@ -144,7 +144,7 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"storedProcedureName": "[dbo].[update_watermark_table]",
+								"storedProcedureName": "[webinar].[update_watermark_table]",
 								"storedProcedureParameters": {
 									"Lastdatetime": {
 										"value": {
@@ -185,14 +185,14 @@
 								"source": {
 									"type": "AzureSqlSource",
 									"sqlReaderQuery": {
-										"value": "select KeyColumn as KeyColumn from [dbo].[tablepropertieskeys] where TableName= '@{item()}'",
+										"value": "select KeyColumn as KeyColumn from [webinar].[tablepropertieskeys] where TableName= '@{item()}'",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
 								},
 								"dataset": {
-									"referenceName": "AzureSqlTableProperties",
+									"referenceName": "AzureSqlTableProperties_Webinar",
 									"type": "DatasetReference"
 								}
 							}
