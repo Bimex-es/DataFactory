@@ -1,0 +1,15 @@
+{
+	"name": "SapTableBW",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SapTableBW",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SapTableResource",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "ZBI_FILE_PARAMS"
+		}
+	}
+}
