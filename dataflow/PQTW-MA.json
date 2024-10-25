@@ -1,0 +1,20 @@
+{
+	"name": "PQTW-MA",
+	"properties": {
+		"type": "WranglingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"name": "ExcelTW",
+					"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~>  ExcelTW",
+					"dataset": {
+						"referenceName": "ExcelTW",
+						"type": "DatasetReference"
+					}
+				}
+			],
+			"script": "section Section1;\r\nshared ExcelTW = let AdfDoc = AzureStorage.BlobContents(\"https://bimexstorage.blob.core.windows.net/bimexcontainer/Truck/Ejemplo MA - Bimex.xlsx\"), Excel = Excel.Workbook(AdfDoc),ExcelSheet = Excel{[Item=\"Ind MA\",Kind=\"Sheet\"]}[Data], PromotedHeaders = Table.PromoteHeaders(ExcelSheet, [PromoteAllScalars = true]) in PromotedHeaders;\r\nshared UserQuery = let Source = #\"ExcelTW\",\r\n  #\"Removed top rows\" = Table.Skip(Source, 2),\r\n  #\"Promoted headers\" = Table.PromoteHeaders(#\"Removed top rows\", [PromoteAllScalars = true]) in #\"Promoted headers\";\r\n",
+			"documentLocale": "en-us"
+		}
+	}
+}
