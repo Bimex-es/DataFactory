@@ -1,0 +1,23 @@
+{
+	"name": "ExcelTW",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Ind MA",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Ejemplo MA - Bimex.xlsx",
+				"folderPath": "Truck",
+				"container": "bimexcontainer"
+			},
+			"range": "A4:W217",
+			"firstRowAsHeader": true
+		},
+		"schema": []
+	}
+}
