@@ -1,0 +1,115 @@
+{
+	"name": "ExcelTruck",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Ind MA",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Ejemplo MA - Bimex.xlsx",
+				"folderPath": "Truck",
+				"container": "bimexcontainer"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "Division",
+				"type": "String"
+			},
+			{
+				"name": "Sociedad",
+				"type": "String"
+			},
+			{
+				"name": "Pais",
+				"type": "String"
+			},
+			{
+				"name": "Planta / Almacén",
+				"type": "String"
+			},
+			{
+				"name": "Grupo",
+				"type": "String"
+			},
+			{
+				"name": "Codigo",
+				"type": "String"
+			},
+			{
+				"name": "Descripción",
+				"type": "String"
+			},
+			{
+				"name": "Enero",
+				"type": "String"
+			},
+			{
+				"name": "Febrero",
+				"type": "String"
+			},
+			{
+				"name": "Marzo",
+				"type": "String"
+			},
+			{
+				"name": "Abril",
+				"type": "String"
+			},
+			{
+				"name": "Mayo",
+				"type": "String"
+			},
+			{
+				"name": "Junio",
+				"type": "String"
+			},
+			{
+				"name": "Julio",
+				"type": "String"
+			},
+			{
+				"name": "Agosto",
+				"type": "String"
+			},
+			{
+				"name": "Septiembre",
+				"type": "String"
+			},
+			{
+				"name": "Octubre",
+				"type": "String"
+			},
+			{
+				"name": "Noviembre",
+				"type": "String"
+			},
+			{
+				"name": "Dicembre",
+				"type": "String"
+			},
+			{
+				"name": "Total",
+				"type": "String"
+			},
+			{
+				"name": "Total 2023",
+				"type": "String"
+			},
+			{
+				"name": "Total 2022",
+				"type": "String"
+			},
+			{
+				"name": "Total 2021",
+				"type": "String"
+			}
+		]
+	}
+}
