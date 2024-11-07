@@ -1623,7 +1623,7 @@
 					"scripts": [
 						{
 							"type": "Query",
-							"text": "ALTER DATABASE [BIMEX_DB] MODIFY(Edition = 'Standard', SERVICE_OBJECTIVE = 'S1', MAXSIZE = 250 GB);"
+							"text": "ALTER DATABASE [BIMEX_DB] MODIFY(Edition = 'Standard', SERVICE_OBJECTIVE = 'S0', MAXSIZE = 250 GB);"
 						}
 					],
 					"scriptBlockExecutionTimeout": "02:00:00"
