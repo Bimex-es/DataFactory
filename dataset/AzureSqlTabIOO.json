@@ -1,0 +1,101 @@
+{
+	"name": "AzureSqlTabIOO",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "0CO_AREA",
+				"type": "nvarchar"
+			},
+			{
+				"name": "0PROFIT_CTR",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ZDIRCOMP",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ZDIV1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ZFUNCION1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ZUBIC1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ZUBIC1__ZORDEN",
+				"type": "nvarchar"
+			},
+			{
+				"name": "0CHRT_ACCTS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ZACCOUNT7",
+				"type": "nvarchar"
+			},
+			{
+				"name": "0COMP_CODE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "0VERSION",
+				"type": "nvarchar"
+			},
+			{
+				"name": "0CALMONTH",
+				"type": "nvarchar"
+			},
+			{
+				"name": "0CALMONTH2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "0CALYEAR",
+				"type": "nvarchar"
+			},
+			{
+				"name": "0FISCPER",
+				"type": "nvarchar"
+			},
+			{
+				"name": "0FISCPER3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "0FISCVARNT",
+				"type": "nvarchar"
+			},
+			{
+				"name": "0FISCYEAR",
+				"type": "nvarchar"
+			},
+			{
+				"name": "0CURRENCY",
+				"type": "nvarchar"
+			},
+			{
+				"name": "0AMOUNT",
+				"type": "nvarchar"
+			},
+			{
+				"name": "0BALANCE",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "fact_Finance"
+		}
+	}
+}
