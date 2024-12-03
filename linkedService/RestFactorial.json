@@ -1,0 +1,12 @@
+{
+	"name": "RestFactorial",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://api.factorialhr.com/api/2024-10-01/resources/api_public/credentials",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
