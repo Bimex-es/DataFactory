@@ -5,10 +5,10 @@
 		"annotations": [],
 		"type": "OData",
 		"typeProperties": {
-			"url": "http://r3ds.hipra.local:8000/sap/opu/odata/sap/ZODATA_SERVICE_SRV/AFVC_Detail?$format=json",
+			"url": "http://172.16.1.177:8000/sap/opu/odata/sap/ZODATA_SERVICE_SRV/AFVC_Detail?$format=json",
 			"authenticationType": "Basic",
 			"userName": "BIMEX",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJlYjE1NGY3MS0xYjBkLTQ4NjYtOTVlNi02MDU4NWQ3Njk4YmEiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJlOWM5ZTA3NC1kM2UwLTQ3NDMtODQxZi00ZTk4ZjU3Nzc5MDEiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
 			"referenceName": "integrationRuntime2",
